@@ -1,0 +1,6 @@
+pymc
+arviz
+streamlit
+pandas
+numpy
+matplotlib
