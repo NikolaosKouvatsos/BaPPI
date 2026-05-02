@@ -3,4 +3,5 @@ arviz
 streamlit
 pandas
 numpy
+scipy
 matplotlib
