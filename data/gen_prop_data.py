@@ -9,7 +9,7 @@ def generate_property_data(n_samples=1000, seed=None):
     - property_type: Categorical (Flat or House).
     - n_rooms: Discrete (Poisson mean 2.5, shifted by +1). Represents total rooms.
     - dist_centre_km: Continuous (Exponential scale 5.0). Distance in Kilometers.
-    - outdoor_space: Categorical (Garden, Balcony, Terrace, None).
+    - outdoor_space: Categorical (Garden, Balcony, Terrace, Nothing).
     - near_underground: Binary (Bernoulli p=0.3). 1 = <500m to station, 0 = far.
     """
     if seed is not None:
@@ -24,7 +24,7 @@ def generate_property_data(n_samples=1000, seed=None):
     # Exponential distribution: most properties are concentrated near the center
     distance = np.random.exponential(scale=5.0, size=n_samples)
     
-    outdoor_options = ['Garden', 'Balcony', 'Terrace', 'None']
+    outdoor_options = ['Garden', 'Balcony', 'Terrace', 'Nothing']
     outdoor_space = np.random.choice(outdoor_options, size=n_samples, p=[0.3, 0.1, 0.2, 0.4])
     
     # Bernoulli: 0 (No) is 70% likely, 1 (Yes) is 30% likely
@@ -76,7 +76,7 @@ def generate_price(df, model_case='A', sigma=0.1, seed=None):
     # Houses carry a ~22% premium over Flats (exp(0.2))
     type_map = {'House': 0.2, 'Flat': 0.0}
     # Amenities add progressive percentage bonuses
-    outdoor_map = {'Garden': 0.15, 'Terrace': 0.1, 'Balcony': 0.05, 'None': 0.0}
+    outdoor_map = {'Garden': 0.15, 'Terrace': 0.1, 'Balcony': 0.05, 'Nothing': 0.0}
     
     # 3. Model Logic (The Hidden Signal)
     # Case B adds a 0.15 bias, which shifts the price distribution rightward.
