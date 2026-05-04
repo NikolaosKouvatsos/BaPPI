@@ -1,132 +1,201 @@
 import numpy as np
 import pandas as pd
+import os
 
 def generate_property_data(n_samples=1000, seed=None):
     """
-    Generates structural features for synthetic London properties.
+    Generates the structural 'Physical' features of synthetic London properties.
     
-    Units & Distributions:
-    - property_type: Categorical (Flat or House).
-    - n_rooms: Discrete (Poisson mean 2.5, shifted by +1). Represents total rooms.
-    - dist_centre_km: Continuous (Exponential scale 5.0). Distance in Kilometers.
-    - outdoor_space: Categorical (Garden, Balcony, Terrace, Nothing).
-    - near_underground: Binary (Bernoulli p=0.3). 1 = <500m to station, 0 = far.
+    This function creates the independent variables (X) that define a property's
+    intrinsic profile before any pricing logic is applied.
+    
+    Parameters:
+    -----------
+    n_samples : int
+        Number of properties to generate.
+    seed : int, optional
+        Reproducibility seed for the structural features.
     """
     if seed is not None:
         np.random.seed(seed)
     
-    # 75% Flats, 25% Houses (Typical for London rental market)
+    # Typical London split: mostly flats (75%), fewer houses (25%)
     prop_types = np.random.choice(['Flat', 'House'], size=n_samples, p=[0.75, 0.25])
     
-    # Poisson + 1 ensures we don't have 0-room properties. Mean ~3.5 rooms.
+    # Rooms follow a Poisson distribution (mean 2.5) + 1 to avoid 'zero-room' homes.
+    # This results in a realistic range of 1 to 6+ rooms.
     rooms = np.random.poisson(lam=2.5, size=n_samples) + 1
     
-    # Exponential distribution: most properties are concentrated near the center
+    # Distance from city center follows an Exponential distribution.
+    # Most properties are clustered near the center; few are very far out.
     distance = np.random.exponential(scale=5.0, size=n_samples)
     
+    # Categorical amenities with varied probability of occurrence.
     outdoor_options = ['Garden', 'Balcony', 'Terrace', 'Nothing']
     outdoor_space = np.random.choice(outdoor_options, size=n_samples, p=[0.3, 0.1, 0.2, 0.4])
     
-    # Bernoulli: 0 (No) is 70% likely, 1 (Yes) is 30% likely
+    # Proximity to London Underground (Binary Bernoulli trial with 30% 'Yes').
     underground = np.random.binomial(n=1, p=0.3, size=n_samples)
     
-    df = pd.DataFrame({
+    return pd.DataFrame({
         'property_type': prop_types,
         'n_rooms': rooms,
         'dist_centre_km': distance,
         'outdoor_space': outdoor_space,
         'near_underground': underground
     })
-    
-    return df
 
-def generate_price(df, model_case='A', sigma=0.1, seed=None):
+def generate_price_fix_params(df, model_case='A', sigma=0.1, seed=None):
     """
-    Calculates monthly rental price (GBP) using a Log-Linear model.
+    FIXED PARAMETER PRICE GENERATOR (Log-Linear Model)
+    -------------------------------------------------
+    In this model, every house follows identical market rules. The impact 
+    of a 'Room' or 'Garden' is a universal constant for all properties.
     
-    The formula follows: ln(Price) = Intercept + sum(beta * feature) + Bias + noise
+    Logic: ln(Price) = Intercept + (Beta * Feature) + Agent_Premium + Noise
     
     Parameters:
     -----------
-    df : pd.DataFrame
-        Input data from generate_property_data.
     model_case : str
         'A' for Owner (Direct) - No markup.
-        'B' for Agent - Includes a ~16% (0.15 log-point) premium.
+        'B' for Agent - Exactly 0.15 log-point (~16%) premium.
     sigma : float
-        Standard deviation of the Gaussian noise in log-space. 
-        Reflects market volatility (0.1 = ~10% fluctuation).
-        
-    Returns:
-    --------
-    pd.Series
-        Monthly rental prices in GBP (£).
+        Standard deviation of the residual noise (market chaos).
     """
     if seed is not None:
         np.random.seed(seed)
-        
-    # 1. Base Parameters (Log-Space)
-    # Intercept of 7.5 corresponds to a base price of exp(7.5) ≈ £1,800
-    intercept = 7.5  
-    beta_room = 0.15  # Each additional room adds ~15% to price
-    beta_dist = -0.05 # Each km from city centre reduces price by ~5%
-    beta_underground = 0.10 # Being near a station adds ~10%
     
-    # 2. Categorical Offsets (Log-Space)
-    # Houses carry a ~22% premium over Flats (exp(0.2))
+    # 1. Universal Coefficients (Point Estimates)
+    intercept, beta_room, beta_dist, beta_under = 7.5, 0.15, -0.05, 0.10
     type_map = {'House': 0.2, 'Flat': 0.0}
-    # Amenities add progressive percentage bonuses
     outdoor_map = {'Garden': 0.15, 'Terrace': 0.1, 'Balcony': 0.05, 'Nothing': 0.0}
     
-    # 3. Model Logic (The Hidden Signal)
-    # Case B adds a 0.15 bias, which shifts the price distribution rightward.
+    # 2. Case Selection: Shift the entire distribution by a fixed amount if Agent
     agent_premium = 0.15 if model_case == 'B' else 0.0
     
-    # 4. Core Linear Combination
-    # We add all log-contributions together.
+    # 3. Calculation: Additive log-contributions become multiplicative in GBP
     log_price = (
         intercept + 
-        (df['n_rooms'] * beta_room) +
-        (df['dist_centre_km'] * beta_dist) +
-        (df['near_underground'] * beta_underground) +
-        df['property_type'].map(type_map) +
-        df['outdoor_space'].map(outdoor_map) +
+        (df['n_rooms'] * beta_room) + 
+        (df['dist_centre_km'] * beta_dist) + 
+        (df['near_underground'] * beta_under) + 
+        df['property_type'].map(type_map) + 
+        df['outdoor_space'].map(outdoor_map) + 
         agent_premium
     )
     
-    # 5. Stochasticity
-    # Adding epsilon ~ N(0, sigma^2) makes the inference problem non-trivial.
+    # Add homogeneous Gaussian noise
     noise = np.random.normal(0, sigma, size=len(df))
-    log_price_final = log_price + noise
+    return np.exp(log_price + noise)
+
+def generate_price_rand_params(df, model_case='A', market_volatility=0.03, seed=None):
+    """
+    STOCHASTIC (RANDOM) PARAMETER PRICE GENERATOR - Non-Gaussian Version
+    --------------------------------------------------------------------
+    Features realistic, non-idealized priors to simulate market complexity:
+    - Laplace: For 'fat-tailed' room values (more outliers).
+    - Gamma: For Agent Premiums (strictly positive, right-skewed).
+    - Normal: For Intercept and Distance (standard market noise).
+    """
+    if seed is not None:
+        np.random.seed(seed)
     
-    # 6. Transform back to GBP
-    # exp(log_price) converts additive percentage changes into multiplicative ones.
-    return np.exp(log_price_final)
+    n = len(df)
+    
+    # 1. Intercept (Normal)
+    # The base cost remains Gaussian as it represents the central market equilibrium.
+    intercepts = np.random.normal(7.5, market_volatility, size=n)
+    
+    # 2. Beta Room (Laplace / Double Exponential)
+    # REALISM: The value of an extra room often has 'fat tails'. 
+    # Most are standard, but some luxury or tiny rooms vary wildly.
+    betas_room = np.random.laplace(0.15, market_volatility, size=n)
+    
+    # 3. Beta Distance & Underground (Normal)
+    betas_dist = np.random.normal(-0.05, market_volatility, size=n)
+    betas_under = np.random.normal(0.10, market_volatility, size=n)
+    
+    # 4. Agent Premium (Gamma Distribution)
+    # REALISM: An Agent Premium cannot be negative. A Gamma distribution 
+    # is strictly positive and right-skewed, meaning most agents charge a 
+    # moderate fee, but a few 'premium' agents charge significantly more.
+    if model_case == 'B':
+        # Shape (k) and Scale (theta). Mean = k*theta. 
+        # We target a mean of 0.15.
+        shape = 5.0
+        scale = 0.15 / shape
+        agent_premium = np.random.gamma(shape, scale, size=n)
+    else:
+        agent_premium = 0.0
+    
+    # 5. Categorical Effects (Normal for simplicity)
+    house_bonus_dist = np.random.normal(0.20, market_volatility, size=n)
+    garden_bonus_dist = np.random.normal(0.15, market_volatility, size=n)
+    terrace_bonus_dist = np.random.normal(0.10, market_volatility, size=n)
+    balcony_bonus_dist = np.random.normal(0.05, market_volatility, size=n)
+    
+    # 6. Mapping: Connecting structural choices to their specific random betas
+    type_impact = np.where(df['property_type'] == 'House', house_bonus_dist, 0.0)
+    
+    outdoor_impact = np.zeros(n)
+    outdoor_impact += np.where(df['outdoor_space'] == 'Garden', garden_bonus_dist, 0.0)
+    outdoor_impact += np.where(df['outdoor_space'] == 'Terrace', terrace_bonus_dist, 0.0)
+    outdoor_impact += np.where(df['outdoor_space'] == 'Balcony', balcony_bonus_dist, 0.0)
+    
+    # 7. Calculation
+    log_price = (
+        intercepts + 
+        (df['n_rooms'] * betas_room) + 
+        (df['dist_centre_km'] * betas_dist) + 
+        (df['near_underground'] * betas_under) + 
+        type_impact + 
+        outdoor_impact + 
+        agent_premium
+    )
+    
+    # 8. Unexplained Residual (Student's T-Distribution)
+    # REALISM: 'Market Noise' in the real world has more 'black swan' events 
+    # than a Normal distribution. A T-distribution with low degrees of freedom (df=5)
+    # creates more extreme price outliers.
+    noise = np.random.standard_t(df=5, size=n) * 0.1
+    
+    return np.exp(log_price + noise)
 
 if __name__ == "__main__":
-    # --- GLOBAL SEED SETTING ---
+    # --- SETUP & CONFIGURATION ---
     MASTER_SEED = 42
+    
+    # MODE SWITCH: 
+    # 'fixed' -> Standard Log-Linear model (london_rentals_fix_params.csv)
+    # 'random' -> Stochastic Market model (london_rentals_rand_params.csv)
+    MODE = 'random' 
+    
+    # Generate common structural features for 1000 properties
+    data = generate_property_data(1000, seed=MASTER_SEED)
+    half = len(data) // 2
+        
+    # --- DATA GENERATION EXECUTION ---
+    if MODE == 'fixed':
+        # Generate 500 Owners and 500 Agents using identical beta rules
+        prices_a = generate_price_fix_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
+        prices_b = generate_price_fix_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
+        filename = "data/london_rentals_fix_params.csv"
+    else:
+        # Generate 500 Owners and 500 Agents using stochastic property-level betas
+        prices_a = generate_price_rand_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
+        prices_b = generate_price_rand_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
+        filename = "data/london_rentals_rand_params.csv"
 
-    # Generate 1000 properties
-    n = 1000
-    data = generate_property_data(n, seed=MASTER_SEED)
-    
-    # Assign half to Owner (A) and half to Agent (B) to create a balanced dataset
-    # This represents our prior P(A) = P(B) = 0.5
-    half = n // 2
-    prices_a = generate_price(data.iloc[:half], model_case='A', seed=MASTER_SEED)
-    prices_b = generate_price(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
-    
+    # Merge structural features with generated prices and labels
     data['monthly_rent_gbp'] = pd.concat([prices_a, prices_b]).values
     data['listing_type'] = ['Owner']*half + ['Agent']*half
     
-    # Output results
+    # --- EXPORT ---
+    data.to_csv(filename, index=False)
     print(f"--- Dataset Generated with Seed {MASTER_SEED} ---")
+    print(f"--- Mode: {MODE.upper()} | Observations: {len(data)} ---")
     print("--- London Rental Dataset (First 10 Rows) ---")
     print(data.head(10))
     print("\nMean Rent (Owner):", round(data[data['listing_type']=='Owner']['monthly_rent_gbp'].mean(), 2))
     print("Mean Rent (Agent):", round(data[data['listing_type']=='Agent']['monthly_rent_gbp'].mean(), 2))
-
-    # Optional: Save for the next step
-    data.to_csv("data/london_rentals.csv", index=False)
-    print("\nFile saved as london_rentals.csv")
+    print(f"--- File saved as {filename} ---")
