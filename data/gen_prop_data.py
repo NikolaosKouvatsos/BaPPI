@@ -68,16 +68,18 @@ def generate_price_fix_params(df, model_case='A', sigma=0.1, seed=None):
     agent_premium = 0.15 if model_case == 'B' else 0.0
     
     # 3. Structural Beta Mapping (Fixed but conditional on the feature)
-    # This creates arrays of length n where the value is either the bonus or 0.0
     beta_prop = df['property_type'].map(type_map).values
     beta_outdoor = df['outdoor_space'].map(outdoor_map).values
+    
+    # NEW: Calculate the applied underground beta (0.1 if 1, 0.0 if 0)
+    applied_beta_under = (df['near_underground'] * beta_under).values
     
     # 4. Calculation
     log_price = (
         intercept + 
         (df['n_rooms'] * beta_room) + 
         (df['dist_centre_km'] * beta_dist) + 
-        (df['near_underground'] * beta_under) + 
+        applied_beta_under + # Uses the conditional array
         beta_prop + 
         beta_outdoor + 
         agent_premium
@@ -88,15 +90,13 @@ def generate_price_fix_params(df, model_case='A', sigma=0.1, seed=None):
     prices = np.exp(log_price + noise)
 
     # --- PACKAGING THE FIXED PARAMETERS ---
-    # We broadcast the global constants into arrays so they match the dataframe length,
-    # but we use the mapped beta_prop and beta_outdoor to reflect reality.
     fixed_params = {
         "intercept": np.full(n, intercept),
         "beta_prop": beta_prop,
         "beta_room": np.full(n, beta_room),
         "beta_dist": np.full(n, beta_dist),
         "beta_outdoor": beta_outdoor,
-        "beta_under": np.full(n, beta_under),
+        "beta_under": applied_beta_under,
         "premium": np.full(n, agent_premium)
     }
 
@@ -125,9 +125,11 @@ def generate_price_rand_params(df, model_case='A', market_volatility=0.03, seed=
     intercepts = np.random.normal(targets["intercept"], market_volatility, size=n)
     betas_room = np.random.laplace(targets["beta_room"], market_volatility, size=n)
     betas_dist = np.random.normal(targets["beta_dist"], market_volatility, size=n)
-    betas_under = np.random.normal(targets["beta_under"], market_volatility, size=n)
     
-    # Potential bonuses (we generate n values, then mask them)
+    # Pool for underground: We generate values for everyone, then mask them
+    under_pool = np.random.normal(targets["beta_under"], market_volatility, size=n)
+    
+    # Potential bonuses pool
     house_pool = np.random.normal(targets["beta_house"], market_volatility, size=n)
     garden_pool = np.random.normal(targets["beta_garden"], market_volatility, size=n)
     terrace_pool = np.random.normal(targets["beta_terrace"], market_volatility, size=n)
@@ -138,7 +140,10 @@ def generate_price_rand_params(df, model_case='A', market_volatility=0.03, seed=
     else:
         agent_premium = np.zeros(n)
 
-    # 3. Apply Logic: Select beta based on categorical features
+    # 3. Apply Logic: Mask betas so the "Truth" is 0 if the feature is absent
+    # Underground Beta: Only apply if near_underground == 1
+    beta_under_final = np.where(df['near_underground'] == 1, under_pool, 0.0)
+    
     # Property Type Beta: 0 if Flat, random house_pool if House
     beta_prop = np.where(df['property_type'] == 'House', house_pool, 0.0)
     
@@ -147,14 +152,15 @@ def generate_price_rand_params(df, model_case='A', market_volatility=0.03, seed=
     beta_outdoor = np.where(df['outdoor_space'] == 'Garden', garden_pool, beta_outdoor)
     beta_outdoor = np.where(df['outdoor_space'] == 'Terrace', terrace_pool, beta_outdoor)
     beta_outdoor = np.where(df['outdoor_space'] == 'Balcony', balcony_pool, beta_outdoor)
-    # If 'Nothing', it remains 0.0
     
     # 4. Final Calculation
+    # Note: Since beta_under_final is already 0 where near_underground is 0, 
+    # we just add it directly.
     log_price = (
         intercepts + 
         (df['n_rooms'] * betas_room) + 
         (df['dist_centre_km'] * betas_dist) + 
-        (df['near_underground'] * betas_under) + 
+        beta_under_final + 
         beta_prop + 
         beta_outdoor + 
         agent_premium
@@ -163,14 +169,14 @@ def generate_price_rand_params(df, model_case='A', market_volatility=0.03, seed=
     noise = np.random.standard_t(df=5, size=n) * 0.1
     prices = np.exp(log_price + noise)
 
-    # 5. Package only the relevant parameters
+    # 5. Package only the relevant applied parameters
     sampled_params = {
         "intercept": intercepts,
         "beta_prop": beta_prop,
         "beta_room": betas_room,
         "beta_dist": betas_dist,
         "beta_outdoor": beta_outdoor,
-        "beta_under": betas_under,
+        "beta_under": beta_under_final,
         "premium": agent_premium
     }
     
