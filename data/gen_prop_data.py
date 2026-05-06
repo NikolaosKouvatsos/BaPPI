@@ -86,63 +86,79 @@ def generate_price_fix_params(df, model_case='A', sigma=0.1, seed=None):
     
     # Add homogeneous Gaussian noise
     noise = np.random.normal(0, sigma, size=len(df))
-    return np.exp(log_price + noise)
+
+# --- PACKAGING THE FIXED PARAMETERS ---
+    # We broadcast the single values into arrays so they match the dataframe length
+    n = len(df)
+    fixed_params = {
+        "intercept": np.full(n, intercept),
+        "beta_house": np.full(n, type_map["House"]),
+        "beta_room": np.full(n, beta_room),
+        "beta_dist": np.full(n, beta_dist),
+        "beta_garden": np.full(n, outdoor_map["Garden"]),
+        "beta_terrace": np.full(n, outdoor_map["Terrace"]),
+        "beta_balcony": np.full(n, outdoor_map["Balcony"]),
+        "beta_under": np.full(n, beta_under),
+        "premium": np.full(n, agent_premium)
+    }
+
+    prices = np.exp(log_price + noise)
+
+    return prices, fixed_params
 
 def generate_price_rand_params(df, model_case='A', market_volatility=0.03, seed=None):
     """
     STOCHASTIC (RANDOM) PARAMETER PRICE GENERATOR - Non-Gaussian Version
     --------------------------------------------------------------------
-    Features realistic, non-idealized priors to simulate market complexity:
-    - Laplace: For 'fat-tailed' room values (more outliers).
-    - Gamma: For Agent Premiums (strictly positive, right-skewed).
-    - Normal: For Intercept and Distance (standard market noise).
+    Returns:
+    --------
+    prices : np.ndarray
+        The generated prices in original currency units (exp of log-price).
+    sampled_params : dict
+        The actual property-level parameter values (arrays of size n) 
+        randomly generated for this specific dataset.
     """
     if seed is not None:
         np.random.seed(seed)
     
     n = len(df)
     
-    # 1. Intercept (Normal)
-    # The base cost remains Gaussian as it represents the central market equilibrium.
-    intercepts = np.random.normal(7.5, market_volatility, size=n)
+    # Target central values (used to center the random sampling)
+    targets = {
+        "intercept": 7.5, "beta_room": 0.15, "beta_dist": -0.05, 
+        "beta_under": 0.10, "beta_house": 0.20, "beta_garden": 0.15, 
+        "beta_terrace": 0.10, "beta_balcony": 0.05,
+        "premium": 0.15 if model_case == 'B' else 0.0
+    }
     
-    # 2. Beta Room (Laplace / Double Exponential)
-    # REALISM: The value of an extra room often has 'fat tails'. 
-    # Most are standard, but some luxury or tiny rooms vary wildly.
-    betas_room = np.random.laplace(0.15, market_volatility, size=n)
+    # --- STOCHASTIC GENERATION (Individual values for every row) ---
+    intercepts = np.random.normal(targets["intercept"], market_volatility, size=n)
+    betas_dist = np.random.normal(targets["beta_dist"], market_volatility, size=n)
+    betas_under = np.random.normal(targets["beta_under"], market_volatility, size=n)
+    betas_room = np.random.laplace(targets["beta_room"], market_volatility, size=n)
     
-    # 3. Beta Distance & Underground (Normal)
-    betas_dist = np.random.normal(-0.05, market_volatility, size=n)
-    betas_under = np.random.normal(0.10, market_volatility, size=n)
-    
-    # 4. Agent Premium (Gamma Distribution)
-    # REALISM: An Agent Premium cannot be negative. A Gamma distribution 
-    # is strictly positive and right-skewed, meaning most agents charge a 
-    # moderate fee, but a few 'premium' agents charge significantly more.
     if model_case == 'B':
-        # Shape (k) and Scale (theta). Mean = k*theta. 
-        # We target a mean of 0.15.
         shape = 5.0
-        scale = 0.15 / shape
+        scale = targets["premium"] / shape
         agent_premium = np.random.gamma(shape, scale, size=n)
     else:
-        agent_premium = 0.0
+        agent_premium = np.zeros(n)
     
-    # 5. Categorical Effects (Normal for simplicity)
-    house_bonus_dist = np.random.normal(0.20, market_volatility, size=n)
-    garden_bonus_dist = np.random.normal(0.15, market_volatility, size=n)
-    terrace_bonus_dist = np.random.normal(0.10, market_volatility, size=n)
-    balcony_bonus_dist = np.random.normal(0.05, market_volatility, size=n)
+    house_bonus = np.random.normal(targets["beta_house"], market_volatility, size=n)
+    garden_bonus = np.random.normal(targets["beta_garden"], market_volatility, size=n)
+    terrace_bonus = np.random.normal(targets["beta_terrace"], market_volatility, size=n)
+    balcony_bonus = np.random.normal(targets["beta_balcony"], market_volatility, size=n)
     
-    # 6. Mapping: Connecting structural choices to their specific random betas
-    type_impact = np.where(df['property_type'] == 'House', house_bonus_dist, 0.0)
+    # --- CALCULATION ---
+    # Map bonuses based on property structural features
+    type_impact = np.where(df['property_type'] == 'House', house_bonus, 0.0)
     
+    # Determine the specific outdoor bonus applied to each row
     outdoor_impact = np.zeros(n)
-    outdoor_impact += np.where(df['outdoor_space'] == 'Garden', garden_bonus_dist, 0.0)
-    outdoor_impact += np.where(df['outdoor_space'] == 'Terrace', terrace_bonus_dist, 0.0)
-    outdoor_impact += np.where(df['outdoor_space'] == 'Balcony', balcony_bonus_dist, 0.0)
+    outdoor_impact += np.where(df['outdoor_space'] == 'Garden', garden_bonus, 0.0)
+    outdoor_impact += np.where(df['outdoor_space'] == 'Terrace', terrace_bonus, 0.0)
+    outdoor_impact += np.where(df['outdoor_space'] == 'Balcony', balcony_bonus, 0.0)
     
-    # 7. Calculation
     log_price = (
         intercepts + 
         (df['n_rooms'] * betas_room) + 
@@ -153,13 +169,24 @@ def generate_price_rand_params(df, model_case='A', market_volatility=0.03, seed=
         agent_premium
     )
     
-    # 8. Unexplained Residual (Student's T-Distribution)
-    # REALISM: 'Market Noise' in the real world has more 'black swan' events 
-    # than a Normal distribution. A T-distribution with low degrees of freedom (df=5)
-    # creates more extreme price outliers.
     noise = np.random.standard_t(df=5, size=n) * 0.1
+    prices = np.exp(log_price + noise)
+
+    # --- PACKAGING THE SAMPLED PARAMETERS ---
+    # We collect the specific values used for each observation to save to our CSV
+    sampled_params = {
+        "intercept": intercepts,
+        "beta_house": house_bonus,
+        "beta_room": betas_room,
+        "beta_dist": betas_dist,
+        "beta_garden": garden_bonus,
+        "beta_terrace": terrace_bonus,
+        "beta_balcony": balcony_bonus,
+        "beta_under": betas_under,
+        "premium": agent_premium
+    }
     
-    return np.exp(log_price + noise)
+    return prices, sampled_params
 
 if __name__ == "__main__":
     # --- SETUP & CONFIGURATION ---
@@ -168,26 +195,37 @@ if __name__ == "__main__":
     # MODE SWITCH: 
     # 'fixed' -> Standard Log-Linear model (london_rentals_fix_params.csv)
     # 'random' -> Stochastic Market model (london_rentals_rand_params.csv)
-    MODE = 'random' 
+    MODE = 'fixed' 
     
     # Generate common structural features for 1000 properties
     data = generate_property_data(1000, seed=MASTER_SEED)
     half = len(data) // 2
         
-    # --- DATA GENERATION EXECUTION ---
+# --- DATA GENERATION EXECUTION ---
     if MODE == 'fixed':
-        # Generate 500 Owners and 500 Agents using identical beta rules
-        prices_a = generate_price_fix_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
-        prices_b = generate_price_fix_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
+        # Unpack both the prices and the parameter dictionaries
+        prices_a, params_a = generate_price_fix_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
+        prices_b, params_b = generate_price_fix_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
         filename = "data/london_rentals_fix_params.csv"
+        
+        # Merge the parameter dictionaries into the main dataframe
+        for key in params_a.keys():
+            data[key] = np.concatenate([params_a[key], params_b[key]])
+            
     else:
         # Generate 500 Owners and 500 Agents using stochastic property-level betas
-        prices_a = generate_price_rand_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
-        prices_b = generate_price_rand_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
+        # Unpack the price array and the dictionary of sampled random parameters
+        prices_a, params_a = generate_price_rand_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
+        prices_b, params_b = generate_price_rand_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
         filename = "data/london_rentals_rand_params.csv"
 
+        # Merge the dictionary of sampled random parameters into the main dataframe
+        for key in params_a.keys():
+            data[key] = np.concatenate([params_a[key], params_b[key]])
+
     # Merge structural features with generated prices and labels
-    data['monthly_rent_gbp'] = pd.concat([prices_a, prices_b]).values
+    # Use pd.Series to ensure smooth concatenation before taking .values
+    data['monthly_rent_gbp'] = np.concatenate([prices_a, prices_b])
     data['listing_type'] = ['Owner']*half + ['Agent']*half
     
     # --- EXPORT ---
