@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import os
+import json
 
 def generate_property_data(n_samples=1000, seed=None):
     """
@@ -182,52 +182,188 @@ def generate_price_rand_params(df, model_case='A', market_volatility=0.03, seed=
     
     return prices, sampled_params
 
+def generate_hierarchical_data_advanced(df, model_case='A', market_volatility=0.03, seed=None):
+    """
+    ADVANCED HIERARCHICAL GENERATOR
+    -------------------------------
+    - Every feature has a unique Market Mean (mu) and Market Sigma (sigma).
+    - Market Sigmas are derived from the base volatility to create diverse spreads.
+    """
+    if seed is not None:
+        np.random.seed(seed)
+    
+    n = len(df)
+    
+    # 1. Define Market-Level Means (Hyper-means)
+    market_means = {
+        "intercept": 7.50, "beta_room": 0.15, "beta_dist": -0.05, 
+        "beta_under": 0.10, "beta_house": 0.20,
+        "beta_garden": 0.15, "beta_terrace": 0.10, "beta_balcony": 0.05,
+        "premium": 0.15 if model_case == 'B' else 0.0
+    }
+    
+    # 2. Define Market-Level Sigmas (Hyper-sigmas)
+    # We apply different scaling factors to the base volatility for each feature
+    # to simulate different 'standardization' levels in the market.
+    vol_scales = {
+        "intercept": 0.8,    # Very stable
+        "beta_room": 1.5,    # High variation
+        "beta_dist": 1.0,    # Baseline
+        "beta_under": 0.5,   # Highly standardized bonus
+        "beta_house": 1.2,   # Varies by house quality
+        "beta_garden": 1.3, 
+        "beta_terrace": 1.1,
+        "beta_balcony": 0.9,
+        "premium": 1.4 if model_case == 'B' else 0.0 # Premium spread
+    }
+    
+    market_sigmas = {k: market_volatility * vol_scales[k] for k in market_means.keys()}
+
+    # 3. LEVEL 1: Generate Individual Property Betas
+    # We draw from specific distributions (Normal/Laplace) based on the feature type
+    intercepts = np.random.normal(market_means["intercept"], market_sigmas["intercept"], size=n)
+    betas_room  = np.random.laplace(market_means["beta_room"], market_sigmas["beta_room"], size=n)
+    betas_dist  = np.random.normal(market_means["beta_dist"], market_sigmas["beta_dist"], size=n)
+    
+    # Generate potential pools for conditional features
+    under_pool   = np.random.normal(market_means["beta_under"], market_sigmas["beta_under"], size=n)
+    house_pool   = np.random.normal(market_means["beta_house"], market_sigmas["beta_house"], size=n)
+    garden_pool  = np.random.normal(market_means["beta_garden"], market_sigmas["beta_garden"], size=n)
+    terrace_pool = np.random.normal(market_means["beta_terrace"], market_sigmas["beta_terrace"], size=n)
+    balcony_pool = np.random.normal(market_means["beta_balcony"], market_sigmas["beta_balcony"], size=n)
+    
+    if model_case == 'B':
+        # Gamma distribution for premium to ensure it stays positive and has a tail
+        # k = (mean^2 / var), theta = (var / mean)
+        # For simplicity, we use k=5 and scale it
+        agent_premium = np.random.gamma(5.0, market_means["premium"]/5.0, size=n)
+    else:
+        agent_premium = np.zeros(n)
+
+    # 4. Logical Masking (Feature-to-Beta Mapping)
+    beta_under_final = np.where(df['near_underground'] == 1, under_pool, 0.0)
+    beta_prop = np.where(df['property_type'] == 'House', house_pool, 0.0)
+    
+    beta_outdoor = np.zeros(n)
+    beta_outdoor = np.where(df['outdoor_space'] == 'Garden', garden_pool, beta_outdoor)
+    beta_outdoor = np.where(df['outdoor_space'] == 'Terrace', terrace_pool, beta_outdoor)
+    beta_outdoor = np.where(df['outdoor_space'] == 'Balcony', balcony_pool, beta_outdoor)
+    
+    # 5. Calculate Final Log-Prices and Prices
+    log_price_mu = (
+        intercepts + 
+        (df['n_rooms'] * betas_room) + 
+        (df['dist_centre_km'] * betas_dist) + 
+        beta_under_final + 
+        beta_prop + 
+        beta_outdoor + 
+        agent_premium
+    )
+    
+    # Observation noise (residual)
+    noise = np.random.standard_t(df=5, size=n) * 0.05 
+    prices = np.exp(log_price_mu + noise)
+
+    # 6. Structured Output for Recovery Analysis
+    sampled_params = {
+        "individual": {
+            "intercept": intercepts,
+            "beta_room": betas_room,
+            "beta_dist": betas_dist,
+            "beta_under": beta_under_final,
+            "beta_prop": beta_prop,
+            "beta_outdoor": beta_outdoor,
+            "premium": agent_premium
+        },
+        "market": {
+            "means": market_means,
+            "sigmas": market_sigmas
+        }
+    }
+    
+    return prices, sampled_params
+
 if __name__ == "__main__":
     # --- SETUP & CONFIGURATION ---
     MASTER_SEED = 42
     
-    # MODE SWITCH: 
-    # 'fixed' -> Standard Log-Linear model (london_rentals_fix_params.csv)
-    # 'random' -> Stochastic Market model (london_rentals_rand_params.csv)
-    MODE = 'random' 
+    # MODE SWITCH: 'fixed', 'random', or 'hierarchical'
+    MODE = 'hierarchical' 
     
-    # Generate common structural features for 1000 properties
     data = generate_property_data(1000, seed=MASTER_SEED)
     half = len(data) // 2
+
+    # --- DATA GENERATION EXECUTION ---
+    if MODE == 'hierarchical':
+        # Advanced Multi-level generation
+        prices_a, params_a = generate_hierarchical_data_advanced(
+            data.iloc[:half], model_case='A', market_volatility=0.03, seed=MASTER_SEED
+        )
+        prices_b, params_b = generate_hierarchical_data_advanced(
+            data.iloc[half:], model_case='B', market_volatility=0.03, seed=MASTER_SEED + 1
+        )
         
-# --- DATA GENERATION EXECUTION ---
-    if MODE == 'fixed':
-        # Unpack both the prices and the parameter dictionaries
-        prices_a, params_a = generate_price_fix_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
-        prices_b, params_b = generate_price_fix_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
-        filename = "data/london_rentals_fix_params.csv"
+        # 1. Map Individual Betas to columns
+        ind_a, ind_b = params_a['individual'], params_b['individual']
+        for key in ind_a.keys():
+            data[key] = np.concatenate([ind_a[key], ind_b[key]])
+            
+        data['monthly_rent_gbp'] = np.concatenate([prices_a, prices_b])
+        data['listing_type'] = ['Owner']*half + ['Agent']*half
+
+        # 2. Package EVERYTHING (Individual + Market) into JSON
+        filename = "data/datasets/london_rentals_hierarchical.json"
+        full_output = {
+            "metadata": {
+                "mode": MODE,
+                "owner_market_truth": params_a['market'],
+                "agent_market_truth": params_b['market']
+            },
+            "properties": data.to_dict(orient='records')
+        }
+        with open(filename, 'w') as f:
+            json.dump(full_output, f, indent=4)
         
-        # Merge the parameter dictionaries into the main dataframe
+    else:
+        # Fixed or Random modes (Standard 2D Logic)
+        if MODE == 'fixed':
+            prices_a, params_a = generate_price_fix_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
+            prices_b, params_b = generate_price_fix_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
+            filename = "data/datasets/london_rentals_fixed.csv"
+        else: # random
+            prices_a, params_a = generate_price_rand_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
+            prices_b, params_b = generate_price_rand_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
+            filename = "data/datasets/london_rentals_random.csv"
+
+        # Map flat parameters to columns
         for key in params_a.keys():
             data[key] = np.concatenate([params_a[key], params_b[key]])
             
-    else:
-        # Generate 500 Owners and 500 Agents using stochastic property-level betas
-        # Unpack the price array and the dictionary of sampled random parameters
-        prices_a, params_a = generate_price_rand_params(data.iloc[:half], model_case='A', seed=MASTER_SEED)
-        prices_b, params_b = generate_price_rand_params(data.iloc[half:], model_case='B', seed=MASTER_SEED + 1)
-        filename = "data/london_rentals_rand_params.csv"
+        data['monthly_rent_gbp'] = np.concatenate([prices_a, prices_b])
+        data['listing_type'] = ['Owner']*half + ['Agent']*half
+        
+        # Save as standard flat CSV
+        data.to_csv(filename, index=False)
 
-        # Merge the dictionary of sampled random parameters into the main dataframe
-        for key in params_a.keys():
-            data[key] = np.concatenate([params_a[key], params_b[key]])
+# --- CONSOLE SUMMARY ---
+    print("\n" + "="*50)
+    print(f"DATA GENERATION SUMMARY")
+    print("="*50)
+    print(f"Seed:         {MASTER_SEED}")
+    print(f"Mode:         {MODE.upper()}")
+    print(f"Observations: {len(data)}")
+    print(f"File Saved:   {filename}")
+    print("-"*50)
 
-    # Merge structural features with generated prices and labels
-    # Use pd.Series to ensure smooth concatenation before taking .values
-    data['monthly_rent_gbp'] = np.concatenate([prices_a, prices_b])
-    data['listing_type'] = ['Owner']*half + ['Agent']*half
-    
-    # --- EXPORT ---
-    data.to_csv(filename, index=False)
-    print(f"--- Dataset Generated with Seed {MASTER_SEED} ---")
-    print(f"--- Mode: {MODE.upper()} | Observations: {len(data)} ---")
-    print("--- London Rental Dataset (First 10 Rows) ---")
+    # 1. Statistical Summary (Works for all modes because 'data' DF exists in all)
+    mean_owner = data[data['listing_type']=='Owner']['monthly_rent_gbp'].mean()
+    mean_agent = data[data['listing_type']=='Agent']['monthly_rent_gbp'].mean()
+    print(f"Mean Rent (Owner): £{mean_owner:,.2f}")
+    print(f"Mean Rent (Agent): £{mean_agent:,.2f}")
+    print(f"Agent Markup:      {((mean_agent/mean_owner)-1)*100:+.2f}%")
+
+    # 2. Data Preview
+    print("-"*50)
+    print(f"PREVIEW (First 10 Properties):")
     print(data.head(10))
-    print("\nMean Rent (Owner):", round(data[data['listing_type']=='Owner']['monthly_rent_gbp'].mean(), 2))
-    print("Mean Rent (Agent):", round(data[data['listing_type']=='Agent']['monthly_rent_gbp'].mean(), 2))
-    print(f"--- File saved as {filename} ---")
+    print("="*50 + "\n")
