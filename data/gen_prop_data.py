@@ -233,10 +233,9 @@ def generate_hierarchical_data_advanced(df, model_case='A', market_volatility=0.
     balcony_pool = np.random.normal(market_means["beta_balcony"], market_sigmas["beta_balcony"], size=n)
     
     if model_case == 'B':
-        # Gamma distribution for premium to ensure it stays positive and has a tail
-        # k = (mean^2 / var), theta = (var / mean)
-        # For simplicity, we use k=5 and scale it
-        agent_premium = np.random.gamma(5.0, market_means["premium"]/5.0, size=n)
+        shape_k = (market_means["premium"] / market_sigmas["premium"])**2
+        scale_theta = (market_sigmas["premium"]**2) / market_means["premium"]
+        agent_premium = np.random.gamma(shape_k, scale_theta, size=n)
     else:
         agent_premium = np.zeros(n)
 
