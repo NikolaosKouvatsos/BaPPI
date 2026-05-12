@@ -22,7 +22,7 @@
                 "beta_garden": 0.039,
                 "beta_terrace": 0.033,
                 "beta_balcony": 0.027,
-                "premium": 0.041999999999999996
+                "premium": 0.0
             }
         },
         "agent_market_truth": {
@@ -8063,7 +8063,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1594508139022971,
+            "premium": 0.15945081390229707,
             "monthly_rent_gbp": 2899.4396304149654,
             "listing_type": "Agent"
         },
@@ -8079,7 +8079,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.2060115692424213,
+            "premium": 0.20601156924242126,
             "monthly_rent_gbp": 2257.1526677086044,
             "listing_type": "Agent"
         },
@@ -8095,7 +8095,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.125816440410278,
+            "premium": 0.12581644041027798,
             "monthly_rent_gbp": 3437.864058225559,
             "listing_type": "Agent"
         },
@@ -8111,7 +8111,7 @@
             "beta_under": 0.09281873293371623,
             "beta_prop": 0.2165722202197855,
             "beta_outdoor": 0.11006613252665169,
-            "premium": 0.2683557394803579,
+            "premium": 0.26835573948035785,
             "monthly_rent_gbp": 1858.740496139566,
             "listing_type": "Agent"
         },
@@ -8127,7 +8127,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06506840723502783,
-            "premium": 0.11969192340877943,
+            "premium": 0.11969192340877942,
             "monthly_rent_gbp": 3329.084327453454,
             "listing_type": "Agent"
         },
@@ -8143,7 +8143,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12445050288497331,
-            "premium": 0.10143770244701375,
+            "premium": 0.10143770244701374,
             "monthly_rent_gbp": 3355.678348402741,
             "listing_type": "Agent"
         },
@@ -8159,7 +8159,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.14199556098662514,
             "beta_outdoor": 0.12106143754259442,
-            "premium": 0.13220281032069894,
+            "premium": 0.13220281032069892,
             "monthly_rent_gbp": 2526.39659243898,
             "listing_type": "Agent"
         },
@@ -8175,7 +8175,7 @@
             "beta_under": 0.09267587395090394,
             "beta_prop": 0.20894401671682467,
             "beta_outdoor": 0.1735279466197293,
-            "premium": 0.1139954518215541,
+            "premium": 0.11399545182155409,
             "monthly_rent_gbp": 5794.090012681473,
             "listing_type": "Agent"
         },
@@ -8191,7 +8191,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.18848648598339035,
             "beta_outdoor": 0.0,
-            "premium": 0.13303778797589824,
+            "premium": 0.13303778797589821,
             "monthly_rent_gbp": 3647.63651293044,
             "listing_type": "Agent"
         },
@@ -8207,7 +8207,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15877660332738502,
-            "premium": 0.16113898636147123,
+            "premium": 0.1611389863614712,
             "monthly_rent_gbp": 3444.270806320386,
             "listing_type": "Agent"
         },
@@ -8223,7 +8223,7 @@
             "beta_under": 0.08745618841369995,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15943611452243453,
+            "premium": 0.1594361145224345,
             "monthly_rent_gbp": 2577.73795767792,
             "listing_type": "Agent"
         },
@@ -8239,7 +8239,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09183769679968692,
-            "premium": 0.1073965164501632,
+            "premium": 0.10739651645016318,
             "monthly_rent_gbp": 3660.953514727414,
             "listing_type": "Agent"
         },
@@ -8255,7 +8255,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2454575195020023,
             "beta_outdoor": 0.16812444152552197,
-            "premium": 0.08811981067455456,
+            "premium": 0.08811981067455454,
             "monthly_rent_gbp": 3264.369737477334,
             "listing_type": "Agent"
         },
@@ -8271,7 +8271,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2044165521292918,
             "beta_outdoor": 0.0,
-            "premium": 0.09082381514201747,
+            "premium": 0.09082381514201746,
             "monthly_rent_gbp": 2984.844947023649,
             "listing_type": "Agent"
         },
@@ -8287,7 +8287,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.18098599639618881,
-            "premium": 0.08687474079837525,
+            "premium": 0.08687474079837523,
             "monthly_rent_gbp": 4034.196431824556,
             "listing_type": "Agent"
         },
@@ -8303,7 +8303,7 @@
             "beta_under": 0.09896373110011751,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1178554648538191,
+            "premium": 0.11785546485381908,
             "monthly_rent_gbp": 3369.298702990989,
             "listing_type": "Agent"
         },
@@ -8319,7 +8319,7 @@
             "beta_under": 0.11736563890380362,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.10287066127100963,
+            "premium": 0.10287066127100962,
             "monthly_rent_gbp": 6175.531682499325,
             "listing_type": "Agent"
         },
@@ -8335,7 +8335,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.18470806087043237,
             "beta_outdoor": 0.16625978108472944,
-            "premium": 0.18395007972816235,
+            "premium": 0.18395007972816232,
             "monthly_rent_gbp": 2467.56263111554,
             "listing_type": "Agent"
         },
@@ -8351,7 +8351,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.1594199734141017,
             "beta_outdoor": 0.0,
-            "premium": 0.16665495282284906,
+            "premium": 0.16665495282284903,
             "monthly_rent_gbp": 4918.074444481615,
             "listing_type": "Agent"
         },
@@ -8367,7 +8367,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0863201593396558,
-            "premium": 0.09129659130452504,
+            "premium": 0.09129659130452503,
             "monthly_rent_gbp": 1071.3894009283342,
             "listing_type": "Agent"
         },
@@ -8383,7 +8383,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.22608583182884126,
-            "premium": 0.1945752262175656,
+            "premium": 0.19457522621756557,
             "monthly_rent_gbp": 2053.500154006095,
             "listing_type": "Agent"
         },
@@ -8399,7 +8399,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.16584606004103392,
+            "premium": 0.1658460600410339,
             "monthly_rent_gbp": 2922.2094715537814,
             "listing_type": "Agent"
         },
@@ -8415,7 +8415,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2141803411054668,
             "beta_outdoor": 0.17960353056838235,
-            "premium": 0.1888527506782321,
+            "premium": 0.18885275067823207,
             "monthly_rent_gbp": 5244.5571332498575,
             "listing_type": "Agent"
         },
@@ -8431,7 +8431,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.15281185799150193,
             "beta_outdoor": 0.0,
-            "premium": 0.1930912804711523,
+            "premium": 0.19309128047115226,
             "monthly_rent_gbp": 3305.860515729305,
             "listing_type": "Agent"
         },
@@ -8447,7 +8447,7 @@
             "beta_under": 0.07957974756133462,
             "beta_prop": 0.24783926658163377,
             "beta_outdoor": 0.0,
-            "premium": 0.1074672331465931,
+            "premium": 0.10746723314659308,
             "monthly_rent_gbp": 2720.397637802336,
             "listing_type": "Agent"
         },
@@ -8463,7 +8463,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1054598157319729,
+            "premium": 0.10545981573197287,
             "monthly_rent_gbp": 5582.481866258158,
             "listing_type": "Agent"
         },
@@ -8479,7 +8479,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07521752226738632,
-            "premium": 0.19943118661436335,
+            "premium": 0.19943118661436332,
             "monthly_rent_gbp": 1677.0826881394992,
             "listing_type": "Agent"
         },
@@ -8495,7 +8495,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.13610336988933008,
-            "premium": 0.17145771267803064,
+            "premium": 0.17145771267803062,
             "monthly_rent_gbp": 4710.270748104547,
             "listing_type": "Agent"
         },
@@ -8511,7 +8511,7 @@
             "beta_under": 0.11215188085340688,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.23415769472512124,
+            "premium": 0.2341576947251212,
             "monthly_rent_gbp": 4656.165261305989,
             "listing_type": "Agent"
         },
@@ -8527,7 +8527,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.15689388040291052,
             "beta_outdoor": 0.19299496987028558,
-            "premium": 0.11968069385001993,
+            "premium": 0.11968069385001992,
             "monthly_rent_gbp": 3554.365584609352,
             "listing_type": "Agent"
         },
@@ -8543,7 +8543,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.19519996113189356,
             "beta_outdoor": 0.13631685798815132,
-            "premium": 0.13773858481616685,
+            "premium": 0.13773858481616683,
             "monthly_rent_gbp": 4971.422835418193,
             "listing_type": "Agent"
         },
@@ -8559,7 +8559,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.19342012789234503,
             "beta_outdoor": 0.04702878189751788,
-            "premium": 0.1572294743711988,
+            "premium": 0.15722947437119877,
             "monthly_rent_gbp": 2859.949892227948,
             "listing_type": "Agent"
         },
@@ -8575,7 +8575,7 @@
             "beta_under": 0.09223556977662138,
             "beta_prop": 0.21501295873994727,
             "beta_outdoor": 0.11700493249660332,
-            "premium": 0.18547565811940286,
+            "premium": 0.18547565811940284,
             "monthly_rent_gbp": 3597.261706884256,
             "listing_type": "Agent"
         },
@@ -8591,7 +8591,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11254317513834097,
-            "premium": 0.12159564464718674,
+            "premium": 0.12159564464718671,
             "monthly_rent_gbp": 4293.913762458384,
             "listing_type": "Agent"
         },
@@ -8623,7 +8623,7 @@
             "beta_under": 0.1281676963692392,
             "beta_prop": 0.1824827108473748,
             "beta_outdoor": 0.0,
-            "premium": 0.1492250815280451,
+            "premium": 0.14922508152804506,
             "monthly_rent_gbp": 4624.241156971279,
             "listing_type": "Agent"
         },
@@ -8639,7 +8639,7 @@
             "beta_under": 0.09011072866864203,
             "beta_prop": 0.21480858443480932,
             "beta_outdoor": 0.14691038107990895,
-            "premium": 0.11074910105185988,
+            "premium": 0.11074910105185987,
             "monthly_rent_gbp": 4188.888914833318,
             "listing_type": "Agent"
         },
@@ -8655,7 +8655,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.19547224269639965,
-            "premium": 0.12173904338000734,
+            "premium": 0.12173904338000732,
             "monthly_rent_gbp": 1221.721985939418,
             "listing_type": "Agent"
         },
@@ -8671,7 +8671,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09064029970941977,
-            "premium": 0.14378952335526837,
+            "premium": 0.14378952335526834,
             "monthly_rent_gbp": 2032.1732253517625,
             "listing_type": "Agent"
         },
@@ -8687,7 +8687,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.14238761858357518,
+            "premium": 0.14238761858357515,
             "monthly_rent_gbp": 2923.1434640698053,
             "listing_type": "Agent"
         },
@@ -8703,7 +8703,7 @@
             "beta_under": 0.08238472542803175,
             "beta_prop": 0.21870574215874414,
             "beta_outdoor": 0.21554966516150298,
-            "premium": 0.127289210688578,
+            "premium": 0.12728921068857796,
             "monthly_rent_gbp": 7317.063350022678,
             "listing_type": "Agent"
         },
@@ -8719,7 +8719,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1433811254506612,
+            "premium": 0.14338112545066117,
             "monthly_rent_gbp": 4919.493378369252,
             "listing_type": "Agent"
         },
@@ -8735,7 +8735,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09487907321210463,
-            "premium": 0.1891392708703972,
+            "premium": 0.18913927087039717,
             "monthly_rent_gbp": 5537.82967962353,
             "listing_type": "Agent"
         },
@@ -8751,7 +8751,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15695864462520268,
+            "premium": 0.15695864462520265,
             "monthly_rent_gbp": 2713.089640135286,
             "listing_type": "Agent"
         },
@@ -8767,8 +8767,8 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.04675231850451511,
-            "premium": 0.09647119325801291,
-            "monthly_rent_gbp": 2471.2425820995177,
+            "premium": 0.0964711932580129,
+            "monthly_rent_gbp": 2471.2425820995154,
             "listing_type": "Agent"
         },
         {
@@ -8783,7 +8783,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.20375924199143697,
+            "premium": 0.20375924199143694,
             "monthly_rent_gbp": 3929.789614733019,
             "listing_type": "Agent"
         },
@@ -8799,7 +8799,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.2112476612770021,
-            "premium": 0.19287812062247292,
+            "premium": 0.1928781206224729,
             "monthly_rent_gbp": 2229.4559172282857,
             "listing_type": "Agent"
         },
@@ -8815,7 +8815,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.08464489203055811,
+            "premium": 0.0846448920305581,
             "monthly_rent_gbp": 2386.430152550568,
             "listing_type": "Agent"
         },
@@ -8831,7 +8831,7 @@
             "beta_under": 0.09902886426705797,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1389317396741455,
-            "premium": 0.09818331124537891,
+            "premium": 0.0981833112453789,
             "monthly_rent_gbp": 2820.805897019441,
             "listing_type": "Agent"
         },
@@ -8847,7 +8847,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.25169439773893165,
             "beta_outdoor": 0.0,
-            "premium": 0.15683386786071538,
+            "premium": 0.15683386786071535,
             "monthly_rent_gbp": 6751.151436005159,
             "listing_type": "Agent"
         },
@@ -8879,7 +8879,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.22819229975382097,
             "beta_outdoor": 0.22197900323193148,
-            "premium": 0.14727359667908108,
+            "premium": 0.14727359667908105,
             "monthly_rent_gbp": 13879.075482157437,
             "listing_type": "Agent"
         },
@@ -8895,7 +8895,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.12252966377410843,
+            "premium": 0.12252966377410841,
             "monthly_rent_gbp": 6755.827948165674,
             "listing_type": "Agent"
         },
@@ -8911,7 +8911,7 @@
             "beta_under": 0.0960902783747369,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08994157231995671,
-            "premium": 0.1178601951708601,
+            "premium": 0.11786019517086009,
             "monthly_rent_gbp": 2168.0728872554614,
             "listing_type": "Agent"
         },
@@ -8927,7 +8927,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.25918242596097757,
             "beta_outdoor": 0.20207917796215574,
-            "premium": 0.12766957077018734,
+            "premium": 0.1276695707701873,
             "monthly_rent_gbp": 3961.4039500479316,
             "listing_type": "Agent"
         },
@@ -8943,7 +8943,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1140167833543495,
-            "premium": 0.12226416324522092,
+            "premium": 0.12226416324522091,
             "monthly_rent_gbp": 3592.2953284269015,
             "listing_type": "Agent"
         },
@@ -8959,7 +8959,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10231089452541792,
-            "premium": 0.16963121929327704,
+            "premium": 0.169631219293277,
             "monthly_rent_gbp": 3858.585128938889,
             "listing_type": "Agent"
         },
@@ -8975,7 +8975,7 @@
             "beta_under": 0.1260774505036481,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.14942458440429915,
+            "premium": 0.14942458440429912,
             "monthly_rent_gbp": 4497.528834821285,
             "listing_type": "Agent"
         },
@@ -8991,7 +8991,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.22245959739106114,
             "beta_outdoor": 0.0,
-            "premium": 0.12027498336180702,
+            "premium": 0.120274983361807,
             "monthly_rent_gbp": 5542.083200441641,
             "listing_type": "Agent"
         },
@@ -9007,7 +9007,7 @@
             "beta_under": 0.10494077977176225,
             "beta_prop": 0.0,
             "beta_outdoor": 0.055988967394861464,
-            "premium": 0.13388648858347335,
+            "premium": 0.13388648858347332,
             "monthly_rent_gbp": 2922.39765507046,
             "listing_type": "Agent"
         },
@@ -9023,7 +9023,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1440097155814879,
-            "premium": 0.0949743588790338,
+            "premium": 0.09497435887903379,
             "monthly_rent_gbp": 7041.140089638641,
             "listing_type": "Agent"
         },
@@ -9039,7 +9039,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.18995645662811064,
+            "premium": 0.18995645662811061,
             "monthly_rent_gbp": 3136.126665209792,
             "listing_type": "Agent"
         },
@@ -9055,7 +9055,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1189228040323188,
+            "premium": 0.11892280403231877,
             "monthly_rent_gbp": 3941.2346880613113,
             "listing_type": "Agent"
         },
@@ -9071,7 +9071,7 @@
             "beta_under": 0.12309737917580374,
             "beta_prop": 0.0,
             "beta_outdoor": 0.18050025503152867,
-            "premium": 0.12325094325578548,
+            "premium": 0.12325094325578546,
             "monthly_rent_gbp": 4171.650809469379,
             "listing_type": "Agent"
         },
@@ -9087,7 +9087,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.14968739292801667,
+            "premium": 0.14968739292801664,
             "monthly_rent_gbp": 3382.020517647377,
             "listing_type": "Agent"
         },
@@ -9103,7 +9103,7 @@
             "beta_under": 0.09675288491431569,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08851929814389037,
-            "premium": 0.15294425802389122,
+            "premium": 0.1529442580238912,
             "monthly_rent_gbp": 3701.807343739095,
             "listing_type": "Agent"
         },
@@ -9119,7 +9119,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.045341398560272396,
-            "premium": 0.1995047258146425,
+            "premium": 0.19950472581464246,
             "monthly_rent_gbp": 4054.7121041270116,
             "listing_type": "Agent"
         },
@@ -9135,7 +9135,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15268481431188924,
+            "premium": 0.1526848143118892,
             "monthly_rent_gbp": 3974.447300678293,
             "listing_type": "Agent"
         },
@@ -9151,7 +9151,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.21792917682155216,
             "beta_outdoor": 0.11363600826714469,
-            "premium": 0.17019277564726024,
+            "premium": 0.1701927756472602,
             "monthly_rent_gbp": 3272.0092655629505,
             "listing_type": "Agent"
         },
@@ -9167,7 +9167,7 @@
             "beta_under": 0.10274356236871364,
             "beta_prop": 0.0,
             "beta_outdoor": 0.069716997666811,
-            "premium": 0.11370661911042071,
+            "premium": 0.1137066191104207,
             "monthly_rent_gbp": 6482.428837726406,
             "listing_type": "Agent"
         },
@@ -9199,7 +9199,7 @@
             "beta_under": 0.12571411152751988,
             "beta_prop": 0.13103628550944849,
             "beta_outdoor": 0.0,
-            "premium": 0.10287077193776104,
+            "premium": 0.10287077193776102,
             "monthly_rent_gbp": 3333.6960879180315,
             "listing_type": "Agent"
         },
@@ -9215,7 +9215,7 @@
             "beta_under": 0.1101583017748871,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.23900889056371452,
+            "premium": 0.2390088905637145,
             "monthly_rent_gbp": 3547.7549395314995,
             "listing_type": "Agent"
         },
@@ -9231,7 +9231,7 @@
             "beta_under": 0.08954113827529235,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0851307692303798,
-            "premium": 0.09922231716034574,
+            "premium": 0.09922231716034573,
             "monthly_rent_gbp": 1837.6857350254534,
             "listing_type": "Agent"
         },
@@ -9247,7 +9247,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2076277285139201,
             "beta_outdoor": 0.04090038298827438,
-            "premium": 0.14551954394961772,
+            "premium": 0.1455195439496177,
             "monthly_rent_gbp": 1831.4324209308486,
             "listing_type": "Agent"
         },
@@ -9263,7 +9263,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.18511179058260366,
             "beta_outdoor": 0.10499249021724044,
-            "premium": 0.12616414571166557,
+            "premium": 0.12616414571166554,
             "monthly_rent_gbp": 3574.9493135080306,
             "listing_type": "Agent"
         },
@@ -9295,7 +9295,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.23563808901874167,
             "beta_outdoor": 0.17093657027415468,
-            "premium": 0.1644061460214642,
+            "premium": 0.16440614602146417,
             "monthly_rent_gbp": 3032.818981324662,
             "listing_type": "Agent"
         },
@@ -9311,7 +9311,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.07628384586984782,
+            "premium": 0.07628384586984781,
             "monthly_rent_gbp": 2301.7150777391644,
             "listing_type": "Agent"
         },
@@ -9327,7 +9327,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.05413157217991544,
-            "premium": 0.11768924471422529,
+            "premium": 0.11768924471422526,
             "monthly_rent_gbp": 2376.8919015439715,
             "listing_type": "Agent"
         },
@@ -9343,7 +9343,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.04662517157757955,
-            "premium": 0.12230659561797588,
+            "premium": 0.12230659561797587,
             "monthly_rent_gbp": 2965.406801799017,
             "listing_type": "Agent"
         },
@@ -9359,7 +9359,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.26796948182120317,
             "beta_outdoor": 0.1672880938057037,
-            "premium": 0.12532928071670107,
+            "premium": 0.12532928071670105,
             "monthly_rent_gbp": 2362.932688256979,
             "listing_type": "Agent"
         },
@@ -9375,7 +9375,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.18141707193503104,
-            "premium": 0.1701663116361796,
+            "premium": 0.17016631163617957,
             "monthly_rent_gbp": 5290.946060577545,
             "listing_type": "Agent"
         },
@@ -9391,7 +9391,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.12298888858235343,
+            "premium": 0.12298888858235342,
             "monthly_rent_gbp": 2352.1058702747755,
             "listing_type": "Agent"
         },
@@ -9407,7 +9407,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07316563280711387,
-            "premium": 0.229533332924592,
+            "premium": 0.22953333292459197,
             "monthly_rent_gbp": 2470.1820607868576,
             "listing_type": "Agent"
         },
@@ -9423,7 +9423,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.167910888431494,
-            "premium": 0.16917172032194386,
+            "premium": 0.16917172032194383,
             "monthly_rent_gbp": 2662.8383090275593,
             "listing_type": "Agent"
         },
@@ -9455,7 +9455,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07921501301589146,
-            "premium": 0.17850921958482563,
+            "premium": 0.1785092195848256,
             "monthly_rent_gbp": 1813.3255545263244,
             "listing_type": "Agent"
         },
@@ -9471,7 +9471,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.16756218565768508,
-            "premium": 0.20638510010265532,
+            "premium": 0.2063851001026553,
             "monthly_rent_gbp": 4187.002048611708,
             "listing_type": "Agent"
         },
@@ -9487,7 +9487,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0794756252278713,
-            "premium": 0.1396779585985034,
+            "premium": 0.13967795859850338,
             "monthly_rent_gbp": 1994.021645044747,
             "listing_type": "Agent"
         },
@@ -9503,7 +9503,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08683087795714853,
-            "premium": 0.1873810145001381,
+            "premium": 0.18738101450013808,
             "monthly_rent_gbp": 4848.296034119615,
             "listing_type": "Agent"
         },
@@ -9519,8 +9519,8 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1460750695024085,
-            "premium": 0.1569658010793038,
-            "monthly_rent_gbp": 3109.7441322193954,
+            "premium": 0.15696580107930377,
+            "monthly_rent_gbp": 3109.74413221939,
             "listing_type": "Agent"
         },
         {
@@ -9535,7 +9535,7 @@
             "beta_under": 0.10667710524046196,
             "beta_prop": 0.0,
             "beta_outdoor": 0.013062080463249318,
-            "premium": 0.1574593442623257,
+            "premium": 0.15745934426232566,
             "monthly_rent_gbp": 3733.267017922572,
             "listing_type": "Agent"
         },
@@ -9551,7 +9551,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07658724468310557,
-            "premium": 0.12497547461569591,
+            "premium": 0.1249754746156959,
             "monthly_rent_gbp": 4429.258109584026,
             "listing_type": "Agent"
         },
@@ -9567,7 +9567,7 @@
             "beta_under": 0.12229498621431534,
             "beta_prop": 0.17830199177714376,
             "beta_outdoor": 0.0,
-            "premium": 0.13330294157271141,
+            "premium": 0.1333029415727114,
             "monthly_rent_gbp": 4832.058781918761,
             "listing_type": "Agent"
         },
@@ -9583,7 +9583,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.02394766800470553,
-            "premium": 0.1968216063897792,
+            "premium": 0.19682160638977916,
             "monthly_rent_gbp": 3184.0389430042446,
             "listing_type": "Agent"
         },
@@ -9615,7 +9615,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1923437687631043,
-            "premium": 0.17599553312537075,
+            "premium": 0.17599553312537072,
             "monthly_rent_gbp": 3642.0356122486405,
             "listing_type": "Agent"
         },
@@ -9631,7 +9631,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09931462728663516,
-            "premium": 0.17551363250548235,
+            "premium": 0.17551363250548233,
             "monthly_rent_gbp": 2416.9726356535634,
             "listing_type": "Agent"
         },
@@ -9647,7 +9647,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15370459216749022,
+            "premium": 0.1537045921674902,
             "monthly_rent_gbp": 2819.229159143112,
             "listing_type": "Agent"
         },
@@ -9663,7 +9663,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11028626121251212,
-            "premium": 0.13012320502460675,
+            "premium": 0.13012320502460673,
             "monthly_rent_gbp": 5404.617001594974,
             "listing_type": "Agent"
         },
@@ -9679,7 +9679,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11817265971933433,
+            "premium": 0.1181726597193343,
             "monthly_rent_gbp": 2901.3656330700796,
             "listing_type": "Agent"
         },
@@ -9695,7 +9695,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1241706748993823,
-            "premium": 0.07964354790829221,
+            "premium": 0.0796435479082922,
             "monthly_rent_gbp": 3938.129462864381,
             "listing_type": "Agent"
         },
@@ -9711,7 +9711,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11798573982685368,
-            "premium": 0.10730536008256378,
+            "premium": 0.10730536008256376,
             "monthly_rent_gbp": 3364.741819212101,
             "listing_type": "Agent"
         },
@@ -9727,7 +9727,7 @@
             "beta_under": 0.10445322336642983,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.17207385567698621,
+            "premium": 0.1720738556769862,
             "monthly_rent_gbp": 5185.082082499217,
             "listing_type": "Agent"
         },
@@ -9743,7 +9743,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.045336902342114384,
-            "premium": 0.13122338877933826,
+            "premium": 0.13122338877933823,
             "monthly_rent_gbp": 3195.349391461215,
             "listing_type": "Agent"
         },
@@ -9759,7 +9759,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07042973425168922,
-            "premium": 0.16651280172470337,
+            "premium": 0.16651280172470334,
             "monthly_rent_gbp": 2634.4830471234463,
             "listing_type": "Agent"
         },
@@ -9775,7 +9775,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14478373873790792,
-            "premium": 0.2165863616527195,
+            "premium": 0.21658636165271944,
             "monthly_rent_gbp": 3480.8643337467,
             "listing_type": "Agent"
         },
@@ -9791,7 +9791,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15720271367115835,
+            "premium": 0.15720271367115832,
             "monthly_rent_gbp": 5224.0030293973105,
             "listing_type": "Agent"
         },
@@ -9823,7 +9823,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.09387218960136426,
+            "premium": 0.09387218960136424,
             "monthly_rent_gbp": 4781.779134783492,
             "listing_type": "Agent"
         },
@@ -9839,7 +9839,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.12871427833619092,
             "beta_outdoor": 0.14967363283841775,
-            "premium": 0.171833559133083,
+            "premium": 0.17183355913308299,
             "monthly_rent_gbp": 7087.930377075187,
             "listing_type": "Agent"
         },
@@ -9855,8 +9855,8 @@
             "beta_under": 0.09566952450001294,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.22127528885323414,
-            "monthly_rent_gbp": 19694.467292158737,
+            "premium": 0.2212752888532341,
+            "monthly_rent_gbp": 19694.4672921587,
             "listing_type": "Agent"
         },
         {
@@ -9871,7 +9871,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0906235935672909,
-            "premium": 0.12454823810827345,
+            "premium": 0.12454823810827342,
             "monthly_rent_gbp": 3211.3320848567737,
             "listing_type": "Agent"
         },
@@ -9887,7 +9887,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.21144751166153503,
             "beta_outdoor": 0.0,
-            "premium": 0.205473784863658,
+            "premium": 0.20547378486365797,
             "monthly_rent_gbp": 3158.0789475109227,
             "listing_type": "Agent"
         },
@@ -9919,7 +9919,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15247155509196175,
+            "premium": 0.15247155509196172,
             "monthly_rent_gbp": 1916.7171001855304,
             "listing_type": "Agent"
         },
@@ -9935,7 +9935,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.19273502503519999,
-            "premium": 0.1529209605707112,
+            "premium": 0.15292096057071117,
             "monthly_rent_gbp": 2745.7827938173987,
             "listing_type": "Agent"
         },
@@ -9951,7 +9951,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2184711680576742,
             "beta_outdoor": 0.09637384814728203,
-            "premium": 0.12077125954251948,
+            "premium": 0.12077125954251947,
             "monthly_rent_gbp": 5825.160760015216,
             "listing_type": "Agent"
         },
@@ -9967,7 +9967,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08890360262611834,
-            "premium": 0.1464518112710634,
+            "premium": 0.14645181127106338,
             "monthly_rent_gbp": 2834.192257601422,
             "listing_type": "Agent"
         },
@@ -9983,7 +9983,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.2093610899098547,
-            "premium": 0.1729503158292292,
+            "premium": 0.17295031582922918,
             "monthly_rent_gbp": 2930.9607040650294,
             "listing_type": "Agent"
         },
@@ -10015,7 +10015,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.22315385012312283,
+            "premium": 0.2231538501231228,
             "monthly_rent_gbp": 2787.9452537560796,
             "listing_type": "Agent"
         },
@@ -10031,7 +10031,7 @@
             "beta_under": 0.09176711493409652,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13515629268879703,
+            "premium": 0.135156292688797,
             "monthly_rent_gbp": 1801.7346787622437,
             "listing_type": "Agent"
         },
@@ -10047,7 +10047,7 @@
             "beta_under": 0.10393731483230602,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10386272791485834,
-            "premium": 0.13332119336588238,
+            "premium": 0.13332119336588236,
             "monthly_rent_gbp": 3760.0589067152223,
             "listing_type": "Agent"
         },
@@ -10063,7 +10063,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1844281236810223,
+            "premium": 0.18442812368102227,
             "monthly_rent_gbp": 5195.7408191702925,
             "listing_type": "Agent"
         },
@@ -10079,7 +10079,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0455191658997007,
-            "premium": 0.10560903831275538,
+            "premium": 0.10560903831275537,
             "monthly_rent_gbp": 6355.805712555997,
             "listing_type": "Agent"
         },
@@ -10095,7 +10095,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.18013465493641445,
-            "premium": 0.11846518852015873,
+            "premium": 0.11846518852015872,
             "monthly_rent_gbp": 4341.092159918471,
             "listing_type": "Agent"
         },
@@ -10111,7 +10111,7 @@
             "beta_under": 0.10754174640652152,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.26412978605662696,
+            "premium": 0.2641297860566269,
             "monthly_rent_gbp": 9986.49987357116,
             "listing_type": "Agent"
         },
@@ -10127,7 +10127,7 @@
             "beta_under": 0.10341495842989683,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15825713817311055,
+            "premium": 0.15825713817311052,
             "monthly_rent_gbp": 4230.937402704665,
             "listing_type": "Agent"
         },
@@ -10159,7 +10159,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.1945753886393085,
             "beta_outdoor": 0.12399405076723034,
-            "premium": 0.11705322159872943,
+            "premium": 0.1170532215987294,
             "monthly_rent_gbp": 2135.5589205035094,
             "listing_type": "Agent"
         },
@@ -10175,7 +10175,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1579549344860306,
+            "premium": 0.15795493448603057,
             "monthly_rent_gbp": 3031.5703095446224,
             "listing_type": "Agent"
         },
@@ -10191,7 +10191,7 @@
             "beta_under": 0.10482077798298654,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07099027501787558,
-            "premium": 0.07823863320723444,
+            "premium": 0.07823863320723443,
             "monthly_rent_gbp": 2045.5681110844012,
             "listing_type": "Agent"
         },
@@ -10207,7 +10207,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.17774884893471987,
-            "premium": 0.17145537648500292,
+            "premium": 0.1714553764850029,
             "monthly_rent_gbp": 1363.4094489476743,
             "listing_type": "Agent"
         },
@@ -10223,7 +10223,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1777377134974541,
-            "premium": 0.1121210719692056,
+            "premium": 0.11212107196920558,
             "monthly_rent_gbp": 3699.2274666765557,
             "listing_type": "Agent"
         },
@@ -10239,7 +10239,7 @@
             "beta_under": 0.13210001522357526,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13341218832597598,
+            "premium": 0.13341218832597596,
             "monthly_rent_gbp": 2986.3223724927934,
             "listing_type": "Agent"
         },
@@ -10255,7 +10255,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.21032337004461296,
+            "premium": 0.21032337004461293,
             "monthly_rent_gbp": 2170.6429922930515,
             "listing_type": "Agent"
         },
@@ -10287,7 +10287,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07103545458245274,
-            "premium": 0.18265159737145256,
+            "premium": 0.18265159737145253,
             "monthly_rent_gbp": 4571.274334712754,
             "listing_type": "Agent"
         },
@@ -10303,7 +10303,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08349775362641294,
-            "premium": 0.1338399976026018,
+            "premium": 0.13383999760260176,
             "monthly_rent_gbp": 3074.9997735019647,
             "listing_type": "Agent"
         },
@@ -10319,7 +10319,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.13017688150211076,
-            "premium": 0.21114571022060255,
+            "premium": 0.21114571022060252,
             "monthly_rent_gbp": 4701.06406401155,
             "listing_type": "Agent"
         },
@@ -10335,7 +10335,7 @@
             "beta_under": 0.13222198192939105,
             "beta_prop": 0.0,
             "beta_outdoor": 0.177861906424997,
-            "premium": 0.14580242423804307,
+            "premium": 0.14580242423804304,
             "monthly_rent_gbp": 4889.825210034645,
             "listing_type": "Agent"
         },
@@ -10351,7 +10351,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.008785642010153798,
-            "premium": 0.18270444458627233,
+            "premium": 0.1827044445862723,
             "monthly_rent_gbp": 2482.879932298007,
             "listing_type": "Agent"
         },
@@ -10367,7 +10367,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11996915856800505,
+            "premium": 0.11996915856800504,
             "monthly_rent_gbp": 3582.3563226411866,
             "listing_type": "Agent"
         },
@@ -10383,7 +10383,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.1815871928832263,
             "beta_outdoor": 0.06310912150328674,
-            "premium": 0.15357001803532846,
+            "premium": 0.15357001803532844,
             "monthly_rent_gbp": 3487.4888929722824,
             "listing_type": "Agent"
         },
@@ -10399,7 +10399,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.18574214070952386,
-            "premium": 0.08082879483647733,
+            "premium": 0.08082879483647731,
             "monthly_rent_gbp": 5724.808154311535,
             "listing_type": "Agent"
         },
@@ -10415,7 +10415,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1695303938027995,
-            "premium": 0.171367784810791,
+            "premium": 0.17136778481079099,
             "monthly_rent_gbp": 2345.8032365513204,
             "listing_type": "Agent"
         },
@@ -10431,7 +10431,7 @@
             "beta_under": 0.10689852009032733,
             "beta_prop": 0.17443537037887993,
             "beta_outdoor": 0.16109527625761208,
-            "premium": 0.16798842438728123,
+            "premium": 0.1679884243872812,
             "monthly_rent_gbp": 6740.97185714464,
             "listing_type": "Agent"
         },
@@ -10447,7 +10447,7 @@
             "beta_under": 0.10655160208402484,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09010572178115571,
-            "premium": 0.14846455857003327,
+            "premium": 0.14846455857003324,
             "monthly_rent_gbp": 2176.441195818601,
             "listing_type": "Agent"
         },
@@ -10463,7 +10463,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.2446262507604938,
+            "premium": 0.24462625076049374,
             "monthly_rent_gbp": 7316.007341305074,
             "listing_type": "Agent"
         },
@@ -10495,7 +10495,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.16382899291731265,
+            "premium": 0.16382899291731262,
             "monthly_rent_gbp": 1696.671328276349,
             "listing_type": "Agent"
         },
@@ -10527,7 +10527,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.04740084642009316,
-            "premium": 0.11080542934878498,
+            "premium": 0.11080542934878497,
             "monthly_rent_gbp": 2234.824698748481,
             "listing_type": "Agent"
         },
@@ -10543,7 +10543,7 @@
             "beta_under": 0.12038358797176228,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09834362548749358,
-            "premium": 0.1865980208318008,
+            "premium": 0.18659802083180077,
             "monthly_rent_gbp": 3613.6954985629604,
             "listing_type": "Agent"
         },
@@ -10559,7 +10559,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13491525385490333,
+            "premium": 0.1349152538549033,
             "monthly_rent_gbp": 2211.863896852082,
             "listing_type": "Agent"
         },
@@ -10607,7 +10607,7 @@
             "beta_under": 0.10203063868933501,
             "beta_prop": 0.0,
             "beta_outdoor": 0.058838338233493326,
-            "premium": 0.12956850139188025,
+            "premium": 0.12956850139188023,
             "monthly_rent_gbp": 4808.060815045778,
             "listing_type": "Agent"
         },
@@ -10623,7 +10623,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11351970502769576,
-            "premium": 0.17400044539952705,
+            "premium": 0.17400044539952703,
             "monthly_rent_gbp": 2758.4959944886964,
             "listing_type": "Agent"
         },
@@ -10655,7 +10655,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.21413322733765694,
+            "premium": 0.2141332273376569,
             "monthly_rent_gbp": 4786.648574102376,
             "listing_type": "Agent"
         },
@@ -10671,7 +10671,7 @@
             "beta_under": 0.12783137788521887,
             "beta_prop": 0.0,
             "beta_outdoor": 0.13105018605079338,
-            "premium": 0.20460319618357758,
+            "premium": 0.20460319618357756,
             "monthly_rent_gbp": 3208.42346979384,
             "listing_type": "Agent"
         },
@@ -10687,7 +10687,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15478189131931275,
-            "premium": 0.1869670524124022,
+            "premium": 0.18696705241240216,
             "monthly_rent_gbp": 3498.228139202332,
             "listing_type": "Agent"
         },
@@ -10703,7 +10703,7 @@
             "beta_under": 0.1119896552015697,
             "beta_prop": 0.0,
             "beta_outdoor": 0.13915752575962123,
-            "premium": 0.17648973245318703,
+            "premium": 0.176489732453187,
             "monthly_rent_gbp": 6646.337204668519,
             "listing_type": "Agent"
         },
@@ -10735,7 +10735,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1591157786512084,
-            "premium": 0.07869767028698442,
+            "premium": 0.0786976702869844,
             "monthly_rent_gbp": 4384.073445617991,
             "listing_type": "Agent"
         },
@@ -10751,7 +10751,7 @@
             "beta_under": 0.06703518728406557,
             "beta_prop": 0.0,
             "beta_outdoor": 0.21256419460919582,
-            "premium": 0.17846517451620228,
+            "premium": 0.17846517451620225,
             "monthly_rent_gbp": 7854.647992366053,
             "listing_type": "Agent"
         },
@@ -10767,7 +10767,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.10083221226602151,
+            "premium": 0.1008322122660215,
             "monthly_rent_gbp": 4799.313660495184,
             "listing_type": "Agent"
         },
@@ -10783,7 +10783,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1507433209550268,
+            "premium": 0.15074332095502677,
             "monthly_rent_gbp": 2037.3853929246538,
             "listing_type": "Agent"
         },
@@ -10799,7 +10799,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.16331138236538773,
             "beta_outdoor": 0.17874543056493386,
-            "premium": 0.17261017868160625,
+            "premium": 0.17261017868160622,
             "monthly_rent_gbp": 3968.183450545809,
             "listing_type": "Agent"
         },
@@ -10815,7 +10815,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.09499180237343947,
+            "premium": 0.09499180237343946,
             "monthly_rent_gbp": 2532.01289922,
             "listing_type": "Agent"
         },
@@ -10831,7 +10831,7 @@
             "beta_under": 0.10097606268819263,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11497979593000104,
-            "premium": 0.21869050144182614,
+            "premium": 0.2186905014418261,
             "monthly_rent_gbp": 4440.917154510792,
             "listing_type": "Agent"
         },
@@ -10847,7 +10847,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.024522888443074837,
-            "premium": 0.1349995132201441,
+            "premium": 0.13499951322014409,
             "monthly_rent_gbp": 3762.71677670601,
             "listing_type": "Agent"
         },
@@ -10863,7 +10863,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.247141192048984,
             "beta_outdoor": 0.11369168984315427,
-            "premium": 0.1590300526799421,
+            "premium": 0.15903005267994208,
             "monthly_rent_gbp": 4134.883085987119,
             "listing_type": "Agent"
         },
@@ -10879,7 +10879,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06532229242873851,
-            "premium": 0.1821781240176766,
+            "premium": 0.18217812401767658,
             "monthly_rent_gbp": 3998.838363396606,
             "listing_type": "Agent"
         },
@@ -10895,7 +10895,7 @@
             "beta_under": 0.10320201562637381,
             "beta_prop": 0.0,
             "beta_outdoor": 0.19601839851620487,
-            "premium": 0.13129413244732385,
+            "premium": 0.13129413244732382,
             "monthly_rent_gbp": 6418.631658881299,
             "listing_type": "Agent"
         },
@@ -10911,7 +10911,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.20808531102937264,
             "beta_outdoor": 0.06425221221197996,
-            "premium": 0.1218551619893616,
+            "premium": 0.12185516198936158,
             "monthly_rent_gbp": 701.6526597259841,
             "listing_type": "Agent"
         },
@@ -10927,7 +10927,7 @@
             "beta_under": 0.09594737141406896,
             "beta_prop": 0.23495829735278095,
             "beta_outdoor": 0.0843390806428235,
-            "premium": 0.11413292433451513,
+            "premium": 0.11413292433451512,
             "monthly_rent_gbp": 4781.051907636924,
             "listing_type": "Agent"
         },
@@ -10943,7 +10943,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.21441129243577706,
             "beta_outdoor": 0.0,
-            "premium": 0.19243457969795164,
+            "premium": 0.1924345796979516,
             "monthly_rent_gbp": 3506.1022944293745,
             "listing_type": "Agent"
         },
@@ -10959,7 +10959,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11913103096014446,
-            "premium": 0.16475264761378927,
+            "premium": 0.16475264761378924,
             "monthly_rent_gbp": 2337.486846754347,
             "listing_type": "Agent"
         },
@@ -10975,7 +10975,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10760013636976337,
-            "premium": 0.14138905719026368,
+            "premium": 0.14138905719026365,
             "monthly_rent_gbp": 2885.8819968930243,
             "listing_type": "Agent"
         },
@@ -10991,7 +10991,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.18124481705143167,
-            "premium": 0.12469174936144692,
+            "premium": 0.12469174936144689,
             "monthly_rent_gbp": 5933.114310335747,
             "listing_type": "Agent"
         },
@@ -11007,7 +11007,7 @@
             "beta_under": 0.0887859198912483,
             "beta_prop": 0.17715185124608326,
             "beta_outdoor": 0.0,
-            "premium": 0.1042075532644898,
+            "premium": 0.10420755326448979,
             "monthly_rent_gbp": 4255.422773367394,
             "listing_type": "Agent"
         },
@@ -11023,7 +11023,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12679083568591212,
-            "premium": 0.12237862951458678,
+            "premium": 0.12237862951458676,
             "monthly_rent_gbp": 9382.13267569983,
             "listing_type": "Agent"
         },
@@ -11039,7 +11039,7 @@
             "beta_under": 0.09464839814266177,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15631743065273887,
+            "premium": 0.15631743065273884,
             "monthly_rent_gbp": 3448.503182075177,
             "listing_type": "Agent"
         },
@@ -11055,7 +11055,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10867305499372586,
-            "premium": 0.08060889038305176,
+            "premium": 0.08060889038305175,
             "monthly_rent_gbp": 2049.2785603303323,
             "listing_type": "Agent"
         },
@@ -11071,7 +11071,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.20878914160976567,
             "beta_outdoor": 0.1329891555800651,
-            "premium": 0.11515458728200824,
+            "premium": 0.11515458728200823,
             "monthly_rent_gbp": 3199.826911347859,
             "listing_type": "Agent"
         },
@@ -11103,7 +11103,7 @@
             "beta_under": 0.0800847796491354,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14245827791043258,
-            "premium": 0.11054819287231393,
+            "premium": 0.11054819287231392,
             "monthly_rent_gbp": 5660.952534693998,
             "listing_type": "Agent"
         },
@@ -11119,7 +11119,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08675805588389468,
-            "premium": 0.19626307381624747,
+            "premium": 0.19626307381624744,
             "monthly_rent_gbp": 4317.0460803049145,
             "listing_type": "Agent"
         },
@@ -11135,7 +11135,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.039932348044359925,
-            "premium": 0.24909479314873537,
+            "premium": 0.24909479314873534,
             "monthly_rent_gbp": 3287.012003312087,
             "listing_type": "Agent"
         },
@@ -11151,7 +11151,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.05516091352058485,
-            "premium": 0.15104964513530686,
+            "premium": 0.15104964513530683,
             "monthly_rent_gbp": 4239.139444542311,
             "listing_type": "Agent"
         },
@@ -11167,7 +11167,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.2386521260975251,
-            "premium": 0.19061419245288266,
+            "premium": 0.19061419245288264,
             "monthly_rent_gbp": 6983.920952657525,
             "listing_type": "Agent"
         },
@@ -11183,7 +11183,7 @@
             "beta_under": 0.1091291224009232,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15945314118286544,
-            "premium": 0.17363631604779692,
+            "premium": 0.1736363160477969,
             "monthly_rent_gbp": 7519.953544763671,
             "listing_type": "Agent"
         },
@@ -11199,7 +11199,7 @@
             "beta_under": 0.07123068703545865,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.08989541755711705,
+            "premium": 0.08989541755711704,
             "monthly_rent_gbp": 1821.7604712743391,
             "listing_type": "Agent"
         },
@@ -11215,7 +11215,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.23652284607861923,
-            "premium": 0.16121428927092013,
+            "premium": 0.1612142892709201,
             "monthly_rent_gbp": 3549.224708150471,
             "listing_type": "Agent"
         },
@@ -11231,7 +11231,7 @@
             "beta_under": 0.0992349285636369,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.09515892071362504,
+            "premium": 0.09515892071362503,
             "monthly_rent_gbp": 1355.1083956802145,
             "listing_type": "Agent"
         },
@@ -11247,7 +11247,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.0874866337841123,
+            "premium": 0.08748663378411228,
             "monthly_rent_gbp": 2635.387600218172,
             "listing_type": "Agent"
         },
@@ -11263,7 +11263,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.13172603114086523,
-            "premium": 0.13533853599242032,
+            "premium": 0.1353385359924203,
             "monthly_rent_gbp": 2477.9245188555615,
             "listing_type": "Agent"
         },
@@ -11295,7 +11295,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.2002072887052181,
-            "premium": 0.13464366378156226,
+            "premium": 0.13464366378156223,
             "monthly_rent_gbp": 3188.002420962567,
             "listing_type": "Agent"
         },
@@ -11311,7 +11311,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13977627937731443,
+            "premium": 0.1397762793773144,
             "monthly_rent_gbp": 6058.984088678759,
             "listing_type": "Agent"
         },
@@ -11327,7 +11327,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.14793054707242279,
+            "premium": 0.14793054707242276,
             "monthly_rent_gbp": 2952.8102673827116,
             "listing_type": "Agent"
         },
@@ -11343,7 +11343,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.20924491833069495,
             "beta_outdoor": 0.0,
-            "premium": 0.14284324809185658,
+            "premium": 0.14284324809185656,
             "monthly_rent_gbp": 2582.1072099987186,
             "listing_type": "Agent"
         },
@@ -11359,7 +11359,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11091850978884063,
+            "premium": 0.11091850978884062,
             "monthly_rent_gbp": 1885.745321289395,
             "listing_type": "Agent"
         },
@@ -11375,7 +11375,7 @@
             "beta_under": 0.10466293343627656,
             "beta_prop": 0.18589526006554205,
             "beta_outdoor": 0.0,
-            "premium": 0.18543804218965182,
+            "premium": 0.1854380421896518,
             "monthly_rent_gbp": 2733.6432988093584,
             "listing_type": "Agent"
         },
@@ -11391,7 +11391,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.027499759398911375,
-            "premium": 0.15121757059008653,
+            "premium": 0.1512175705900865,
             "monthly_rent_gbp": 3129.278037350285,
             "listing_type": "Agent"
         },
@@ -11407,7 +11407,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06503167932213645,
-            "premium": 0.19360251960793665,
+            "premium": 0.19360251960793662,
             "monthly_rent_gbp": 2313.7879471045403,
             "listing_type": "Agent"
         },
@@ -11423,7 +11423,7 @@
             "beta_under": 0.08392397805826833,
             "beta_prop": 0.19159286289924474,
             "beta_outdoor": 0.0,
-            "premium": 0.19412653203397454,
+            "premium": 0.1941265320339745,
             "monthly_rent_gbp": 4937.577969809044,
             "listing_type": "Agent"
         },
@@ -11439,7 +11439,7 @@
             "beta_under": 0.12681795759887945,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1689404628152872,
-            "premium": 0.22210408290104922,
+            "premium": 0.2221040829010492,
             "monthly_rent_gbp": 4383.8056435584695,
             "listing_type": "Agent"
         },
@@ -11471,7 +11471,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11344751338774742,
+            "premium": 0.1134475133877474,
             "monthly_rent_gbp": 3401.0864713593974,
             "listing_type": "Agent"
         },
@@ -11487,7 +11487,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10027225889425877,
-            "premium": 0.1255929421599461,
+            "premium": 0.12559294215994607,
             "monthly_rent_gbp": 926.3006734264225,
             "listing_type": "Agent"
         },
@@ -11503,7 +11503,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2160233368192489,
             "beta_outdoor": 0.0,
-            "premium": 0.20778906469223626,
+            "premium": 0.20778906469223624,
             "monthly_rent_gbp": 3227.876489878716,
             "listing_type": "Agent"
         },
@@ -11519,7 +11519,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.18361939311052328,
             "beta_outdoor": 0.0,
-            "premium": 0.1896501998155337,
+            "premium": 0.18965019981553366,
             "monthly_rent_gbp": 2176.178701119309,
             "listing_type": "Agent"
         },
@@ -11535,7 +11535,7 @@
             "beta_under": 0.13446697991684436,
             "beta_prop": 0.22951035572539416,
             "beta_outdoor": 0.2053328110940634,
-            "premium": 0.15931581749549084,
+            "premium": 0.1593158174954908,
             "monthly_rent_gbp": 1449.319333202838,
             "listing_type": "Agent"
         },
@@ -11551,7 +11551,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.12505978961957914,
+            "premium": 0.12505978961957911,
             "monthly_rent_gbp": 1447.8931457541873,
             "listing_type": "Agent"
         },
@@ -11583,7 +11583,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.20774518134613185,
             "beta_outdoor": 0.05914544127666064,
-            "premium": 0.09807657285198584,
+            "premium": 0.09807657285198583,
             "monthly_rent_gbp": 4031.898215966785,
             "listing_type": "Agent"
         },
@@ -11631,7 +11631,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06312361299513893,
-            "premium": 0.1271683663984915,
+            "premium": 0.12716836639849147,
             "monthly_rent_gbp": 1746.5976654515523,
             "listing_type": "Agent"
         },
@@ -11647,7 +11647,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11925677157140974,
-            "premium": 0.07724350274254971,
+            "premium": 0.0772435027425497,
             "monthly_rent_gbp": 4911.84649504718,
             "listing_type": "Agent"
         },
@@ -11663,7 +11663,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.23375239097537245,
             "beta_outdoor": 0.0823855188657285,
-            "premium": 0.1510548980310165,
+            "premium": 0.15105489803101646,
             "monthly_rent_gbp": 5451.4012677243845,
             "listing_type": "Agent"
         },
@@ -11679,7 +11679,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.03859536743113812,
-            "premium": 0.12865599065019362,
+            "premium": 0.1286559906501936,
             "monthly_rent_gbp": 2664.4019742492937,
             "listing_type": "Agent"
         },
@@ -11695,7 +11695,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.22326810309074827,
             "beta_outdoor": 0.0,
-            "premium": 0.09868304604906745,
+            "premium": 0.09868304604906744,
             "monthly_rent_gbp": 3882.163955605293,
             "listing_type": "Agent"
         },
@@ -11711,7 +11711,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13868034645507502,
+            "premium": 0.138680346455075,
             "monthly_rent_gbp": 2757.7920743711275,
             "listing_type": "Agent"
         },
@@ -11727,7 +11727,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06197788871134233,
-            "premium": 0.2016999238648112,
+            "premium": 0.20169992386481117,
             "monthly_rent_gbp": 4904.643015159967,
             "listing_type": "Agent"
         },
@@ -11743,7 +11743,7 @@
             "beta_under": 0.10593578825858586,
             "beta_prop": 0.0,
             "beta_outdoor": 0.033072205947065315,
-            "premium": 0.1908651435421728,
+            "premium": 0.19086514354217277,
             "monthly_rent_gbp": 5967.185445422203,
             "listing_type": "Agent"
         },
@@ -11759,7 +11759,7 @@
             "beta_under": 0.08739794735901482,
             "beta_prop": 0.2040715196293368,
             "beta_outdoor": 0.05734391728081152,
-            "premium": 0.13016428839046804,
+            "premium": 0.130164288390468,
             "monthly_rent_gbp": 6450.815914938478,
             "listing_type": "Agent"
         },
@@ -11775,7 +11775,7 @@
             "beta_under": 0.09959845813944047,
             "beta_prop": 0.0,
             "beta_outdoor": 0.16177379546335072,
-            "premium": 0.1157149611606839,
+            "premium": 0.11571496116068389,
             "monthly_rent_gbp": 3953.830524601292,
             "listing_type": "Agent"
         },
@@ -11791,7 +11791,7 @@
             "beta_under": 0.11074248494732104,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.10733923556313647,
+            "premium": 0.10733923556313646,
             "monthly_rent_gbp": 3488.434321912641,
             "listing_type": "Agent"
         },
@@ -11807,7 +11807,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.10689634362320712,
+            "premium": 0.1068963436232071,
             "monthly_rent_gbp": 3341.1304913334366,
             "listing_type": "Agent"
         },
@@ -11823,7 +11823,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.15278134105279964,
             "beta_outdoor": 0.11767128411670402,
-            "premium": 0.19752873596550144,
+            "premium": 0.1975287359655014,
             "monthly_rent_gbp": 4304.7935559342195,
             "listing_type": "Agent"
         },
@@ -11839,7 +11839,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.03483522512803084,
-            "premium": 0.14327099819020256,
+            "premium": 0.14327099819020253,
             "monthly_rent_gbp": 3687.145076782748,
             "listing_type": "Agent"
         },
@@ -11855,7 +11855,7 @@
             "beta_under": 0.12077762467242507,
             "beta_prop": 0.22301843072706512,
             "beta_outdoor": 0.25355502317482587,
-            "premium": 0.2052341806367478,
+            "premium": 0.20523418063674778,
             "monthly_rent_gbp": 5439.529326333856,
             "listing_type": "Agent"
         },
@@ -11871,7 +11871,7 @@
             "beta_under": 0.08352747188410589,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1679837840046164,
+            "premium": 0.16798378400461636,
             "monthly_rent_gbp": 2912.5772430520974,
             "listing_type": "Agent"
         },
@@ -11887,7 +11887,7 @@
             "beta_under": 0.10087680181075692,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1657970488367523,
-            "premium": 0.2089612892563332,
+            "premium": 0.20896128925633317,
             "monthly_rent_gbp": 12341.669566140008,
             "listing_type": "Agent"
         },
@@ -11919,7 +11919,7 @@
             "beta_under": 0.09871879984012713,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.14034911382905693,
+            "premium": 0.1403491138290569,
             "monthly_rent_gbp": 2531.23834014068,
             "listing_type": "Agent"
         },
@@ -11935,7 +11935,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0902902072127185,
-            "premium": 0.12434624691197414,
+            "premium": 0.12434624691197411,
             "monthly_rent_gbp": 2409.7289193763686,
             "listing_type": "Agent"
         },
@@ -11951,7 +11951,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.024481148568479022,
-            "premium": 0.12661001145274473,
+            "premium": 0.1266100114527447,
             "monthly_rent_gbp": 3296.2692592264207,
             "listing_type": "Agent"
         },
@@ -11967,7 +11967,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.18387497818492005,
+            "premium": 0.18387497818492002,
             "monthly_rent_gbp": 2344.899517879519,
             "listing_type": "Agent"
         },
@@ -12015,7 +12015,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0749966835955583,
-            "premium": 0.09689807476172665,
+            "premium": 0.09689807476172664,
             "monthly_rent_gbp": 2904.8000274702085,
             "listing_type": "Agent"
         },
@@ -12031,7 +12031,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.246923555246891,
             "beta_outdoor": 0.0,
-            "premium": 0.14533242534211321,
+            "premium": 0.1453324253421132,
             "monthly_rent_gbp": 4319.260531382478,
             "listing_type": "Agent"
         },
@@ -12047,7 +12047,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.10285737786201093,
+            "premium": 0.10285737786201092,
             "monthly_rent_gbp": 2026.2600255225595,
             "listing_type": "Agent"
         },
@@ -12063,7 +12063,7 @@
             "beta_under": 0.10895286525562496,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.16882139222435,
+            "premium": 0.16882139222434997,
             "monthly_rent_gbp": 2399.7639492338103,
             "listing_type": "Agent"
         },
@@ -12079,7 +12079,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2016410777446963,
             "beta_outdoor": 0.0,
-            "premium": 0.19747149332134864,
+            "premium": 0.19747149332134858,
             "monthly_rent_gbp": 4524.51875120785,
             "listing_type": "Agent"
         },
@@ -12095,7 +12095,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.2094520627877738,
+            "premium": 0.20945206278777379,
             "monthly_rent_gbp": 2908.9553997862986,
             "listing_type": "Agent"
         },
@@ -12111,7 +12111,7 @@
             "beta_under": 0.10430936533425819,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.2427558586193968,
+            "premium": 0.24275585861939675,
             "monthly_rent_gbp": 421.72207282992895,
             "listing_type": "Agent"
         },
@@ -12143,7 +12143,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.18837900785121348,
             "beta_outdoor": 0.021269844381748587,
-            "premium": 0.23518471461679522,
+            "premium": 0.2351847146167952,
             "monthly_rent_gbp": 3008.9667557546136,
             "listing_type": "Agent"
         },
@@ -12159,7 +12159,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.16166059294062252,
+            "premium": 0.1616605929406225,
             "monthly_rent_gbp": 1399.6519023360033,
             "listing_type": "Agent"
         },
@@ -12207,8 +12207,8 @@
             "beta_under": 0.0,
             "beta_prop": 0.18003903503199128,
             "beta_outdoor": 0.15461012688905834,
-            "premium": 0.12787256453272544,
-            "monthly_rent_gbp": 3911.3962860781076,
+            "premium": 0.1278725645327254,
+            "monthly_rent_gbp": 3911.3962860781007,
             "listing_type": "Agent"
         },
         {
@@ -12223,7 +12223,7 @@
             "beta_under": 0.0764451189618281,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.0781498746267588,
+            "premium": 0.07814987462675879,
             "monthly_rent_gbp": 1706.4335841398733,
             "listing_type": "Agent"
         },
@@ -12239,7 +12239,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11453260831070491,
+            "premium": 0.1145326083107049,
             "monthly_rent_gbp": 3311.9028701369707,
             "listing_type": "Agent"
         },
@@ -12255,7 +12255,7 @@
             "beta_under": 0.10783638261444393,
             "beta_prop": 0.0,
             "beta_outdoor": 0.17826541483484126,
-            "premium": 0.13741432575784077,
+            "premium": 0.13741432575784074,
             "monthly_rent_gbp": 6126.722721389064,
             "listing_type": "Agent"
         },
@@ -12271,7 +12271,7 @@
             "beta_under": 0.11167087445472786,
             "beta_prop": 0.0,
             "beta_outdoor": -0.009202153891867307,
-            "premium": 0.15503815611000413,
+            "premium": 0.1550381561100041,
             "monthly_rent_gbp": 3247.2938345622633,
             "listing_type": "Agent"
         },
@@ -12287,7 +12287,7 @@
             "beta_under": 0.09670555485853886,
             "beta_prop": 0.0,
             "beta_outdoor": 0.20730960721387753,
-            "premium": 0.10055744351327937,
+            "premium": 0.10055744351327936,
             "monthly_rent_gbp": 811.0366770877752,
             "listing_type": "Agent"
         },
@@ -12303,7 +12303,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.009862834482923709,
-            "premium": 0.1542791759507945,
+            "premium": 0.15427917595079446,
             "monthly_rent_gbp": 1998.0162978096023,
             "listing_type": "Agent"
         },
@@ -12319,7 +12319,7 @@
             "beta_under": 0.12688796445484035,
             "beta_prop": 0.243854779718436,
             "beta_outdoor": 0.17509432907275593,
-            "premium": 0.1984601592135854,
+            "premium": 0.19846015921358537,
             "monthly_rent_gbp": 8211.787359648346,
             "listing_type": "Agent"
         },
@@ -12335,7 +12335,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.215112373981315,
             "beta_outdoor": 0.11365083899022246,
-            "premium": 0.24361521528781818,
+            "premium": 0.24361521528781815,
             "monthly_rent_gbp": 1719.7670112860758,
             "listing_type": "Agent"
         },
@@ -12367,7 +12367,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.22784514312292398,
             "beta_outdoor": 0.0,
-            "premium": 0.13757007829703644,
+            "premium": 0.1375700782970364,
             "monthly_rent_gbp": 10257.880154944587,
             "listing_type": "Agent"
         },
@@ -12383,7 +12383,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1297532635573506,
+            "premium": 0.12975326355735056,
             "monthly_rent_gbp": 2346.399388540797,
             "listing_type": "Agent"
         },
@@ -12399,7 +12399,7 @@
             "beta_under": 0.11997032544852072,
             "beta_prop": 0.20593302756729048,
             "beta_outdoor": 0.0,
-            "premium": 0.19978088514125594,
+            "premium": 0.19978088514125592,
             "monthly_rent_gbp": 2123.2854430602847,
             "listing_type": "Agent"
         },
@@ -12415,7 +12415,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.19050089217854307,
-            "premium": 0.22644741276820432,
+            "premium": 0.22644741276820426,
             "monthly_rent_gbp": 2304.8258647324515,
             "listing_type": "Agent"
         },
@@ -12431,7 +12431,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.04178378789022798,
-            "premium": 0.12209925797458858,
+            "premium": 0.12209925797458855,
             "monthly_rent_gbp": 3050.848620113828,
             "listing_type": "Agent"
         },
@@ -12447,7 +12447,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.17513286591809288,
             "beta_outdoor": 0.0,
-            "premium": 0.1452890565383588,
+            "premium": 0.14528905653835877,
             "monthly_rent_gbp": 2217.5924394449453,
             "listing_type": "Agent"
         },
@@ -12479,7 +12479,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1490157132456395,
+            "premium": 0.14901571324563948,
             "monthly_rent_gbp": 2641.455369027954,
             "listing_type": "Agent"
         },
@@ -12495,7 +12495,7 @@
             "beta_under": 0.09968270341311215,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11463497903479333,
+            "premium": 0.11463497903479332,
             "monthly_rent_gbp": 1466.9889018782674,
             "listing_type": "Agent"
         },
@@ -12511,7 +12511,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12680148079976886,
-            "premium": 0.20959575154433643,
+            "premium": 0.2095957515443364,
             "monthly_rent_gbp": 3825.723313867416,
             "listing_type": "Agent"
         },
@@ -12527,7 +12527,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11565225041664318,
+            "premium": 0.11565225041664316,
             "monthly_rent_gbp": 7367.842549326415,
             "listing_type": "Agent"
         },
@@ -12543,7 +12543,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10588166892337228,
-            "premium": 0.1497295162058325,
+            "premium": 0.14972951620583247,
             "monthly_rent_gbp": 1838.8294892701786,
             "listing_type": "Agent"
         },
@@ -12559,7 +12559,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0712714826196868,
-            "premium": 0.0634151788690314,
+            "premium": 0.06341517886903139,
             "monthly_rent_gbp": 2189.654478355197,
             "listing_type": "Agent"
         },
@@ -12591,7 +12591,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.028671211351598804,
-            "premium": 0.17111043505060175,
+            "premium": 0.17111043505060172,
             "monthly_rent_gbp": 2870.339391503549,
             "listing_type": "Agent"
         },
@@ -12607,7 +12607,7 @@
             "beta_under": 0.08111959839033515,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.08819450183668438,
+            "premium": 0.08819450183668437,
             "monthly_rent_gbp": 2948.0793865276346,
             "listing_type": "Agent"
         },
@@ -12623,7 +12623,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.23205378482505976,
             "beta_outdoor": 0.1527430029390336,
-            "premium": 0.13147468112115512,
+            "premium": 0.1314746811211551,
             "monthly_rent_gbp": 4158.370010962297,
             "listing_type": "Agent"
         },
@@ -12639,7 +12639,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08528551984240931,
-            "premium": 0.2572967221814265,
+            "premium": 0.25729672218142646,
             "monthly_rent_gbp": 3472.1223478466127,
             "listing_type": "Agent"
         },
@@ -12655,7 +12655,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10738577333371795,
-            "premium": 0.23459612020173043,
+            "premium": 0.2345961202017304,
             "monthly_rent_gbp": 2778.9695858084424,
             "listing_type": "Agent"
         },
@@ -12687,7 +12687,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.22698482093949676,
             "beta_outdoor": 0.23008736962188991,
-            "premium": 0.1314937117961027,
+            "premium": 0.13149371179610267,
             "monthly_rent_gbp": 5827.938078718005,
             "listing_type": "Agent"
         },
@@ -12703,7 +12703,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.04678422158543337,
-            "premium": 0.16093318854221492,
+            "premium": 0.1609331885422149,
             "monthly_rent_gbp": 5767.0742964580195,
             "listing_type": "Agent"
         },
@@ -12719,7 +12719,7 @@
             "beta_under": 0.09444074838561449,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13437083266627262,
+            "premium": 0.1343708326662726,
             "monthly_rent_gbp": 1173.653587530442,
             "listing_type": "Agent"
         },
@@ -12735,7 +12735,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.028522993232274446,
-            "premium": 0.18227435683622203,
+            "premium": 0.182274356836222,
             "monthly_rent_gbp": 3189.618346552097,
             "listing_type": "Agent"
         },
@@ -12751,7 +12751,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.07408270876278109,
+            "premium": 0.07408270876278107,
             "monthly_rent_gbp": 677.0236976580197,
             "listing_type": "Agent"
         },
@@ -12767,7 +12767,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08055783674953641,
-            "premium": 0.16965053953442424,
+            "premium": 0.16965053953442422,
             "monthly_rent_gbp": 3685.409796017525,
             "listing_type": "Agent"
         },
@@ -12783,7 +12783,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.21044464200873864,
             "beta_outdoor": 0.0,
-            "premium": 0.19179847655718668,
+            "premium": 0.19179847655718665,
             "monthly_rent_gbp": 3268.566346564089,
             "listing_type": "Agent"
         },
@@ -12799,7 +12799,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.25692373835987997,
             "beta_outdoor": 0.0,
-            "premium": 0.13268091994395875,
+            "premium": 0.13268091994395873,
             "monthly_rent_gbp": 2721.092266575185,
             "listing_type": "Agent"
         },
@@ -12815,7 +12815,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1668346863697571,
-            "premium": 0.14321416796680264,
+            "premium": 0.1432141679668026,
             "monthly_rent_gbp": 3026.004985693069,
             "listing_type": "Agent"
         },
@@ -12831,7 +12831,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0774864252712459,
-            "premium": 0.11259247678204849,
+            "premium": 0.11259247678204848,
             "monthly_rent_gbp": 4657.0851419124965,
             "listing_type": "Agent"
         },
@@ -12847,7 +12847,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.1873442039760408,
             "beta_outdoor": 0.0,
-            "premium": 0.20677899081137263,
+            "premium": 0.2067789908113726,
             "monthly_rent_gbp": 1345.3120606651648,
             "listing_type": "Agent"
         },
@@ -12863,7 +12863,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.061090056540696325,
-            "premium": 0.21385132647798502,
+            "premium": 0.213851326477985,
             "monthly_rent_gbp": 2772.0677095419146,
             "listing_type": "Agent"
         },
@@ -12879,7 +12879,7 @@
             "beta_under": 0.08413465925500946,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.17239768272450173,
+            "premium": 0.1723976827245017,
             "monthly_rent_gbp": 3673.0808801972194,
             "listing_type": "Agent"
         },
@@ -12895,7 +12895,7 @@
             "beta_under": 0.0936826318102506,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12009750391296636,
-            "premium": 0.07829820988870001,
+            "premium": 0.0782982098887,
             "monthly_rent_gbp": 2916.2717109457312,
             "listing_type": "Agent"
         },
@@ -12911,7 +12911,7 @@
             "beta_under": 0.11356372720695591,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15423773442757197,
-            "premium": 0.15273345597916987,
+            "premium": 0.15273345597916985,
             "monthly_rent_gbp": 6900.827390798997,
             "listing_type": "Agent"
         },
@@ -12927,7 +12927,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06462877697015605,
-            "premium": 0.10496539967296957,
+            "premium": 0.10496539967296956,
             "monthly_rent_gbp": 4282.84921701591,
             "listing_type": "Agent"
         },
@@ -12943,7 +12943,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.2098414670056849,
+            "premium": 0.20984146700568487,
             "monthly_rent_gbp": 3145.247139705168,
             "listing_type": "Agent"
         },
@@ -12959,7 +12959,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2228619085498034,
             "beta_outdoor": 0.05135824431985499,
-            "premium": 0.2785776588772606,
+            "premium": 0.27857765887726055,
             "monthly_rent_gbp": 5047.507118972861,
             "listing_type": "Agent"
         },
@@ -12991,7 +12991,7 @@
             "beta_under": 0.11800135012435703,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.19719893668750432,
+            "premium": 0.1971989366875043,
             "monthly_rent_gbp": 4939.996019836722,
             "listing_type": "Agent"
         },
@@ -13007,7 +13007,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.042113659389000434,
-            "premium": 0.11056504398377158,
+            "premium": 0.11056504398377157,
             "monthly_rent_gbp": 2748.7948263251246,
             "listing_type": "Agent"
         },
@@ -13023,7 +13023,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.17491305612848576,
             "beta_outdoor": 0.06505301372790452,
-            "premium": 0.20975994356122035,
+            "premium": 0.20975994356122032,
             "monthly_rent_gbp": 3925.614485983678,
             "listing_type": "Agent"
         },
@@ -13039,7 +13039,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.1972042665569295,
             "beta_outdoor": 0.0,
-            "premium": 0.07247267453909745,
+            "premium": 0.07247267453909743,
             "monthly_rent_gbp": 4163.194475086624,
             "listing_type": "Agent"
         },
@@ -13055,7 +13055,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.023390673092175452,
-            "premium": 0.2311362215434276,
+            "premium": 0.23113622154342758,
             "monthly_rent_gbp": 2534.6526729442226,
             "listing_type": "Agent"
         },
@@ -13071,7 +13071,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.254142617281929,
             "beta_outdoor": 0.0,
-            "premium": 0.08957295277352076,
+            "premium": 0.08957295277352074,
             "monthly_rent_gbp": 2341.0208807689105,
             "listing_type": "Agent"
         },
@@ -13103,7 +13103,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0339290250526888,
-            "premium": 0.13689130899622723,
+            "premium": 0.1368913089962272,
             "monthly_rent_gbp": 1991.5132686790243,
             "listing_type": "Agent"
         },
@@ -13119,7 +13119,7 @@
             "beta_under": 0.11172964340951337,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13122152383997773,
+            "premium": 0.1312215238399777,
             "monthly_rent_gbp": 2311.1975076226117,
             "listing_type": "Agent"
         },
@@ -13135,7 +13135,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.03440270070140746,
-            "premium": 0.16890856504683446,
+            "premium": 0.16890856504683444,
             "monthly_rent_gbp": 3055.7117841714035,
             "listing_type": "Agent"
         },
@@ -13151,7 +13151,7 @@
             "beta_under": 0.09714566527513364,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10222899419833797,
-            "premium": 0.13774791186092303,
+            "premium": 0.137747911860923,
             "monthly_rent_gbp": 3733.9961697885487,
             "listing_type": "Agent"
         },
@@ -13167,7 +13167,7 @@
             "beta_under": 0.11166039034515479,
             "beta_prop": 0.0,
             "beta_outdoor": 0.022474444830713484,
-            "premium": 0.11020473726551366,
+            "premium": 0.11020473726551365,
             "monthly_rent_gbp": 2845.5065193228916,
             "listing_type": "Agent"
         },
@@ -13183,7 +13183,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.21504671549501508,
             "beta_outdoor": 0.08861706668234154,
-            "premium": 0.1473624014947724,
+            "premium": 0.14736240149477237,
             "monthly_rent_gbp": 3787.7770932732465,
             "listing_type": "Agent"
         },
@@ -13199,7 +13199,7 @@
             "beta_under": 0.08808204852407762,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12907599348901252,
-            "premium": 0.17964106233606772,
+            "premium": 0.1796410623360677,
             "monthly_rent_gbp": 3361.0197117908583,
             "listing_type": "Agent"
         },
@@ -13215,7 +13215,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1921904702634745,
+            "premium": 0.19219047026347447,
             "monthly_rent_gbp": 5874.385961392088,
             "listing_type": "Agent"
         },
@@ -13231,7 +13231,7 @@
             "beta_under": 0.09733216901649878,
             "beta_prop": 0.0,
             "beta_outdoor": 0.031013460280743064,
-            "premium": 0.10109089433108832,
+            "premium": 0.10109089433108831,
             "monthly_rent_gbp": 7037.982712524667,
             "listing_type": "Agent"
         },
@@ -13247,7 +13247,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12207366249015701,
-            "premium": 0.1760305967015919,
+            "premium": 0.17603059670159188,
             "monthly_rent_gbp": 2080.5357686670977,
             "listing_type": "Agent"
         },
@@ -13263,7 +13263,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.16207541875403386,
             "beta_outdoor": 0.0,
-            "premium": 0.11341127829101438,
+            "premium": 0.11341127829101436,
             "monthly_rent_gbp": 1952.3209305329203,
             "listing_type": "Agent"
         },
@@ -13279,7 +13279,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1838423592236043,
-            "premium": 0.14799098053963863,
+            "premium": 0.1479909805396386,
             "monthly_rent_gbp": 1980.459149393325,
             "listing_type": "Agent"
         },
@@ -13295,7 +13295,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14212429527993442,
-            "premium": 0.14164042024615864,
+            "premium": 0.1416404202461586,
             "monthly_rent_gbp": 3329.740289721126,
             "listing_type": "Agent"
         },
@@ -13311,7 +13311,7 @@
             "beta_under": 0.09161907316349127,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.09724910020948649,
+            "premium": 0.09724910020948647,
             "monthly_rent_gbp": 2043.7865888456884,
             "listing_type": "Agent"
         },
@@ -13327,7 +13327,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.10885543359040792,
+            "premium": 0.1088554335904079,
             "monthly_rent_gbp": 2555.849827510467,
             "listing_type": "Agent"
         },
@@ -13359,7 +13359,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.17527473739670507,
+            "premium": 0.17527473739670504,
             "monthly_rent_gbp": 4309.002622713146,
             "listing_type": "Agent"
         },
@@ -13375,7 +13375,7 @@
             "beta_under": 0.11308422586564361,
             "beta_prop": 0.0,
             "beta_outdoor": 0.2089688482681676,
-            "premium": 0.11213426547120804,
+            "premium": 0.11213426547120803,
             "monthly_rent_gbp": 3069.758387222754,
             "listing_type": "Agent"
         },
@@ -13423,7 +13423,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12373344602590561,
-            "premium": 0.18184362472495202,
+            "premium": 0.181843624724952,
             "monthly_rent_gbp": 4043.5069098724184,
             "listing_type": "Agent"
         },
@@ -13455,7 +13455,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08893151214915045,
-            "premium": 0.10021081554423812,
+            "premium": 0.10021081554423811,
             "monthly_rent_gbp": 2226.605445564896,
             "listing_type": "Agent"
         },
@@ -13471,7 +13471,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14857519133806493,
-            "premium": 0.227151674927216,
+            "premium": 0.22715167492721597,
             "monthly_rent_gbp": 2398.715082724084,
             "listing_type": "Agent"
         },
@@ -13487,7 +13487,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15293718679554819,
+            "premium": 0.15293718679554816,
             "monthly_rent_gbp": 2455.5746640767034,
             "listing_type": "Agent"
         },
@@ -13503,7 +13503,7 @@
             "beta_under": 0.12659710937230553,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06595634435468421,
-            "premium": 0.18959259321279914,
+            "premium": 0.18959259321279912,
             "monthly_rent_gbp": 3607.0848600313698,
             "listing_type": "Agent"
         },
@@ -13519,7 +13519,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12032128159516606,
-            "premium": 0.08631428330565744,
+            "premium": 0.08631428330565742,
             "monthly_rent_gbp": 2561.1790751919452,
             "listing_type": "Agent"
         },
@@ -13535,7 +13535,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15176150505184038,
-            "premium": 0.2013227692491497,
+            "premium": 0.20132276924914969,
             "monthly_rent_gbp": 4321.348614047486,
             "listing_type": "Agent"
         },
@@ -13551,7 +13551,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2172416071609459,
             "beta_outdoor": 0.18849899301096118,
-            "premium": 0.15512869914551836,
+            "premium": 0.15512869914551833,
             "monthly_rent_gbp": 4624.776208876165,
             "listing_type": "Agent"
         },
@@ -13567,7 +13567,7 @@
             "beta_under": 0.09843397479181547,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13858966970246453,
+            "premium": 0.1385896697024645,
             "monthly_rent_gbp": 2835.259376735291,
             "listing_type": "Agent"
         },
@@ -13583,7 +13583,7 @@
             "beta_under": 0.0863305336102687,
             "beta_prop": 0.0,
             "beta_outdoor": 0.05832489025371042,
-            "premium": 0.11910036872496908,
+            "premium": 0.11910036872496907,
             "monthly_rent_gbp": 3076.2862471223066,
             "listing_type": "Agent"
         },
@@ -13599,7 +13599,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12225559799176267,
-            "premium": 0.10035628276732533,
+            "premium": 0.10035628276732532,
             "monthly_rent_gbp": 2938.2766397869905,
             "listing_type": "Agent"
         },
@@ -13615,7 +13615,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.19372158003788492,
             "beta_outdoor": 0.11802403204096718,
-            "premium": 0.1218464449973327,
+            "premium": 0.12184644499733269,
             "monthly_rent_gbp": 2965.9950219720013,
             "listing_type": "Agent"
         },
@@ -13631,7 +13631,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.18538447960975085,
+            "premium": 0.18538447960975082,
             "monthly_rent_gbp": 3171.0089229093173,
             "listing_type": "Agent"
         },
@@ -13647,7 +13647,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1212645284094574,
-            "premium": 0.19000429298704336,
+            "premium": 0.19000429298704333,
             "monthly_rent_gbp": 3558.4866211307444,
             "listing_type": "Agent"
         },
@@ -13663,7 +13663,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11568966485726287,
-            "premium": 0.1744184980519718,
+            "premium": 0.17441849805197177,
             "monthly_rent_gbp": 3053.9441479702755,
             "listing_type": "Agent"
         },
@@ -13679,7 +13679,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06303901101901702,
-            "premium": 0.1573866055736213,
+            "premium": 0.15738660557362127,
             "monthly_rent_gbp": 1423.2006361323201,
             "listing_type": "Agent"
         },
@@ -13695,7 +13695,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.17984912911934417,
-            "premium": 0.19855700075272453,
+            "premium": 0.1985570007527245,
             "monthly_rent_gbp": 5766.280427089988,
             "listing_type": "Agent"
         },
@@ -13711,7 +13711,7 @@
             "beta_under": 0.11450326965557739,
             "beta_prop": 0.14777851901819267,
             "beta_outdoor": 0.20164225697099958,
-            "premium": 0.20506585891963627,
+            "premium": 0.20506585891963625,
             "monthly_rent_gbp": 8345.070381605525,
             "listing_type": "Agent"
         },
@@ -13727,7 +13727,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.14952635045516224,
+            "premium": 0.14952635045516222,
             "monthly_rent_gbp": 1789.2658572027476,
             "listing_type": "Agent"
         },
@@ -13743,7 +13743,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11117899746892247,
+            "premium": 0.11117899746892246,
             "monthly_rent_gbp": 2689.6674028568405,
             "listing_type": "Agent"
         },
@@ -13759,7 +13759,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1561142757105445,
+            "premium": 0.15611427571054448,
             "monthly_rent_gbp": 2976.2657877336615,
             "listing_type": "Agent"
         },
@@ -13775,7 +13775,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07376526279748874,
-            "premium": 0.13027368267249514,
+            "premium": 0.13027368267249512,
             "monthly_rent_gbp": 2323.573131894467,
             "listing_type": "Agent"
         },
@@ -13807,7 +13807,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.21235224577995235,
-            "premium": 0.13560025776372991,
+            "premium": 0.1356002577637299,
             "monthly_rent_gbp": 4621.834303183536,
             "listing_type": "Agent"
         },
@@ -13855,7 +13855,7 @@
             "beta_under": 0.08316466171043721,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15812500461557233,
+            "premium": 0.1581250046155723,
             "monthly_rent_gbp": 4042.6534199699977,
             "listing_type": "Agent"
         },
@@ -13871,7 +13871,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.144188792707529,
-            "premium": 0.08831534771819849,
+            "premium": 0.08831534771819848,
             "monthly_rent_gbp": 1886.7058676216243,
             "listing_type": "Agent"
         },
@@ -13903,7 +13903,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08970075191347107,
-            "premium": 0.16748299303840372,
+            "premium": 0.1674829930384037,
             "monthly_rent_gbp": 4076.3738871929286,
             "listing_type": "Agent"
         },
@@ -13919,7 +13919,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.16761368104516833,
-            "premium": 0.18471406501181875,
+            "premium": 0.18471406501181872,
             "monthly_rent_gbp": 2374.065272042906,
             "listing_type": "Agent"
         },
@@ -13967,7 +13967,7 @@
             "beta_under": 0.11507718252894072,
             "beta_prop": 0.2477535704258451,
             "beta_outdoor": 0.11370749044282352,
-            "premium": 0.10204671143375037,
+            "premium": 0.10204671143375035,
             "monthly_rent_gbp": 7036.407616544901,
             "listing_type": "Agent"
         },
@@ -13983,7 +13983,7 @@
             "beta_under": 0.11941672008199244,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10878766740805113,
-            "premium": 0.13162470815111904,
+            "premium": 0.131624708151119,
             "monthly_rent_gbp": 2522.267557445429,
             "listing_type": "Agent"
         },
@@ -13999,7 +13999,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.19264624283557993,
+            "premium": 0.1926462428355799,
             "monthly_rent_gbp": 3160.963522543409,
             "listing_type": "Agent"
         },
@@ -14015,7 +14015,7 @@
             "beta_under": 0.10033213095240531,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.0759883902248366,
+            "premium": 0.07598839022483658,
             "monthly_rent_gbp": 2331.730053406878,
             "listing_type": "Agent"
         },
@@ -14031,7 +14031,7 @@
             "beta_under": 0.09580203284559366,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15018620931286658,
-            "premium": 0.14032138306515488,
+            "premium": 0.14032138306515485,
             "monthly_rent_gbp": 1994.5483798298524,
             "listing_type": "Agent"
         },
@@ -14063,7 +14063,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10108424446084524,
-            "premium": 0.13290931346349996,
+            "premium": 0.13290931346349993,
             "monthly_rent_gbp": 1931.9577879595788,
             "listing_type": "Agent"
         },
@@ -14079,7 +14079,7 @@
             "beta_under": 0.10368370044652324,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06066428819507597,
-            "premium": 0.10186701003812138,
+            "premium": 0.10186701003812136,
             "monthly_rent_gbp": 3851.306095425141,
             "listing_type": "Agent"
         },
@@ -14095,7 +14095,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08363707892734026,
-            "premium": 0.10531680224996273,
+            "premium": 0.10531680224996272,
             "monthly_rent_gbp": 3208.560073957736,
             "listing_type": "Agent"
         },
@@ -14111,7 +14111,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1155417722313627,
-            "premium": 0.10872899512467178,
+            "premium": 0.10872899512467177,
             "monthly_rent_gbp": 548.8471322111978,
             "listing_type": "Agent"
         },
@@ -14127,7 +14127,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07255651607157751,
-            "premium": 0.1968712462668761,
+            "premium": 0.19687124626687608,
             "monthly_rent_gbp": 3758.9900130223996,
             "listing_type": "Agent"
         },
@@ -14143,7 +14143,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.19238806784748455,
-            "premium": 0.17736941213092416,
+            "premium": 0.17736941213092414,
             "monthly_rent_gbp": 3727.716628334541,
             "listing_type": "Agent"
         },
@@ -14159,7 +14159,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.16371100322434984,
-            "premium": 0.1465312702580924,
+            "premium": 0.14653127025809237,
             "monthly_rent_gbp": 1845.793992627792,
             "listing_type": "Agent"
         },
@@ -14175,7 +14175,7 @@
             "beta_under": 0.11436208072867776,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.193874379753171,
+            "premium": 0.19387437975317098,
             "monthly_rent_gbp": 4682.491919871818,
             "listing_type": "Agent"
         },
@@ -14191,7 +14191,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.20160976263986582,
+            "premium": 0.2016097626398658,
             "monthly_rent_gbp": 3063.874080154229,
             "listing_type": "Agent"
         },
@@ -14207,7 +14207,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2320072712121606,
             "beta_outdoor": 0.07341753791863105,
-            "premium": 0.1015150147263954,
+            "premium": 0.10151501472639539,
             "monthly_rent_gbp": 2794.5790296293067,
             "listing_type": "Agent"
         },
@@ -14223,7 +14223,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.10772695483578247,
+            "premium": 0.10772695483578246,
             "monthly_rent_gbp": 2183.7571089563835,
             "listing_type": "Agent"
         },
@@ -14239,7 +14239,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.2082349284500858,
+            "premium": 0.20823492845008576,
             "monthly_rent_gbp": 2241.1920266368147,
             "listing_type": "Agent"
         },
@@ -14255,7 +14255,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14633074929169523,
-            "premium": 0.13837019112127716,
+            "premium": 0.13837019112127713,
             "monthly_rent_gbp": 5295.761683032108,
             "listing_type": "Agent"
         },
@@ -14271,7 +14271,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12370926906155953,
-            "premium": 0.14681750401807547,
+            "premium": 0.14681750401807545,
             "monthly_rent_gbp": 2168.600115246888,
             "listing_type": "Agent"
         },
@@ -14303,7 +14303,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.15163617376874342,
+            "premium": 0.1516361737687434,
             "monthly_rent_gbp": 2631.629599974113,
             "listing_type": "Agent"
         },
@@ -14319,7 +14319,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.16917171822266241,
             "beta_outdoor": 0.0,
-            "premium": 0.1997685197865446,
+            "premium": 0.19976851978654458,
             "monthly_rent_gbp": 3198.5872948004235,
             "listing_type": "Agent"
         },
@@ -14335,7 +14335,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2105153244660375,
             "beta_outdoor": 0.0,
-            "premium": 0.12112596738474635,
+            "premium": 0.12112596738474633,
             "monthly_rent_gbp": 4101.754585588212,
             "listing_type": "Agent"
         },
@@ -14351,8 +14351,8 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.16742239952660443,
-            "monthly_rent_gbp": 1916.4619426242477,
+            "premium": 0.1674223995266044,
+            "monthly_rent_gbp": 1916.461942624246,
             "listing_type": "Agent"
         },
         {
@@ -14367,7 +14367,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.05057944476412143,
-            "premium": 0.14974405316119474,
+            "premium": 0.1497440531611947,
             "monthly_rent_gbp": 2997.6997224145985,
             "listing_type": "Agent"
         },
@@ -14383,7 +14383,7 @@
             "beta_under": 0.08320902446342718,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1676322236260727,
-            "premium": 0.14533552818617892,
+            "premium": 0.1453355281861789,
             "monthly_rent_gbp": 4967.885708853769,
             "listing_type": "Agent"
         },
@@ -14415,7 +14415,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.18300641043170907,
             "beta_outdoor": 0.056320984501190566,
-            "premium": 0.183502718893532,
+            "premium": 0.18350271889353198,
             "monthly_rent_gbp": 2740.961072569644,
             "listing_type": "Agent"
         },
@@ -14431,7 +14431,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1669084595307552,
+            "premium": 0.16690845953075517,
             "monthly_rent_gbp": 3251.2110799863467,
             "listing_type": "Agent"
         },
@@ -14447,7 +14447,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07319662082665805,
-            "premium": 0.1199724253563762,
+            "premium": 0.11997242535637619,
             "monthly_rent_gbp": 1958.523661985163,
             "listing_type": "Agent"
         },
@@ -14463,7 +14463,7 @@
             "beta_under": 0.0903555122960858,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11849344622251437,
+            "premium": 0.11849344622251436,
             "monthly_rent_gbp": 1618.5140769279758,
             "listing_type": "Agent"
         },
@@ -14479,7 +14479,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.2477124315748373,
-            "premium": 0.17508800452614104,
+            "premium": 0.175088004526141,
             "monthly_rent_gbp": 2367.5231198027814,
             "listing_type": "Agent"
         },
@@ -14495,7 +14495,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08785987714769954,
-            "premium": 0.1680875247819333,
+            "premium": 0.16808752478193328,
             "monthly_rent_gbp": 2845.916717188432,
             "listing_type": "Agent"
         },
@@ -14511,7 +14511,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.17811443826861875,
-            "premium": 0.2112818489668693,
+            "premium": 0.21128184896686927,
             "monthly_rent_gbp": 5923.730331901707,
             "listing_type": "Agent"
         },
@@ -14527,7 +14527,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14661701525770404,
-            "premium": 0.13055235240242338,
+            "premium": 0.13055235240242336,
             "monthly_rent_gbp": 2120.0796004421936,
             "listing_type": "Agent"
         },
@@ -14559,7 +14559,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.21607287495068295,
             "beta_outdoor": 0.0,
-            "premium": 0.1301276513734866,
+            "premium": 0.13012765137348659,
             "monthly_rent_gbp": 2190.023242607511,
             "listing_type": "Agent"
         },
@@ -14575,7 +14575,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1076443948838675,
+            "premium": 0.10764439488386748,
             "monthly_rent_gbp": 4777.609876728045,
             "listing_type": "Agent"
         },
@@ -14591,7 +14591,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11980196810082844,
-            "premium": 0.17053232182086817,
+            "premium": 0.17053232182086814,
             "monthly_rent_gbp": 3394.260736430745,
             "listing_type": "Agent"
         },
@@ -14607,7 +14607,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08925130499492605,
-            "premium": 0.13749060574706198,
+            "premium": 0.13749060574706196,
             "monthly_rent_gbp": 2915.6509745860008,
             "listing_type": "Agent"
         },
@@ -14623,7 +14623,7 @@
             "beta_under": 0.08782389604419094,
             "beta_prop": 0.0,
             "beta_outdoor": 0.025380197008136457,
-            "premium": 0.2220151769886333,
+            "premium": 0.22201517698863327,
             "monthly_rent_gbp": 3317.4620986648797,
             "listing_type": "Agent"
         },
@@ -14639,7 +14639,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1081486394243893,
-            "premium": 0.14715882192587615,
+            "premium": 0.14715882192587612,
             "monthly_rent_gbp": 7392.228172945328,
             "listing_type": "Agent"
         },
@@ -14655,7 +14655,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11490333319579367,
+            "premium": 0.11490333319579366,
             "monthly_rent_gbp": 1862.5031102549403,
             "listing_type": "Agent"
         },
@@ -14671,7 +14671,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.16842098617125925,
+            "premium": 0.16842098617125922,
             "monthly_rent_gbp": 3864.2225058087547,
             "listing_type": "Agent"
         },
@@ -14687,7 +14687,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1265402148920467,
+            "premium": 0.12654021489204667,
             "monthly_rent_gbp": 989.646876519259,
             "listing_type": "Agent"
         },
@@ -14719,7 +14719,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1435855824114351,
+            "premium": 0.14358558241143507,
             "monthly_rent_gbp": 2848.084268728578,
             "listing_type": "Agent"
         },
@@ -14735,7 +14735,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.17669131466375404,
             "beta_outdoor": 0.16713542982160304,
-            "premium": 0.14631322347174255,
+            "premium": 0.14631322347174253,
             "monthly_rent_gbp": 3423.878527994539,
             "listing_type": "Agent"
         },
@@ -14751,7 +14751,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.1723884692803433,
             "beta_outdoor": 0.0,
-            "premium": 0.15280258930619747,
+            "premium": 0.15280258930619744,
             "monthly_rent_gbp": 2618.8270523964816,
             "listing_type": "Agent"
         },
@@ -14767,7 +14767,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.047627157586873727,
-            "premium": 0.10014815676285922,
+            "premium": 0.10014815676285921,
             "monthly_rent_gbp": 3806.9258327180455,
             "listing_type": "Agent"
         },
@@ -14783,7 +14783,7 @@
             "beta_under": 0.10320822619655295,
             "beta_prop": 0.18806985192264997,
             "beta_outdoor": 0.0803280396171184,
-            "premium": 0.1811551636118648,
+            "premium": 0.18115516361186476,
             "monthly_rent_gbp": 3183.52326156807,
             "listing_type": "Agent"
         },
@@ -14799,7 +14799,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15817003403628094,
-            "premium": 0.17723924068156088,
+            "premium": 0.17723924068156086,
             "monthly_rent_gbp": 3474.683558191103,
             "listing_type": "Agent"
         },
@@ -14815,7 +14815,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.19869904052244505,
             "beta_outdoor": 0.0,
-            "premium": 0.09556781018583457,
+            "premium": 0.09556781018583456,
             "monthly_rent_gbp": 4522.042992556767,
             "listing_type": "Agent"
         },
@@ -14847,7 +14847,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06537931662858479,
-            "premium": 0.17020422403890836,
+            "premium": 0.17020422403890834,
             "monthly_rent_gbp": 4510.476727467786,
             "listing_type": "Agent"
         },
@@ -14863,7 +14863,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13606711717684702,
+            "premium": 0.136067117176847,
             "monthly_rent_gbp": 1470.9202600051237,
             "listing_type": "Agent"
         },
@@ -14879,7 +14879,7 @@
             "beta_under": 0.11386899296015461,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07288986777303129,
-            "premium": 0.2409852781580047,
+            "premium": 0.24098527815800463,
             "monthly_rent_gbp": 7394.311644037982,
             "listing_type": "Agent"
         },
@@ -14895,7 +14895,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14254656386011696,
-            "premium": 0.1762118865456099,
+            "premium": 0.17621188654560987,
             "monthly_rent_gbp": 4807.334808094706,
             "listing_type": "Agent"
         },
@@ -14911,7 +14911,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14085894483127734,
-            "premium": 0.22930416783194335,
+            "premium": 0.22930416783194332,
             "monthly_rent_gbp": 2985.1546510537523,
             "listing_type": "Agent"
         },
@@ -14927,7 +14927,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.05464356598236585,
-            "premium": 0.17530019522048979,
+            "premium": 0.17530019522048976,
             "monthly_rent_gbp": 3066.164343860895,
             "listing_type": "Agent"
         },
@@ -14943,7 +14943,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.20508303405160164,
+            "premium": 0.20508303405160158,
             "monthly_rent_gbp": 3661.107061323676,
             "listing_type": "Agent"
         },
@@ -14959,7 +14959,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.18244446448728627,
             "beta_outdoor": 0.0,
-            "premium": 0.22537178745182024,
+            "premium": 0.2253717874518202,
             "monthly_rent_gbp": 4147.161554805683,
             "listing_type": "Agent"
         },
@@ -15007,8 +15007,8 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1369108881180845,
-            "premium": 0.15149602770949633,
-            "monthly_rent_gbp": 2907.2404649486293,
+            "premium": 0.1514960277094963,
+            "monthly_rent_gbp": 2907.2404649486266,
             "listing_type": "Agent"
         },
         {
@@ -15023,7 +15023,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08797073414528475,
-            "premium": 0.10709707438355899,
+            "premium": 0.10709707438355898,
             "monthly_rent_gbp": 655.9971608630253,
             "listing_type": "Agent"
         },
@@ -15039,7 +15039,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15260391796797332,
-            "premium": 0.16764081519404747,
+            "premium": 0.16764081519404744,
             "monthly_rent_gbp": 3267.8544894958654,
             "listing_type": "Agent"
         },
@@ -15055,7 +15055,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.20152342803645534,
             "beta_outdoor": 0.06222433031461811,
-            "premium": 0.19415585415729722,
+            "premium": 0.1941558541572972,
             "monthly_rent_gbp": 3527.748553444441,
             "listing_type": "Agent"
         },
@@ -15071,7 +15071,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.25568788694912453,
-            "premium": 0.16583568893558923,
+            "premium": 0.1658356889355892,
             "monthly_rent_gbp": 3786.7548042554586,
             "listing_type": "Agent"
         },
@@ -15087,7 +15087,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.18615700599121573,
+            "premium": 0.1861570059912157,
             "monthly_rent_gbp": 1047.4869165334976,
             "listing_type": "Agent"
         },
@@ -15103,7 +15103,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.16131325095650187,
+            "premium": 0.16131325095650184,
             "monthly_rent_gbp": 6109.644031881026,
             "listing_type": "Agent"
         },
@@ -15119,7 +15119,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12973345297064293,
-            "premium": 0.20018507354796955,
+            "premium": 0.20018507354796952,
             "monthly_rent_gbp": 3470.7801609057437,
             "listing_type": "Agent"
         },
@@ -15135,7 +15135,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12569073272451906,
-            "premium": 0.1528370725166723,
+            "premium": 0.15283707251667228,
             "monthly_rent_gbp": 4382.363507460629,
             "listing_type": "Agent"
         },
@@ -15151,7 +15151,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.21796702826738423,
             "beta_outdoor": 0.0,
-            "premium": 0.09415537200111446,
+            "premium": 0.09415537200111444,
             "monthly_rent_gbp": 2496.683363196938,
             "listing_type": "Agent"
         },
@@ -15167,7 +15167,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1394564985884318,
+            "premium": 0.13945649858843176,
             "monthly_rent_gbp": 3552.0397874528394,
             "listing_type": "Agent"
         },
@@ -15183,7 +15183,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.0908639645524192,
+            "premium": 0.09086396455241919,
             "monthly_rent_gbp": 3469.3930762719356,
             "listing_type": "Agent"
         },
@@ -15199,7 +15199,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.01758369794998449,
-            "premium": 0.17927020900530308,
+            "premium": 0.17927020900530305,
             "monthly_rent_gbp": 3603.592977186812,
             "listing_type": "Agent"
         },
@@ -15215,7 +15215,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.22005306759990978,
             "beta_outdoor": 0.0,
-            "premium": 0.18188498707322012,
+            "premium": 0.1818849870732201,
             "monthly_rent_gbp": 4766.306004278903,
             "listing_type": "Agent"
         },
@@ -15231,7 +15231,7 @@
             "beta_under": 0.09121823284299872,
             "beta_prop": 0.19507181187311728,
             "beta_outdoor": 0.0781761380903426,
-            "premium": 0.11398370814041434,
+            "premium": 0.11398370814041431,
             "monthly_rent_gbp": 2869.6923314212213,
             "listing_type": "Agent"
         },
@@ -15247,7 +15247,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09014321571861383,
-            "premium": 0.17230041651776015,
+            "premium": 0.17230041651776012,
             "monthly_rent_gbp": 5657.017953147488,
             "listing_type": "Agent"
         },
@@ -15279,7 +15279,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.180113736273533,
-            "premium": 0.14236260995439426,
+            "premium": 0.14236260995439423,
             "monthly_rent_gbp": 2829.5134690227264,
             "listing_type": "Agent"
         },
@@ -15295,7 +15295,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.1076871584019857,
-            "premium": 0.1605372249684191,
+            "premium": 0.16053722496841907,
             "monthly_rent_gbp": 1745.1708483007899,
             "listing_type": "Agent"
         },
@@ -15311,7 +15311,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.2228395387136537,
             "beta_outdoor": 0.12046845462659088,
-            "premium": 0.13550081411880105,
+            "premium": 0.13550081411880102,
             "monthly_rent_gbp": 4722.846946644067,
             "listing_type": "Agent"
         },
@@ -15327,7 +15327,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12822186393900864,
-            "premium": 0.14804182806105845,
+            "premium": 0.14804182806105842,
             "monthly_rent_gbp": 2998.3088625859946,
             "listing_type": "Agent"
         },
@@ -15343,7 +15343,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13764181652526447,
+            "premium": 0.13764181652526444,
             "monthly_rent_gbp": 3092.890554556833,
             "listing_type": "Agent"
         },
@@ -15359,7 +15359,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.14124991268616424,
-            "premium": 0.12998161481742393,
+            "premium": 0.1299816148174239,
             "monthly_rent_gbp": 2526.139448422642,
             "listing_type": "Agent"
         },
@@ -15375,7 +15375,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07861776726883916,
-            "premium": 0.10285317086197153,
+            "premium": 0.1028531708619715,
             "monthly_rent_gbp": 7695.867951080195,
             "listing_type": "Agent"
         },
@@ -15391,7 +15391,7 @@
             "beta_under": 0.08551827777629727,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06991918970943098,
-            "premium": 0.09947149367989677,
+            "premium": 0.09947149367989676,
             "monthly_rent_gbp": 4139.3275174710925,
             "listing_type": "Agent"
         },
@@ -15407,7 +15407,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1164039802334632,
+            "premium": 0.11640398023346317,
             "monthly_rent_gbp": 2330.614747934665,
             "listing_type": "Agent"
         },
@@ -15423,7 +15423,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08457274267307338,
-            "premium": 0.13667957891586002,
+            "premium": 0.13667957891586,
             "monthly_rent_gbp": 3735.87367462214,
             "listing_type": "Agent"
         },
@@ -15439,7 +15439,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.10706640553457494,
-            "premium": 0.18603663901787104,
+            "premium": 0.186036639017871,
             "monthly_rent_gbp": 2601.9524027643824,
             "listing_type": "Agent"
         },
@@ -15455,7 +15455,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09950780313548904,
-            "premium": 0.0801618039117096,
+            "premium": 0.08016180391170959,
             "monthly_rent_gbp": 2824.0362346384845,
             "listing_type": "Agent"
         },
@@ -15471,7 +15471,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.14968252532166396,
+            "premium": 0.14968252532166393,
             "monthly_rent_gbp": 2706.1257539552016,
             "listing_type": "Agent"
         },
@@ -15487,7 +15487,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.18481264046397708,
+            "premium": 0.18481264046397705,
             "monthly_rent_gbp": 2805.2978057662363,
             "listing_type": "Agent"
         },
@@ -15503,7 +15503,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.07674792491913507,
-            "premium": 0.14964885446057075,
+            "premium": 0.14964885446057072,
             "monthly_rent_gbp": 5548.771965224106,
             "listing_type": "Agent"
         },
@@ -15519,7 +15519,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.05511018650796809,
-            "premium": 0.15184607769923314,
+            "premium": 0.1518460776992331,
             "monthly_rent_gbp": 3061.176422032777,
             "listing_type": "Agent"
         },
@@ -15535,7 +15535,7 @@
             "beta_under": 0.08223782225776691,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1475819806458811,
+            "premium": 0.14758198064588107,
             "monthly_rent_gbp": 2186.8162909507178,
             "listing_type": "Agent"
         },
@@ -15551,7 +15551,7 @@
             "beta_under": 0.08783253282970366,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09051342764889267,
-            "premium": 0.07471488009217689,
+            "premium": 0.07471488009217687,
             "monthly_rent_gbp": 3051.4367368142925,
             "listing_type": "Agent"
         },
@@ -15567,7 +15567,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.13168843537642563,
+            "premium": 0.1316884353764256,
             "monthly_rent_gbp": 4805.6045311816015,
             "listing_type": "Agent"
         },
@@ -15583,7 +15583,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.09802364918199379,
-            "premium": 0.21574855830703663,
+            "premium": 0.2157485583070366,
             "monthly_rent_gbp": 2470.1912572739957,
             "listing_type": "Agent"
         },
@@ -15599,7 +15599,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.24282094570821994,
             "beta_outdoor": 0.14704515721454167,
-            "premium": 0.2740541582203941,
+            "premium": 0.27405415822039403,
             "monthly_rent_gbp": 1052.628133966453,
             "listing_type": "Agent"
         },
@@ -15615,7 +15615,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.06265856267799061,
-            "premium": 0.13994019203052716,
+            "premium": 0.13994019203052713,
             "monthly_rent_gbp": 1030.0883736971382,
             "listing_type": "Agent"
         },
@@ -15631,7 +15631,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.17477354759798966,
-            "premium": 0.192854280728178,
+            "premium": 0.19285428072817798,
             "monthly_rent_gbp": 3052.230322087239,
             "listing_type": "Agent"
         },
@@ -15647,7 +15647,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.2874721910752885,
+            "premium": 0.28747219107528843,
             "monthly_rent_gbp": 4324.7213448788,
             "listing_type": "Agent"
         },
@@ -15663,7 +15663,7 @@
             "beta_under": 0.1387510270518347,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.17072297477965656,
+            "premium": 0.17072297477965653,
             "monthly_rent_gbp": 2880.9163566611887,
             "listing_type": "Agent"
         },
@@ -15679,7 +15679,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15801048546974156,
-            "premium": 0.11931942623496271,
+            "premium": 0.1193194262349627,
             "monthly_rent_gbp": 5512.718501687045,
             "listing_type": "Agent"
         },
@@ -15695,7 +15695,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1803603520189174,
+            "premium": 0.18036035201891737,
             "monthly_rent_gbp": 3762.269868353017,
             "listing_type": "Agent"
         },
@@ -15711,7 +15711,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15887682365806063,
-            "premium": 0.21873470158991223,
+            "premium": 0.2187347015899122,
             "monthly_rent_gbp": 3042.0486137619987,
             "listing_type": "Agent"
         },
@@ -15727,7 +15727,7 @@
             "beta_under": 0.06644825720392136,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08350420577420863,
-            "premium": 0.09547753763276452,
+            "premium": 0.09547753763276451,
             "monthly_rent_gbp": 1256.3767716638304,
             "listing_type": "Agent"
         },
@@ -15743,7 +15743,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.24466165436189574,
-            "premium": 0.129504391305246,
+            "premium": 0.12950439130524596,
             "monthly_rent_gbp": 5562.700791794785,
             "listing_type": "Agent"
         },
@@ -15759,7 +15759,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.19294062826143374,
             "beta_outdoor": 0.0,
-            "premium": 0.15399847799162925,
+            "premium": 0.15399847799162922,
             "monthly_rent_gbp": 1120.6399952810036,
             "listing_type": "Agent"
         },
@@ -15775,7 +15775,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.24217785908651604,
+            "premium": 0.242177859086516,
             "monthly_rent_gbp": 2311.5651836742572,
             "listing_type": "Agent"
         },
@@ -15791,7 +15791,7 @@
             "beta_under": 0.11124110922988548,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1838988374293675,
+            "premium": 0.18389883742936747,
             "monthly_rent_gbp": 2923.647594825194,
             "listing_type": "Agent"
         },
@@ -15807,7 +15807,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1395516477826683,
+            "premium": 0.13955164778266826,
             "monthly_rent_gbp": 5714.247044837865,
             "listing_type": "Agent"
         },
@@ -15823,7 +15823,7 @@
             "beta_under": 0.1253946765591662,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.08383144501059156,
+            "premium": 0.08383144501059155,
             "monthly_rent_gbp": 2787.503266353136,
             "listing_type": "Agent"
         },
@@ -15839,7 +15839,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.11378795764089696,
+            "premium": 0.11378795764089693,
             "monthly_rent_gbp": 5590.631971917211,
             "listing_type": "Agent"
         },
@@ -15887,7 +15887,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.22627197301502544,
             "beta_outdoor": 0.09324351234247605,
-            "premium": 0.10421801425636887,
+            "premium": 0.10421801425636885,
             "monthly_rent_gbp": 3437.212331814619,
             "listing_type": "Agent"
         },
@@ -15903,7 +15903,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.14798491200371308,
             "beta_outdoor": 0.16327159713601166,
-            "premium": 0.0813366532260487,
+            "premium": 0.08133665322604869,
             "monthly_rent_gbp": 6759.267801860814,
             "listing_type": "Agent"
         },
@@ -15919,7 +15919,7 @@
             "beta_under": 0.10080035321117196,
             "beta_prop": 0.0,
             "beta_outdoor": 0.08343271388269047,
-            "premium": 0.19428781786395707,
+            "premium": 0.19428781786395705,
             "monthly_rent_gbp": 4432.073311303934,
             "listing_type": "Agent"
         },
@@ -15935,7 +15935,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.12968425876396306,
-            "premium": 0.19687610026993335,
+            "premium": 0.19687610026993332,
             "monthly_rent_gbp": 2496.8917321152853,
             "listing_type": "Agent"
         },
@@ -15951,7 +15951,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0786666941604873,
-            "premium": 0.13366387182320605,
+            "premium": 0.13366387182320602,
             "monthly_rent_gbp": 3700.4824136670986,
             "listing_type": "Agent"
         },
@@ -15967,7 +15967,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.11039879986290509,
-            "premium": 0.1889224246498402,
+            "premium": 0.18892242464984016,
             "monthly_rent_gbp": 3668.1284533074695,
             "listing_type": "Agent"
         },
@@ -15983,7 +15983,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.1694813404172507,
+            "premium": 0.16948134041725066,
             "monthly_rent_gbp": 5252.096916664491,
             "listing_type": "Agent"
         },
@@ -15999,8 +15999,8 @@
             "beta_under": 0.0,
             "beta_prop": 0.21371682671054495,
             "beta_outdoor": 0.12591929587656658,
-            "premium": 0.0896042736988907,
-            "monthly_rent_gbp": 3329.850813334577,
+            "premium": 0.08960427369889068,
+            "monthly_rent_gbp": 3329.8508133345713,
             "listing_type": "Agent"
         },
         {
@@ -16015,7 +16015,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.15993374748982167,
-            "premium": 0.18637892028289318,
+            "premium": 0.18637892028289316,
             "monthly_rent_gbp": 4042.838905010036,
             "listing_type": "Agent"
         },
@@ -16031,7 +16031,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.20809108789660846,
             "beta_outdoor": 0.019940750776111807,
-            "premium": 0.14344441947752756,
+            "premium": 0.14344441947752753,
             "monthly_rent_gbp": 339.8691300882035,
             "listing_type": "Agent"
         },
@@ -16047,7 +16047,7 @@
             "beta_under": 0.0,
             "beta_prop": 0.0,
             "beta_outdoor": 0.0,
-            "premium": 0.192673848103145,
+            "premium": 0.19267384810314497,
             "monthly_rent_gbp": 2487.38208028847,
             "listing_type": "Agent"
         }
