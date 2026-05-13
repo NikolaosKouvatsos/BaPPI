@@ -3,8 +3,7 @@ import pandas as pd
 import json
 import configparser
 import os
-
-import configparser
+import shutil
 
 def load_config(filename='app/config.ini'):
     """Parses the config.ini file into a usable dictionary."""
@@ -26,12 +25,12 @@ def load_config(filename='app/config.ini'):
     # 1. GENERAL Section
     gen_section = parser['GENERAL']
     c['mode'] = clean_val(gen_section['mode'])
+    c['seed'] = int(gen_section['seed'])
     
     # 2. DATA GENERATION Section
     # Note: Use exact string 'DATA GENERATION' as per your .ini file
     dg = parser['DATA_GENERATION']
     c['num_properties'] = int(dg['num_properties'])
-    c['seed'] = int(dg['seed'])
     c['flat_house_ratio'] = float(dg['flat_house_ratio'])
     c['room_exp_num'] = float(dg['room_exp_num'])
     c['distance_scale'] = float(dg['distance_scale'])
@@ -51,7 +50,6 @@ def load_config(filename='app/config.ini'):
     c['balcony_fee'] = float(price['balcony_fee'])
     c['agent_premium'] = float(price['agent_premium'])
     c['market_vol'] = float(price['market_vol'])
-    
     # Vol Scales
     c['vol_scales'] = {
         "intercept": float(price['base_vol_scale']),
@@ -297,6 +295,8 @@ if __name__ == "__main__":
         data['monthly_rent_gbp'] = np.concatenate([prices_a, prices_b])
         data['listing_type'] = ['Owner'] * half + ['Agent'] * (len(data) - half)
 
+        shutil.copy2("app/config.ini", "data/datasets/london_rentals_hierarchical.ini")
+
         # Package Individual + Market Truth into JSON
         filename = "data/datasets/london_rentals_hierarchical.json"
         full_output = {
@@ -316,10 +316,12 @@ if __name__ == "__main__":
             prices_a, params_a = generate_price_fix_params(data.iloc[:half], config, model_case='A', seed=config['seed'])
             prices_b, params_b = generate_price_fix_params(data.iloc[half:], config, model_case='B', seed=config['seed'] + 1)
             filename = "data/datasets/london_rentals_fixed.csv"
+            shutil.copy2("app/config.ini", "data/datasets/london_rentals_fixed.ini")
         elif mode == 'random':
             prices_a, params_a = generate_price_rand_params(data.iloc[:half], config, model_case='A', seed=config['seed'])
             prices_b, params_b = generate_price_rand_params(data.iloc[half:], config, model_case='B', seed=config['seed'] + 1)
             filename = "data/datasets/london_rentals_random.csv"
+            shutil.copy2("app/config.ini", "data/datasets/london_rentals_random.ini")
         else:
             raise ValueError(f"Invalid mode '{mode}' detected in config.ini. Choose 'fixed', 'random', or 'hierarchical'.")
 
