@@ -17,9 +17,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 RESULTS_DIR = BASE_DIR / "results"
+TRACE_DIR = BASE_DIR / "results/trace"
+PPC_DIR = BASE_DIR / "results/ppc"
 RESULTS_DIR.mkdir(exist_ok=True)
-
-shutil.copy2(BASE_DIR / "app/config.ini", RESULTS_DIR / "london_rentals_analysis.ini")
+TRACE_DIR.mkdir(exist_ok=True)
+PPC_DIR.mkdir(exist_ok=True)
 
 filename = BASE_DIR / "data/datasets/london_rentals_hierarchical.json"
 
@@ -27,6 +29,11 @@ parser = argparse.ArgumentParser()
 # In terminal: python script.py --is_agent_hyp
 parser.add_argument("--is_agent_hyp", action="store_true")
 args = parser.parse_args()
+
+shutil.copy2(
+    BASE_DIR / "app/config.ini",
+    RESULTS_DIR / f"london_rentals_{'agent' if args.is_agent_hyp else 'owner'}.ini"
+)
 
 def load_config(filename=BASE_DIR / "app/config.ini"):
     """Parses the config.ini file into a usable dictionary."""
@@ -315,7 +322,7 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
 
         for chain_id in range(config['chains']):
 
-            checkpoint_file = RESULTS_DIR / f"trace_{hypothesis_name}_chain{chain_id}.pkl"
+            checkpoint_file = TRACE_DIR / f"trace_{hypothesis_name}_chain{chain_id}.pkl"
 
             # Skip already completed chains
             if checkpoint_file.exists():
@@ -346,11 +353,18 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
 
             traces.append(chain_trace)
 
-    if not traces:
-        raise RuntimeError("No valid traces available.")
-    combined_trace = az.concat(*traces, dim="chain")
+        if not traces:
+            raise RuntimeError("No valid traces available.")
+        combined_trace = az.concat(*traces, dim="chain")
 
-    return combined_trace
+        ppc = pm.sample_posterior_predictive(
+            combined_trace,
+            model=model,
+            var_names=["obs"],
+            random_seed=config['seed']
+        )
+
+    return combined_trace, ppc
     
 # --- EXECUTION ---
 # Filter for each type and take the specified number of rows
@@ -367,14 +381,19 @@ print(f"Agent hypothesis set to: {args.is_agent_hyp}")
 print('')
 print("Initiating hierarchical analysis...")
 
-trace = run_hierarchical_model_selection(test_batch, config, is_agent_hyp=args.is_agent_hyp)
+trace, ppc = run_hierarchical_model_selection(test_batch, config, is_agent_hyp=args.is_agent_hyp)
 
-final_trace_file = RESULTS_DIR / f"final_trace_{'agent' if args.is_agent_hyp else 'owner'}.pkl"
+final_trace_file = TRACE_DIR / f"final_trace_{'agent' if args.is_agent_hyp else 'owner'}.pkl"
+final_ppc_file = PPC_DIR / f"ppc_{'agent' if args.is_agent_hyp else 'owner'}.pkl"
 
 with open(final_trace_file, "wb") as f:
     pickle.dump(trace, f)
 
+with open(final_ppc_file, "wb") as f:
+    pickle.dump(ppc, f)
+
 print(f"Final trace saved to {final_trace_file}")
+print(f"PPC saved to {final_ppc_file}")
 
 log_z = trace.sample_stats.log_marginal_likelihood.mean().item()
 
