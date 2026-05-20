@@ -372,6 +372,7 @@ owner_subset = df[df['listing_type'] == 'Owner'].head(config['num_prop_owner'])
 agent_subset = df[df['listing_type'] == 'Agent'].head(config['num_prop_agent'])
 # Combine them into a single test batch
 test_batch = pd.concat([owner_subset, agent_subset]).reset_index(drop=True)
+test_batch.to_csv(RESULTS_DIR / f"test_batch_{'agent' if args.is_agent_hyp else 'owner'}.csv", index=False)
 
 # Safety check: print the resulting composition
 print(f"Batch created with {len(test_batch)} properties.")
