@@ -1,14 +1,15 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 import pickle
 import os
+import sys
 import configparser
 import ast
 import arviz as az
+import shutil
+import filecmp
 from pathlib import Path
-from IPython.display import display
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 RESULTS_DIR = BASE_DIR / "results"
@@ -17,6 +18,19 @@ PPC_DIR = BASE_DIR / "results/ppc"
 PLOT_DIR = RESULTS_DIR / "plots/"
 
 os.makedirs(PLOT_DIR, exist_ok=True)
+
+agent_config_path = RESULTS_DIR / "london_rentals_agent.ini"
+owner_config_path = RESULTS_DIR / "london_rentals_owner.ini"
+are_identical = filecmp.cmp(agent_config_path, owner_config_path, shallow=False)
+if not are_identical:
+    print('WARNING: The results for the AGENT and OWNER models have been produced for different app/config.ini files.')
+    print('Cannot run the post analysis for different configurations.')
+    sys.exit(1)
+
+shutil.copy2(
+    BASE_DIR / "app/config.ini",
+    PLOT_DIR / f"london_rentals_plots.ini"
+)
 
 def load_config(filename=BASE_DIR / "app/config.ini"):
     """Parses the config.ini file into a usable dictionary."""
@@ -74,8 +88,8 @@ with open(TRACE_DIR / "final_trace_owner.pkl", "rb") as f:
 with open(TRACE_DIR / "final_trace_agent.pkl", "rb") as f:
     fin_tr_agent = pickle.load(f)
 
-log_z_owner = fin_tr_owner.sample_stats.log_marginal_likelihood.mean().item()
-log_z_agent = fin_tr_agent.sample_stats.log_marginal_likelihood.mean().item()
+log_z_owner = fin_tr_owner.sample_stats.log_marginal_likelihood.values[:,-1].mean()
+log_z_agent = fin_tr_agent.sample_stats.log_marginal_likelihood.values[:,-1].mean()
 
 # Bayes Factor Computation
 log_BF = log_z_agent - log_z_owner
@@ -117,6 +131,7 @@ plt.grid(True, linestyle='--', alpha=0.6)
 plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2), fontsize=9, ncol=4, frameon=True)
 plt.tight_layout() 
 plt.savefig(PLOT_DIR / "Evidence Consistency Across Chains.png")
+plt.close()
 
 accept_rates_owner = fin_tr_owner.sample_stats["accept_rate"].values
 betas_owner = fin_tr_owner.sample_stats["beta"].values
@@ -163,6 +178,7 @@ plt.legend(
 )
 plt.tight_layout()
 plt.savefig(PLOT_DIR / "Acceptance Rate.png")
+plt.close()
 
 with open(PPC_DIR / "ppc_owner.pkl", "rb") as f:
     ppc_owner = pickle.load(f)
@@ -195,6 +211,7 @@ fig.legend(
 plt.tight_layout(rect=[0, 0.08, 1, 0.93])
 plt.subplots_adjust(hspace=0) 
 plt.savefig(PLOT_DIR / "PPC.png")
+plt.close()
 
 # Market-Level Means ---
 mt_mu_inter        = config['base']
@@ -258,6 +275,9 @@ axes = az.plot_pair(
 all_x_labels = [ax.get_xlabel() for ax in axes[-1, :]]
 all_y_labels = [ax.get_ylabel() for ax in axes[:, 0]]
 
+def get_data_owner(label):
+    return fin_tr_owner.posterior[label].values.flatten()
+
 for i in range(len(all_y_labels)):
     for j in range(len(all_x_labels)):
         ax = axes[i, j]
@@ -266,10 +286,7 @@ for i in range(len(all_y_labels)):
         row_label = all_y_labels[i]
         col_label = all_x_labels[j]
 
-        def get_data(label):
-            return fin_tr_owner.posterior[label].values.flatten()
-
-        data_col = get_data(col_label)
+        data_col = get_data_owner(col_label)
         q5_c, med_c, q95_c = np.percentile(data_col, [5, 50, 95])
 
         if i == j:
@@ -288,7 +305,7 @@ for i in range(len(all_y_labels)):
 
         elif i > j:
             # --- 2D STATS (Orange Median Crosshair + Black Truth Square) ---
-            data_row = get_data(row_label)
+            data_row = get_data_owner(row_label)
             med_r = np.median(data_row)
             
             # Orange Median lines
@@ -307,6 +324,7 @@ for i in range(len(all_y_labels)):
 
 plt.suptitle("Hierarchical Owner Model: Global Market Recovery", fontsize=24, y=1.03)
 plt.savefig(PLOT_DIR / "Corner Plot (Owner Model).png")
+plt.close()
 
 # AGENT model
 axes = az.plot_pair(
@@ -321,6 +339,9 @@ axes = az.plot_pair(
 all_x_labels = [ax.get_xlabel() for ax in axes[-1, :]]
 all_y_labels = [ax.get_ylabel() for ax in axes[:, 0]]
 
+def get_data_agent(label):
+    return fin_tr_agent.posterior[label].values.flatten()
+
 for i in range(len(all_y_labels)):
     for j in range(len(all_x_labels)):
         ax = axes[i, j]
@@ -329,10 +350,7 @@ for i in range(len(all_y_labels)):
         row_label = all_y_labels[i]
         col_label = all_x_labels[j]
 
-        def get_data(label):
-            return fin_tr_agent.posterior[label].values.flatten()
-
-        data_col = get_data(col_label)
+        data_col = get_data_agent(col_label)
         q5_c, med_c, q95_c = np.percentile(data_col, [5, 50, 95])
 
         if i == j:
@@ -351,7 +369,7 @@ for i in range(len(all_y_labels)):
 
         elif i > j:
             # --- 2D STATS (Orange Median Crosshair + Black Truth Square) ---
-            data_row = get_data(row_label)
+            data_row = get_data_agent(row_label)
             med_r = np.median(data_row)
             
             # Orange Median lines
@@ -370,6 +388,7 @@ for i in range(len(all_y_labels)):
 
 plt.suptitle("Hierarchical Agent Model: Global Market Recovery", fontsize=24, y=1.03)
 plt.savefig(PLOT_DIR / "Corner Plot (Agent Model).png")
+plt.close()
 
 print("\nOWNER MODEL SUMMARY (Unknown Market Parameters Only)")
 print("-" * 40)
@@ -506,9 +525,22 @@ plt.legend(loc='upper right', bbox_to_anchor=(1, 1))
 plt.xlim(-0.15, 1.15)
 plt.tight_layout()
 plt.savefig(PLOT_DIR / "Injection-Posterior Shrinkage (Agent Premium)")
+plt.close()
 
 analysed_params_owner = config['known_market_price_args'] + config['unknown_price_args']
 analysed_params_agent = config['known_market_price_args'] + config['unknown_price_args'] + ['premium']
+
+param_to_column_map = {
+    "p_base": "intercept",
+    "p_room_coeff": "beta_room",
+    "p_distance_coeff": "beta_dist",
+    "p_underground_fee": "beta_under",
+    "p_house_fee": "beta_prop",
+    "p_garden_fee": "beta_outdoor",
+    "p_terrace_fee": "beta_outdoor",
+    "p_balcony_fee": "beta_outdoor",
+    "p_premium": "premium"
+}
 
 # OWNER model
 # Define the property-level variables to check
@@ -522,11 +554,11 @@ if num_plots == 1:
 else:
     axes = axes.flatten()
 
-param_to_column_map = {
-    "p_room_coeff": "beta_room",
-    "p_distance_coeff": "beta_dist",
-    "p_underground_fee": "beta_under",
-    "p_house_fee": "beta_prop"
+# Mapping parameter names to their specific descriptive string in the 'outdoor_space' column
+outdoor_space_type_map = {
+    "p_garden_fee": "garden",
+    "p_terrace_fee": "terrace",
+    "p_balcony_fee": "balcony"
 }
 
 for idx, var_name in enumerate(prop_analysed_params_owner):
@@ -541,7 +573,23 @@ for idx, var_name in enumerate(prop_analysed_params_owner):
     
     # Retrieve the 1D ground-truth array corresponding to this parameter type
     csv_column_name = param_to_column_map[var_name]
-    truths = test_batch_owner[csv_column_name].values
+
+    # --- FIXED: CONDITIONAL TRUTH EXTRACTION FOR OUTDOOR SPACE ---
+    if var_name in ["p_garden_fee", "p_terrace_fee", "p_balcony_fee"]:
+        target_space = outdoor_space_type_map[var_name]
+        
+        # Build the truth array property by property based on the 'outdoor_space' column
+        truths = np.zeros(num_properties)
+        for k in range(num_properties):
+            actual_space_type = test_batch_owner["outdoor_space"].iloc[k]
+            if str(actual_space_type).strip().lower() == target_space:
+                truths[k] = test_batch_owner["beta_outdoor"].iloc[k]
+            else:
+                truths[k] = 0.0
+    else:
+        # Standard lookup for all other non-shared parameters
+        truths = test_batch_owner[csv_column_name].values
+    # -------------------------------------------------------------
     
     # Compute the percentile rank of the truth within the posterior for each property
     property_ranks = []
@@ -594,6 +642,7 @@ for empty_idx in range(num_plots, len(axes)):
 plt.suptitle("Individual Property Parameter Recovery: Cook's Rank Diagnostic (Owner model)", fontsize=18, y=0.96)
 plt.tight_layout(rect=[0, 0, 1, 0.93])
 plt.savefig(PLOT_DIR / "Posterior Rank Calibration Diagnostic (Owner model).png")
+plt.close()
 
 # AGENT model
 # Define the property-level variables to check
@@ -607,12 +656,11 @@ if num_plots == 1:
 else:
     axes = axes.flatten()
 
-param_to_column_map = {
-    "p_room_coeff": "beta_room",
-    "p_distance_coeff": "beta_dist",
-    "p_underground_fee": "beta_under",
-    "p_house_fee": "beta_prop",
-    "p_premium": "premium"
+# Mapping parameter names to their specific descriptive string in the 'outdoor_space' column
+outdoor_space_type_map = {
+    "p_garden_fee": "garden",
+    "p_terrace_fee": "terrace",
+    "p_balcony_fee": "balcony"
 }
 
 for idx, var_name in enumerate(prop_analysed_params_agent):
@@ -627,8 +675,24 @@ for idx, var_name in enumerate(prop_analysed_params_agent):
     
     # Retrieve the 1D ground-truth array corresponding to this parameter type
     csv_column_name = param_to_column_map[var_name]
-    truths = test_batch_agent[csv_column_name].values
-    
+
+    # --- FIXED: CONDITIONAL TRUTH EXTRACTION FOR OUTDOOR SPACE ---
+    if var_name in ["p_garden_fee", "p_terrace_fee", "p_balcony_fee"]:
+        target_space = outdoor_space_type_map[var_name]
+        
+        # Build the truth array property by property based on the 'outdoor_space' column
+        truths = np.zeros(num_properties)
+        for k in range(num_properties):
+            actual_space_type = test_batch_agent["outdoor_space"].iloc[k]
+            if str(actual_space_type).strip().lower() == target_space:
+                truths[k] = test_batch_agent["beta_outdoor"].iloc[k]
+            else:
+                truths[k] = 0.0
+    else:
+        # Standard lookup for all other non-shared parameters
+        truths = test_batch_agent[csv_column_name].values
+    # -------------------------------------------------------------
+
     # Compute the percentile rank of the truth within the posterior for each property
     property_ranks = []
     for k in range(num_properties):
@@ -680,3 +744,4 @@ for empty_idx in range(num_plots, len(axes)):
 plt.suptitle("Individual Property Parameter Recovery: Cook's Rank Diagnostic (Small Sample Optimized)", fontsize=18, y=0.96)
 plt.tight_layout(rect=[0, 0, 1, 0.93])
 plt.savefig(PLOT_DIR / "Posterior Rank Calibration Diagnostic (Agent model).png")
+plt.close()

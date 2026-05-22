@@ -12,6 +12,7 @@ import pytensor.tensor as pt
 import ast
 import pickle
 import shutil
+import filecmp
 import arviz as az
 from pathlib import Path
 
@@ -23,17 +24,20 @@ RESULTS_DIR.mkdir(exist_ok=True)
 TRACE_DIR.mkdir(exist_ok=True)
 PPC_DIR.mkdir(exist_ok=True)
 
+data_config_path = BASE_DIR / "data/datasets/london_rentals_hierarchical.ini"
+config_path = BASE_DIR / "app/config.ini"
+are_identical = filecmp.cmp(data_config_path, config_path, shallow=False)
+if not are_identical:
+    print('WARNING: app/config.ini has been edited since the data generation; please ensure that they are identical and then rerun.')
+    sys.exit(1)
+
 filename = BASE_DIR / "data/datasets/london_rentals_hierarchical.json"
 
 parser = argparse.ArgumentParser()
 # In terminal: python script.py --is_agent_hyp
 parser.add_argument("--is_agent_hyp", action="store_true")
+parser.add_argument("--consider_both_modes", action="store_true")
 args = parser.parse_args()
-
-shutil.copy2(
-    BASE_DIR / "app/config.ini",
-    RESULTS_DIR / f"london_rentals_{'agent' if args.is_agent_hyp else 'owner'}.ini"
-)
 
 def load_config(filename=BASE_DIR / "app/config.ini"):
     """Parses the config.ini file into a usable dictionary."""
@@ -127,10 +131,6 @@ df = pd.DataFrame(raw_data['properties'])
 df['log_rent'] = np.log(df['monthly_rent_gbp'])
 
 config = load_config()
-mode = config['mode'].lower()
-if mode!='hierarchical':
-    print('The analysis script only accepts the "hierarchical" mode - please switch to that.')
-    sys.exit(1)
 
 print(f"Hierarchical Dataset Loaded: {len(df)} properties.")
     
@@ -372,34 +372,75 @@ owner_subset = df[df['listing_type'] == 'Owner'].head(config['num_prop_owner'])
 agent_subset = df[df['listing_type'] == 'Agent'].head(config['num_prop_agent'])
 # Combine them into a single test batch
 test_batch = pd.concat([owner_subset, agent_subset]).reset_index(drop=True)
-test_batch.to_csv(RESULTS_DIR / f"test_batch_{'agent' if args.is_agent_hyp else 'owner'}.csv", index=False)
 
 # Safety check: print the resulting composition
 print(f"Batch created with {len(test_batch)} properties.")
 print(test_batch['listing_type'].value_counts())
 print('')
-print(f"Agent hypothesis set to: {args.is_agent_hyp}")
-print('')
-print("Initiating hierarchical analysis...")
 
-trace, ppc = run_hierarchical_model_selection(test_batch, config, is_agent_hyp=args.is_agent_hyp)
+# Determine which modes need to be run based on the flag
+if args.consider_both_modes:
+    print('Considering both property provider modes...\n')
+    modes_to_run = ['agent', 'owner']
+else:
+    modes_to_run = ['agent' if args.is_agent_hyp else 'owner']
 
-final_trace_file = TRACE_DIR / f"final_trace_{'agent' if args.is_agent_hyp else 'owner'}.pkl"
-final_ppc_file = PPC_DIR / f"ppc_{'agent' if args.is_agent_hyp else 'owner'}.pkl"
+# Run the pipeline steps for each required mode
+for mode in modes_to_run:
+    # Set a localized boolean for the model selector function
+    current_is_agent_hyp = (mode == 'agent')
 
-with open(final_trace_file, "wb") as f:
-    pickle.dump(trace, f)
+    print(f"Running mode: {mode.upper()} (Hypothesis mapping: {current_is_agent_hyp})")
+    
+    results_config_path = BASE_DIR / f"results/london_rentals_{mode}.ini"
+    
+    if results_config_path.exists():
+        are_also_identical = filecmp.cmp(results_config_path, config_path, shallow=False)
+        if config['seed'] is None or not are_also_identical:
+            print(f'WARNING: The "seed" in app/config.ini is set to None or the file has been edited since the last time the hierarchical Bayesian analysis was run for {mode.upper()}.')
+            print('Are you sure that you want to proceed? This will result in any previously stored results being lost.')
+            while True:
+                user_choice = input("Proceed? (y/n): ").strip().lower()
+                if user_choice in ['y', 'yes']:
+                    print(f"Proceeding with the updated configuration for {mode.upper()}...\n")
+                    break
+                elif user_choice in ['n', 'no']:
+                    print("Execution halted by user. Exiting script safely.")
+                    sys.exit(0)
 
-with open(final_ppc_file, "wb") as f:
-    pickle.dump(ppc, f)
+            # Flush old matching traces
+            matching_files = list(TRACE_DIR.glob(f"*{mode}*"))
+            for matching_file in matching_files:
+                matching_file.unlink()
+        
+    # Copy configuration backup
+    shutil.copy2(
+        BASE_DIR / "app/config.ini",
+        RESULTS_DIR / f"london_rentals_{mode}.ini"
+    )
 
-print(f"Final trace saved to {final_trace_file}")
-print(f"PPC saved to {final_ppc_file}")
+    # Save data split
+    test_batch.to_csv(RESULTS_DIR / f"test_batch_{mode}.csv", index=False)
 
-log_z = trace.sample_stats.log_marginal_likelihood.mean().item()
+    print("Initiating hierarchical analysis...")
 
-print('Analysis finished successfully!')
-print('')
+    # Execute Bayesian inference
+    trace, ppc = run_hierarchical_model_selection(test_batch, config, is_agent_hyp=current_is_agent_hyp)
 
-print("\n--- BATCH RESULTS ---")
-print(f"Log Z: {log_z:.4f}")
+    # File designations
+    final_trace_file = TRACE_DIR / f"final_trace_{mode}.pkl"
+    final_ppc_file = PPC_DIR / f"ppc_{mode}.pkl"
+
+    with open(final_trace_file, "wb") as f:
+        pickle.dump(trace, f)
+
+    with open(final_ppc_file, "wb") as f:
+        pickle.dump(ppc, f)
+
+    print(f"Final trace saved to {final_trace_file}")
+    print(f"PPC saved to {final_ppc_file}")
+
+    log_z = trace.sample_stats.log_marginal_likelihood.values[:, -1].mean()
+    print(f"Analysis for {mode.upper()} finished successfully!\n" + "-"*50 + "\n")
+
+print("All requested Bayesian pipeline tasks completed successfully!\n" + "="*50 + "\n")

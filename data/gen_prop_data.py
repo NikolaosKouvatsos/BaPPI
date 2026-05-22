@@ -25,9 +25,13 @@ def load_config(filename='app/config.ini'):
     # 1. GENERAL Section
     gen_section = parser['GENERAL']
     c['mode'] = clean_val(gen_section['mode'])
-    c['seed'] = int(gen_section['seed'])
-    
-    # 2. DATA GENERATION Section
+    raw_seed = gen_section.get('seed', '').strip().lower()
+    if raw_seed in ['none', 'null', '']:
+        c['seed'] = None
+    else:
+        c['seed'] = int(gen_section['seed'])
+
+    # 2. DATA_GENERATION Section
     # Note: Use exact string 'DATA GENERATION' as per your .ini file
     dg = parser['DATA_GENERATION']
     c['num_properties'] = int(dg['num_properties'])
@@ -279,12 +283,16 @@ if __name__ == "__main__":
 
     # 3. Branching Logic based on Mode
     if mode == 'hierarchical':
-        # Advanced Multi-level generation
+        # 1. Determine the seeds for both cases defensively
+        seed_a = config['seed']
+        seed_b = config['seed'] + 1 if config['seed'] is not None else None
+
+        # 2. Advanced Multi-level generation
         prices_a, params_a = generate_hierarchical_data(
-            data.iloc[:half], config, model_case='A', seed=config['seed']
+            data.iloc[:half], config, model_case='A', seed=seed_a
         )
         prices_b, params_b = generate_hierarchical_data(
-            data.iloc[half:], config, model_case='B', seed=config['seed'] + 1
+            data.iloc[half:], config, model_case='B', seed=seed_b
         )
         
         # Map Individual Betas to dataframe columns
