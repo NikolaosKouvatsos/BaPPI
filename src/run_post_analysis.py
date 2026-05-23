@@ -96,8 +96,8 @@ log_BF = log_z_agent - log_z_owner
 BF = np.exp(log_BF)
 
 print("\n--- BATCH RESULTS ---")
-print(f"Log Z (Owner Model): {log_z_owner:.4f}")
 print(f"Log Z (Agent Model): {log_z_agent:.4f}")
+print(f"Log Z (Owner Model): {log_z_owner:.4f}")
 print(f"Bayes Factor:  {BF:.4e}")
 
 if BF > 1000:
@@ -745,3 +745,6 @@ plt.suptitle("Individual Property Parameter Recovery: Cook's Rank Diagnostic (Sm
 plt.tight_layout(rect=[0, 0, 1, 0.93])
 plt.savefig(PLOT_DIR / "Posterior Rank Calibration Diagnostic (Agent model).png")
 plt.close()
+
+print('\nAll requested post-analysis tasks completed successfully!')
+print(f"{'='*50}\n")
