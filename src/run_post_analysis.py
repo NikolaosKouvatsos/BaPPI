@@ -88,8 +88,12 @@ with open(TRACE_DIR / "final_trace_owner.pkl", "rb") as f:
 with open(TRACE_DIR / "final_trace_agent.pkl", "rb") as f:
     fin_tr_agent = pickle.load(f)
 
-log_z_owner = fin_tr_owner.sample_stats.log_marginal_likelihood.values[:,-1].mean()
-log_z_agent = fin_tr_agent.sample_stats.log_marginal_likelihood.values[:,-1].mean()
+# Extract non-NaN elements for each chain in the Owner model
+valid_z_owner = [chain[~np.isnan(chain)][0] for chain in fin_tr_owner.sample_stats.log_marginal_likelihood.values]
+log_z_owner = np.mean(valid_z_owner)
+# Extract non-NaN elements for each chain in the Agent model
+valid_z_agent = [chain[~np.isnan(chain)][0] for chain in fin_tr_agent.sample_stats.log_marginal_likelihood.values]
+log_z_agent = np.mean(valid_z_agent)
 
 # Bayes Factor Computation
 log_BF = log_z_agent - log_z_owner
@@ -100,7 +104,7 @@ print(f"Log Z (Agent Model): {log_z_agent:.4f}")
 print(f"Log Z (Owner Model): {log_z_owner:.4f}")
 print(f"Bayes Factor:  {BF:.4e}")
 
-if BF > 1000:
+if BF > 100:
     print("Conclusion: Decisive Evidence for the AGENT model.")
 elif BF > 10:
     print("Conclusion: Strong Evidence for the AGENT model.")
@@ -115,8 +119,8 @@ else:
 
 # Access the log_marginal_likelihood per chain
 # This shows if all chains reached roughly the same conclusion
-log_z_per_chain_owner = fin_tr_owner.sample_stats.log_marginal_likelihood.values[:,-1]
-log_z_per_chain_agent = fin_tr_agent.sample_stats.log_marginal_likelihood.values[:,-1]
+log_z_per_chain_owner = np.array([chain[~np.isnan(chain)][0] for chain in fin_tr_owner.sample_stats.log_marginal_likelihood.values])
+log_z_per_chain_agent = np.array([chain[~np.isnan(chain)][0] for chain in fin_tr_agent.sample_stats.log_marginal_likelihood.values])
 
 plt.figure(figsize=(8, 6))
 plt.plot(log_z_per_chain_owner, 'o-', label='Log Z per Chain (Owner)')
