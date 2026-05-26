@@ -24,9 +24,9 @@ BAPPI_LOGO = r"""
 """
 
 if __name__ == "__main__":
-    print(BAPPI_LOGO)
-    print("Initializing Bayesian Property Provider Identifier (BaPPI)...")
-    print(f"{'='*80}\n")
+    print(BAPPI_LOGO, flush=True)
+    print("Initializing Bayesian Property Provider Identifier (BaPPI)...", flush=True)
+    print(f"{'='*80}\n", flush=True)
 
 import configparser
 import subprocess
@@ -55,7 +55,7 @@ def load_config(filename=BASE_DIR / "app/config.ini"):
 
 config = load_config()
 
-print('\nGenerating new property data...')
+print('\nGenerating new property data...', flush=True)
 data_script_path = str(BASE_DIR / "data/gen_prop_data.py")
     
 result = subprocess.run(
@@ -66,10 +66,10 @@ result = subprocess.run(
 
 mode = config['mode'].lower()
 if mode!='hierarchical':
-    print('\nThe Bayesian analysis and the post-analysis scripts only accept the "hierarchical mode" - please switch to that in app/config.ini.')
+    print('\nThe Bayesian analysis and the post-analysis scripts only accept the "hierarchical mode" - please switch to that in app/config.ini.', flush=True)
     sys.exit(1)
 
-print('\nProceeding to the hierarchical Bayesian analysis...\n')
+print('\nProceeding to the hierarchical Bayesian analysis...\n', flush=True)
 
 analysis_script_path = str(BASE_DIR / "src/run_bayesian_analysis.py")
         
@@ -79,7 +79,7 @@ result = subprocess.run(
     text=True
 )
 
-print('Proceeding to the post-analysis...')
+print('Proceeding to the post-analysis...', flush=True)
 
 post_analysis_script_path = str(BASE_DIR / "src/run_post_analysis.py")
         

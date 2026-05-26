@@ -28,7 +28,7 @@ data_config_path = BASE_DIR / "data/datasets/london_rentals_hierarchical.ini"
 config_path = BASE_DIR / "app/config.ini"
 are_identical = filecmp.cmp(data_config_path, config_path, shallow=False)
 if not are_identical:
-    print('WARNING: app/config.ini has been edited since the data generation; please ensure that they are identical and then rerun.')
+    print('WARNING: app/config.ini has been edited since the data generation; please ensure that they are identical and then rerun.', flush=True)
     sys.exit(1)
 
 filename = BASE_DIR / "data/datasets/london_rentals_hierarchical.json"
@@ -106,11 +106,11 @@ def load_config(filename=BASE_DIR / "app/config.ini"):
     # Parse the lists from the config (using json.loads to convert string representation to Python list)
     c['fixed_price_args'] = ast.literal_eval(da['fixed_price_args'])
     if "agent_premium" in c['fixed_price_args']:
-        print('The "agent_premium" should not be included in the "fixed_price_args".')
+        print('The "agent_premium" should not be included in the "fixed_price_args".', flush=True)
         sys.exit(1)
     c['known_market_price_args'] = ast.literal_eval(da['known_market_price_args'])
     if "agent_premium" in c['known_market_price_args']:
-        print('The "agent_premium" should not be included in the "known_market_price_args".')
+        print('The "agent_premium" should not be included in the "known_market_price_args".', flush=True)
         sys.exit(1)
     # Sanity Check: Ensure no overlap
     overlap = set(c['fixed_price_args']) & set(c['known_market_price_args'])
@@ -132,7 +132,7 @@ df['log_rent'] = np.log(df['monthly_rent_gbp'])
 
 config = load_config()
 
-print(f"Hierarchical Dataset Loaded: {len(df)} properties.")
+print(f"Hierarchical Dataset Loaded: {len(df)} properties.", flush=True)
     
 def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
     # Pre-calculate feature presence to avoid boolean checks inside the loop
@@ -326,7 +326,7 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
 
             # Skip already completed chains
             if checkpoint_file.exists():
-                print(f"Loading existing checkpoint: {checkpoint_file.name}")
+                print(f"Loading existing checkpoint: {checkpoint_file.name}", flush=True)
 
                 with open(checkpoint_file, "rb") as f:
                     chain_trace = pickle.load(f)
@@ -334,7 +334,7 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
                 traces.append(chain_trace)
                 continue
 
-            print(f"Running chain {chain_id+1}/{config['chains']}...")
+            print(f"Running chain {chain_id+1}/{config['chains']}...", flush=True)
 
             chain_trace = pm.sample_smc(
                 draws=config['mc_draws'],
@@ -349,7 +349,7 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
             with open(checkpoint_file, "wb") as f:
                 pickle.dump(chain_trace, f)
 
-            print(f"Saved checkpoint: {checkpoint_file.name}")
+            print(f"Saved checkpoint: {checkpoint_file.name}", flush=True)
 
             traces.append(chain_trace)
 
@@ -374,13 +374,13 @@ agent_subset = df[df['listing_type'] == 'Agent'].head(config['num_prop_agent'])
 test_batch = pd.concat([owner_subset, agent_subset]).reset_index(drop=True)
 
 # Safety check: print the resulting composition
-print(f"Batch created with {len(test_batch)} properties.")
-print(test_batch['listing_type'].value_counts())
-print('')
+print(f"Batch created with {len(test_batch)} properties.", flush=True)
+print(test_batch['listing_type'].value_counts(), flush=True)
+print('', flush=True)
 
 # Determine which modes need to be run based on the flag
 if args.consider_both_modes:
-    print('Considering both property provider modes...\n')
+    print('Considering both property provider modes...\n', flush=True)
     modes_to_run = ['agent', 'owner']
 else:
     modes_to_run = ['agent' if args.is_agent_hyp else 'owner']
@@ -390,22 +390,22 @@ for mode in modes_to_run:
     # Set a localized boolean for the model selector function
     current_is_agent_hyp = (mode == 'agent')
 
-    print(f"Running mode: {mode.upper()} (Hypothesis mapping: {current_is_agent_hyp})")
+    print(f"Running mode: {mode.upper()} (Hypothesis mapping: {current_is_agent_hyp})", flush=True)
     
     results_config_path = BASE_DIR / f"results/london_rentals_{mode}.ini"
     
     if results_config_path.exists():
         are_also_identical = filecmp.cmp(results_config_path, config_path, shallow=False)
         if config['seed'] is None or not are_also_identical:
-            print(f'WARNING: The "seed" in app/config.ini is set to None or the file has been edited since the last time the hierarchical Bayesian analysis was run for {mode.upper()}.')
-            print('Are you sure that you want to proceed? This will result in any previously stored results being lost.')
+            print(f'WARNING: The "seed" in app/config.ini is set to None or the file has been edited since the last time the hierarchical Bayesian analysis was run for {mode.upper()}.', flush=True)
+            print('Are you sure that you want to proceed? This will result in any previously stored results being lost.', flush=True)
             while True:
                 user_choice = input("Proceed? (y/n): ").strip().lower()
                 if user_choice in ['y', 'yes']:
-                    print(f"Proceeding with the updated configuration for {mode.upper()}...\n")
+                    print(f"Proceeding with the updated configuration for {mode.upper()}...\n", flush=True)
                     break
                 elif user_choice in ['n', 'no']:
-                    print("Execution halted by user. Exiting script safely.")
+                    print("Execution halted by user. Exiting script safely.", flush=True)
                     sys.exit(0)
 
             # Flush old matching traces
@@ -422,7 +422,7 @@ for mode in modes_to_run:
     # Save data split
     test_batch.to_csv(RESULTS_DIR / f"test_batch_{mode}.csv", index=False)
 
-    print("Initiating hierarchical analysis...")
+    print("Initiating hierarchical analysis...", flush=True)
 
     # Execute Bayesian inference
     trace, ppc = run_hierarchical_model_selection(test_batch, config, is_agent_hyp=current_is_agent_hyp)
@@ -437,10 +437,10 @@ for mode in modes_to_run:
     with open(final_ppc_file, "wb") as f:
         pickle.dump(ppc, f)
 
-    print(f"Final trace saved to {final_trace_file}")
-    print(f"PPC saved to {final_ppc_file}")
+    print(f"Final trace saved to {final_trace_file}", flush=True)
+    print(f"PPC saved to {final_ppc_file}", flush=True)
 
     log_z = trace.sample_stats.log_marginal_likelihood.values[:, -1].mean()
-    print(f"Analysis for {mode.upper()} finished successfully!\n" + "-"*50 + "\n")
+    print(f"Analysis for {mode.upper()} finished successfully!\n" + "-"*50 + "\n", flush=True)
 
-print("All requested Bayesian pipeline tasks completed successfully!\n" + "="*50 + "\n")
+print("All requested Bayesian pipeline tasks completed successfully!\n" + "="*50 + "\n", flush=True)

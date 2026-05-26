@@ -1,6 +1,5 @@
 pymc
 arviz
-streamlit
 pandas
 numpy
 scipy

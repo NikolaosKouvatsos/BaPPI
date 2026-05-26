@@ -23,8 +23,8 @@ agent_config_path = RESULTS_DIR / "london_rentals_agent.ini"
 owner_config_path = RESULTS_DIR / "london_rentals_owner.ini"
 are_identical = filecmp.cmp(agent_config_path, owner_config_path, shallow=False)
 if not are_identical:
-    print('WARNING: The results for the AGENT and OWNER models have been produced for different app/config.ini files.')
-    print('Cannot run the post analysis for different configurations.')
+    print('WARNING: The results for the AGENT and OWNER models have been produced for different app/config.ini files.', flush=True)
+    print('Cannot run the post analysis for different configurations.', flush=True)
     sys.exit(1)
 
 shutil.copy2(
@@ -99,23 +99,23 @@ log_z_agent = np.mean(valid_z_agent)
 log_BF = log_z_agent - log_z_owner
 BF = np.exp(log_BF)
 
-print("\n--- BATCH RESULTS ---")
-print(f"Log Z (Agent Model): {log_z_agent:.4f}")
-print(f"Log Z (Owner Model): {log_z_owner:.4f}")
-print(f"Bayes Factor:  {BF:.4e}")
+print("\n--- BATCH RESULTS ---", flush=True)
+print(f"Log Z (Agent Model): {log_z_agent:.4f}", flush=True)
+print(f"Log Z (Owner Model): {log_z_owner:.4f}", flush=True)
+print(f"Bayes Factor:  {BF:.4e}", flush=True)
 
 if BF > 100:
-    print("Conclusion: Decisive Evidence for the AGENT model.")
+    print("Conclusion: Decisive Evidence for the AGENT model.", flush=True)
 elif BF > 10:
-    print("Conclusion: Strong Evidence for the AGENT model.")
+    print("Conclusion: Strong Evidence for the AGENT model.", flush=True)
 elif BF > 1:
-    print("Conclusion: Moderate Evidence for the AGENT model.")
+    print("Conclusion: Moderate Evidence for the AGENT model.", flush=True)
 elif BF > 0.1:
-    print("Conclusion: Moderate Evidence for the OWNER model.")
+    print("Conclusion: Moderate Evidence for the OWNER model.", flush=True)
 elif BF > 0.01:
-    print("Conclusion: Strong Evidence for the OWNER model.")
+    print("Conclusion: Strong Evidence for the OWNER model.", flush=True)
 else:
-    print("Conclusion: Decisive Evidence for the OWNER model.")
+    print("Conclusion: Decisive Evidence for the OWNER model.", flush=True)
 
 # Access the log_marginal_likelihood per chain
 # This shows if all chains reached roughly the same conclusion
@@ -394,23 +394,23 @@ plt.suptitle("Hierarchical Agent Model: Global Market Recovery", fontsize=24, y=
 plt.savefig(PLOT_DIR / "Corner Plot (Agent Model).png")
 plt.close()
 
-print("\nOWNER MODEL SUMMARY (Unknown Market Parameters Only)")
-print("-" * 40)
+print("\nOWNER MODEL SUMMARY (Unknown Market Parameters Only)", flush=True)
+print("-" * 40, flush=True)
 stats_owner = az.summary(
     fin_tr_owner, 
     var_names=all_plot_vars[:-2], 
     round_to=3
 )
-print(stats_owner)
+print(stats_owner, flush=True)
 
-print("\nAGENT MODEL SUMMARY (Unknown Market Parameters Only)")
-print("-" * 40)
+print("\nAGENT MODEL SUMMARY (Unknown Market Parameters Only)", flush=True)
+print("-" * 40, flush=True)
 stats_agent = az.summary(
     fin_tr_agent, 
     var_names=all_plot_vars, 
     round_to=3
 )
-print(stats_agent)
+print(stats_agent, flush=True)
 
 def compute_two_tailed_p_val(samples, truth):
     """
@@ -454,8 +454,8 @@ formatted_df["Posterior SD"] = formatted_df["Posterior SD"].map("{:.4f}".format)
 formatted_df["Z-Score"] = formatted_df["Z-Score"].map("{:.3f}".format)
 formatted_df["Two-Tailed p-value"] = formatted_df["Two-Tailed p-value"].map("{:.3f}".format)
 
-print("\nHierarchical Recovery Analysis - OWNER: Market Stats")
-print(formatted_df.to_string(index=False))
+print("\nHierarchical Recovery Analysis - OWNER: Market Stats", flush=True)
+print(formatted_df.to_string(index=False), flush=True)
 
 # AGENT model
 hier_results_agent = []
@@ -490,17 +490,17 @@ formatted_df["Posterior SD"] = formatted_df["Posterior SD"].map("{:.4f}".format)
 formatted_df["Z-Score"] = formatted_df["Z-Score"].map("{:.3f}".format)
 formatted_df["Two-Tailed p-value"] = formatted_df["Two-Tailed p-value"].map("{:.3f}".format)
 
-print("\nHierarchical Recovery Analysis - AGENT: Market Stats")
-print(formatted_df.to_string(index=False))
+print("\nHierarchical Recovery Analysis - AGENT: Market Stats", flush=True)
+print(formatted_df.to_string(index=False), flush=True)
 
-print("\nZ-Score Interpretation Guide:")
-print(f"{'-'*30}")
-print("- |Z| < 1.0: Strong Recovery.") 
-print("- 1.0 < |Z| < 2.0: Normal Tension.")
-print("- |Z| > 2.0: Significant Shrinkage or Outlier.")
-print("\nHierarchical Deep-Dive:")
-print("- p-value > 0.05: Truth is statistically plausible.")
-print("- p-value < 0.05: Truth is an outlier relative to the posterior (likely due to heavy Shrinkage).")
+print("\nZ-Score Interpretation Guide:", flush=True)
+print(f"{'-'*30}", flush=True)
+print("- |Z| < 1.0: Strong Recovery.", flush=True) 
+print("- 1.0 < |Z| < 2.0: Normal Tension.", flush=True)
+print("- |Z| > 2.0: Significant Shrinkage or Outlier.", flush=True)
+print("\nHierarchical Deep-Dive:", flush=True)
+print("- p-value > 0.05: Truth is statistically plausible.", flush=True)
+print("- p-value < 0.05: Truth is an outlier relative to the posterior (likely due to heavy Shrinkage).", flush=True)
 
 test_batch_agent = pd.read_csv(RESULTS_DIR / "test_batch_agent.csv")
 test_batch_owner = pd.read_csv(RESULTS_DIR / "test_batch_owner.csv")
@@ -750,5 +750,5 @@ plt.tight_layout(rect=[0, 0, 1, 0.93])
 plt.savefig(PLOT_DIR / "Posterior Rank Calibration Diagnostic (Agent model).png")
 plt.close()
 
-print('\nAll requested post-analysis tasks completed successfully!')
-print(f"{'='*50}\n")
+print('\nAll requested post-analysis tasks completed successfully!', flush=True)
+print(f"{'='*50}\n", flush=True)
