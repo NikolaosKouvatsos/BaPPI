@@ -22,7 +22,7 @@ def load_config(filename='app/config.ini'):
 
     c = {}
     
-    # 1. GENERAL Section
+    # GENERAL Section
     gen_section = parser['GENERAL']
     c['mode'] = clean_val(gen_section['mode'])
     raw_seed = gen_section.get('seed', '').strip().lower()
@@ -31,8 +31,7 @@ def load_config(filename='app/config.ini'):
     else:
         c['seed'] = int(gen_section['seed'])
 
-    # 2. DATA_GENERATION Section
-    # Note: Use exact string 'DATA GENERATION' as per your .ini file
+    # DATA_GENERATION Section
     dg = parser['DATA_GENERATION']
     c['num_properties'] = int(dg['num_properties'])
     c['flat_house_ratio'] = float(dg['flat_house_ratio'])
@@ -41,7 +40,7 @@ def load_config(filename='app/config.ini'):
     c['outdoor_space_weights'] = parse_list(dg['outdoor_space_weights'])
     c['underground_prob'] = float(dg['underground_prob'])
     
-    # 3. PRICE ARGUMENTS Section
+    # PRICE ARGUMENTS Section
     price = parser['PRICE_ARGUMENTS']
     c['noise_scale'] = float(price['noise_scale'])
     c['base'] = float(price['base'])
@@ -97,16 +96,21 @@ def generate_property_data(config):
     })
 
 def generate_price_fix_params(df, config, model_case='A', seed=None):
+    '''
+    Generates prices for the 'fixed' mode.
+    Adds Gaussian noise to the price.
+    Returns the prices and the property data.    
+    '''
     if seed is not None:
         np.random.seed(seed)
     n = len(df)
     
-    # 1. Pull Point Estimates from Config
+    # Pull Point Estimates from Config
     intercept = config['base']
     beta_room = config['room_coeff']
     beta_dist = config['distance_coeff']
     
-    # 2. Map Categorical Fees from Config
+    # Map Categorical Fees from Config
     type_map = {'House': config['house_fee'], 'Flat': 0.0}
     outdoor_map = {
         'Garden': config['garden_fee'], 
@@ -115,14 +119,13 @@ def generate_price_fix_params(df, config, model_case='A', seed=None):
         'Nothing': 0.0
     }
     
-    # 3. Handle Agent Premium Case
+    # Handle Agent Premium Case
     agent_premium = config['agent_premium'] if model_case == 'B' else 0.0
     
-    # 4. Calculate Vectorized Log-Price
+    # Calculate Vectorized Log-Price
     beta_prop = df['property_type'].map(type_map).values
     beta_outdoor = df['outdoor_space'].map(outdoor_map).values
     beta_under = (df['near_underground'] * config['underground_fee']).values
-    
     log_price = (
         intercept + 
         (df['n_rooms'] * beta_room) + 
@@ -133,7 +136,7 @@ def generate_price_fix_params(df, config, model_case='A', seed=None):
         agent_premium
     )
     
-    # Add noise using noise_scale from config
+    # Add Gaussian noise using noise_scale from config
     noise = np.random.normal(0, config['noise_scale'], size=n)
     prices = np.exp(log_price + noise)
 
@@ -151,13 +154,21 @@ def generate_price_fix_params(df, config, model_case='A', seed=None):
     return prices, fixed_params
 
 def generate_price_rand_params(df, config, model_case='A', seed=None):
+    '''
+    Generates prices for the 'random' mode.
+    Draws random values for the different price arguments from Gaussian distributions.
+    Exceptional distributions: room_coeff (Laplace), agent_premium (Gamma).
+    Considers the same market volatility for all price arguments.
+    Adds to the price noise generated through a Student's t-distribution."
+    Returns the prices and the property data.    
+    '''
     if seed is not None:
         np.random.seed(seed)
     
     n = len(df)
     vol = config['market_vol']
     
-    # 1. Generate Random Pools using config means and global volatility
+    # Generate Random Pools using config means and global volatility
     intercepts = np.random.normal(config['base'], vol, size=n)
     betas_room  = np.random.laplace(config['room_coeff'], vol, size=n)
     betas_dist  = np.random.normal(config['distance_coeff'], vol, size=n)
@@ -178,7 +189,7 @@ def generate_price_rand_params(df, config, model_case='A', seed=None):
     else:
         agent_premium = np.zeros(n)
 
-    # 2. Masking logic (applying pool only where feature exists)
+    # Masking logic (applying pool only where feature exists)
     beta_under_final = np.where(df['near_underground'] == 1, under_pool, 0.0)
     beta_prop = np.where(df['property_type'] == 'House', house_pool, 0.0)
     
@@ -187,7 +198,7 @@ def generate_price_rand_params(df, config, model_case='A', seed=None):
     beta_outdoor = np.where(df['outdoor_space'] == 'Terrace', terrace_pool, beta_outdoor)
     beta_outdoor = np.where(df['outdoor_space'] == 'Balcony', balcony_pool, beta_outdoor)
     
-    # 3. Final calculation
+    # Final calculation
     log_price = (
         intercepts + (df['n_rooms'] * betas_room) + (df['dist_centre_km'] * betas_dist) + 
         beta_under_final + beta_prop + beta_outdoor + agent_premium
@@ -205,12 +216,20 @@ def generate_price_rand_params(df, config, model_case='A', seed=None):
     return prices, sampled_params
 
 def generate_hierarchical_data(df, config, model_case='A', seed=None):
+    '''
+    Generates prices for the 'hierarchical' mode.
+    Draws random values for the different price arguments from Gaussian distributions.
+    Exceptional distributions: rooms (Laplace), agent premium (Gamma).
+    Considers a different market volatility for each price argument.
+    Adds to the price noise generated through a Student's t-distribution."
+    Returns the prices and the property data.    
+    '''
     if seed is not None:
         np.random.seed(seed)
     
     n = len(df)
     
-    # 1. Market-Level Means
+    # Market-Level Means
     market_means = {
         "intercept": config['base'], 
         "beta_room": config['room_coeff'], 
@@ -223,10 +242,10 @@ def generate_hierarchical_data(df, config, model_case='A', seed=None):
         "premium": config['agent_premium'] if model_case == 'B' else 0.0
     }
     
-    # 2. Market-Level Sigmas
+    # Market-Level Sigmas
     market_sigmas = {k: config['market_vol'] * config['vol_scales'][k] for k in market_means.keys()}
 
-    # 3. Individual Property Betas
+    # Individual Property Betas
     intercepts = np.random.normal(market_means["intercept"], market_sigmas["intercept"], size=n)
     betas_room  = np.random.laplace(market_means["beta_room"], market_sigmas["beta_room"], size=n)
     betas_dist  = np.random.normal(market_means["beta_dist"], market_sigmas["beta_dist"], size=n)
@@ -238,14 +257,13 @@ def generate_hierarchical_data(df, config, model_case='A', seed=None):
     balcony_pool = np.random.normal(market_means["beta_balcony"], market_sigmas["beta_balcony"], size=n)
     
     if model_case == 'B':
-        # Ensure alpha/beta for Gamma are valid (premium must be > 0)
         alpha_p = (market_means["premium"] / market_sigmas["premium"])**2
         beta_p  = market_means["premium"] / (market_sigmas["premium"]**2)
         agent_premium = np.random.gamma(alpha_p, 1/beta_p, size=n)
     else:
         agent_premium = np.zeros(n)
 
-    # 4. Masking & Calculation
+    # Masking & Calculation
     beta_under_final = np.where(df['near_underground'] == 1, under_pool, 0.0)
     beta_prop = np.where(df['property_type'] == 'House', house_pool, 0.0)
     
@@ -273,21 +291,21 @@ def generate_hierarchical_data(df, config, model_case='A', seed=None):
 if __name__ == "__main__":
     os.makedirs("data/datasets/", exist_ok=True)
 
-    # 1. Load configuration from .ini
+    # Load configuration from .ini
     config = load_config()
     mode = config['mode'].lower()
     
-    # 2. Generate structural 'Physical' features
+    # Generate structural 'Physical' features
     data = generate_property_data(config)
     half = len(data) // 2
 
-    # 3. Branching Logic based on Mode
+    # Branching Logic based on Mode
     if mode == 'hierarchical':
-        # 1. Determine the seeds for both cases defensively
+        # Determine the seeds for both cases
         seed_a = config['seed']
         seed_b = config['seed'] + 1 if config['seed'] is not None else None
 
-        # 2. Advanced Multi-level generation
+        # Price and data generation
         prices_a, params_a = generate_hierarchical_data(
             data.iloc[:half], config, model_case='A', seed=seed_a
         )
@@ -303,6 +321,7 @@ if __name__ == "__main__":
         data['monthly_rent_gbp'] = np.concatenate([prices_a, prices_b])
         data['listing_type'] = ['Owner'] * half + ['Agent'] * (len(data) - half)
 
+        # Save configuration for the specific run
         shutil.copy2("app/config.ini", "data/datasets/london_rentals_hierarchical.ini")
 
         # Package Individual + Market Truth into JSON
@@ -319,7 +338,7 @@ if __name__ == "__main__":
             json.dump(full_output, f, indent=4)
         
     else:
-        # Fixed or Random modes (Standard 2D Logic)
+        # Fixed or Random modes
         if mode == 'fixed':
             prices_a, params_a = generate_price_fix_params(data.iloc[:half], config, model_case='A', seed=config['seed'])
             prices_b, params_b = generate_price_fix_params(data.iloc[half:], config, model_case='B', seed=config['seed'] + 1)
@@ -333,14 +352,13 @@ if __name__ == "__main__":
         else:
             raise ValueError(f"Invalid mode '{mode}' detected in config.ini. Choose 'fixed', 'random', or 'hierarchical'.")
 
-        # Map flat parameters to columns
         for key in params_a.keys():
             data[key] = np.concatenate([params_a[key], params_b[key]])
             
         data['monthly_rent_gbp'] = np.concatenate([prices_a, prices_b])
         data['listing_type'] = ['Owner'] * half + ['Agent'] * (len(data) - half)
         
-        # Save as standard flat CSV
+        # Save as CSV
         data.to_csv(filename, index=False)
 
     # --- CONSOLE SUMMARY ---
