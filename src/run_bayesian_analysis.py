@@ -34,7 +34,6 @@ if not are_identical:
 filename = BASE_DIR / "data/datasets/london_rentals_hierarchical.json"
 
 parser = argparse.ArgumentParser()
-# In terminal: python script.py --is_agent_hyp
 parser.add_argument("--is_agent_hyp", action="store_true")
 parser.add_argument("--consider_both_modes", action="store_true")
 args = parser.parse_args()
@@ -59,12 +58,12 @@ def load_config(filename=BASE_DIR / "app/config.ini"):
 
     c = {}
     
-    # 1. GENERAL Section
+    # GENERAL Section
     gen_section = config_parser['GENERAL']
     c['mode'] = clean_val(gen_section['mode'])
     c['seed'] = parse_optional_int(gen_section.get('seed'))
 
-    # 2. PRICE ARGUMENTS Section
+    # PRICE ARGUMENTS Section
     price = config_parser['PRICE_ARGUMENTS']
     c['noise_scale'] = float(price['noise_scale'])
     c['base'] = float(price['base'])
@@ -90,8 +89,7 @@ def load_config(filename=BASE_DIR / "app/config.ini"):
         "premium": float(price['agent_premium_vol_scale'])
     }
     
-    # 3. ANALYSIS Section
-    # Note: Use exact string 'DATA GENERATION' as per your .ini file
+    # ANALYSIS Section
     da = config_parser['ANALYSIS']
     c['num_prop_owner'] = int(da['num_prop_owner'])
     c['num_prop_agent'] = int(da['num_prop_agent'])
@@ -103,7 +101,7 @@ def load_config(filename=BASE_DIR / "app/config.ini"):
         "base", "room_coeff", "distance_coeff", "garden_fee", 
         "terrace_fee", "balcony_fee", "underground_fee", "house_fee"
     ]
-    # Parse the lists from the config (using json.loads to convert string representation to Python list)
+
     c['fixed_price_args'] = ast.literal_eval(da['fixed_price_args'])
     if "agent_premium" in c['fixed_price_args']:
         print('The "agent_premium" should not be included in the "fixed_price_args".', flush=True)
@@ -135,6 +133,13 @@ config = load_config()
 print(f"Hierarchical Dataset Loaded: {len(df)} properties.", flush=True)
     
 def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
+    '''
+    Runs the hierarchical Bayesian analysis.
+    Considers price arguments that are known at the market level, completely known, or completely unknown.
+    Treats the agent premium as completely unknown.
+    Returns the trace and the posterior predictive check.
+    '''
+
     # Pre-calculate feature presence to avoid boolean checks inside the loop
     n_props = len(df_subset)
     rooms = df_subset['n_rooms'].values
@@ -147,7 +152,7 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
     y_obs = df_subset['log_rent'].values
 
     # Extract property-specific "True" coefficients.
-    # These are used when a price argument is marked as 'fixed'
+    # These are used when a price argument is marked as 'fixed'.
     true_coefs = {
         "base": df_subset['intercept'].values,
         "room_coeff": df_subset['beta_room'].values,
@@ -215,8 +220,8 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
         # 'market_prior_scale' (k) represents our confidence in the market truth.
         k = config['market_prior_scale']
         
-        # For simplicity, we assume the error in the market truth mean is equal to k * market truth sigma.
-        # The error in the market truth sigma is equal to k/sqrt(2) * market truth sigma.
+        # For simplicity, we assume the error in the market-truth-mean is equal to k * market-truth-sigma.
+        # The error in the market-truth-sigma is equal to k/sqrt(2) * market-truth-sigma.
         # This is motivated by the standard errors (SEs) of the mean and standard deviation, respectively.
         
         mu_m = {}
@@ -244,7 +249,7 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
         # --- LEVEL 1: INDIVIDUAL PROPERTY PARAMETERS ---
         prop_params = {}
 
-        # 1. Unknown Arguments (Estimated with Hyper-priors)
+        # Unknown Arguments (Estimated with Hyper-priors)
         for arg in config['unknown_price_args']:
             # Using Laplace for rooms for thicker tails, Normal for others
             if arg == "room_coeff":
@@ -262,7 +267,7 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
                     shape=n_props
                 )
 
-        # 2. Market-Known Arguments (Estimated with Config Truth)
+        # Market-Known Arguments
         for arg in config['known_market_price_args']:
             mt_mu, mt_sig = market_truth_map[arg]
             if arg == "room_coeff":
@@ -285,7 +290,7 @@ def run_hierarchical_model_selection(df_subset, config, is_agent_hyp=False):
         active_args = list(dict.fromkeys(config['unknown_price_args']+config['known_market_price_args']))
         
         for arg in active_args:
-            if arg in data_vectors: # Skip premium here
+            if arg in data_vectors:
                 mu += prop_params[arg] * data_vectors[arg]
 
         # Add Fixed Arguments
@@ -378,7 +383,7 @@ print(f"Batch created with {len(test_batch)} properties.", flush=True)
 print(test_batch['listing_type'].value_counts(), flush=True)
 print('', flush=True)
 
-# Determine which modes need to be run based on the flag
+# Determine which modes need to be run
 if args.consider_both_modes:
     print('Considering both property provider modes...\n', flush=True)
     modes_to_run = ['agent', 'owner']

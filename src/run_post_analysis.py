@@ -95,7 +95,7 @@ log_z_owner = np.mean(valid_z_owner)
 valid_z_agent = [chain[~np.isnan(chain)][0] for chain in fin_tr_agent.sample_stats.log_marginal_likelihood.values]
 log_z_agent = np.mean(valid_z_agent)
 
-# Bayes Factor Computation
+### Bayes Factor Computation
 log_BF = log_z_agent - log_z_owner
 BF = np.exp(log_BF)
 
@@ -117,7 +117,7 @@ elif BF > 0.01:
 else:
     print("Conclusion: Decisive Evidence for the OWNER model.", flush=True)
 
-# Access the log_marginal_likelihood per chain
+### Access the log_marginal_likelihood per chain
 # This shows if all chains reached roughly the same conclusion
 log_z_per_chain_owner = np.array([chain[~np.isnan(chain)][0] for chain in fin_tr_owner.sample_stats.log_marginal_likelihood.values])
 log_z_per_chain_agent = np.array([chain[~np.isnan(chain)][0] for chain in fin_tr_agent.sample_stats.log_marginal_likelihood.values])
@@ -137,6 +137,7 @@ plt.tight_layout()
 plt.savefig(PLOT_DIR / "Evidence Consistency Across Chains.png")
 plt.close()
 
+### Acceptance Rate
 accept_rates_owner = fin_tr_owner.sample_stats["accept_rate"].values
 betas_owner = fin_tr_owner.sample_stats["beta"].values
 accept_rates_agent = fin_tr_agent.sample_stats["accept_rate"].values
@@ -169,10 +170,9 @@ for i in range(accept_rates_agent.shape[0]):
         label=f'Agent Chain {i}'
     )
 
-plt.axhline(y=0.234, color='k', linestyle='--', label='Target Acceptance')
 plt.xlabel('Beta (Prior 0.0 → Likelihood 1.0)')
 plt.ylabel('Acceptance Rate')
-plt.title('Sampler Health (Acceptance Rate) during Evidence Integration')
+plt.title('Acceptance Rate during Evidence Integration')
 plt.grid(True, alpha=0.3)
 plt.legend(
     loc='upper center', 
@@ -184,6 +184,7 @@ plt.tight_layout()
 plt.savefig(PLOT_DIR / "Acceptance Rate.png")
 plt.close()
 
+### Posterior Predictive Check
 with open(PPC_DIR / "ppc_owner.pkl", "rb") as f:
     ppc_owner = pickle.load(f)
     
@@ -217,6 +218,7 @@ plt.subplots_adjust(hspace=0)
 plt.savefig(PLOT_DIR / "PPC.png")
 plt.close()
 
+### Make corner plots of global parameters
 # Market-Level Means ---
 mt_mu_inter        = config['base']
 mt_mu_beta_room    = config['room_coeff']
@@ -263,8 +265,6 @@ for plot_var in plot_vars:
     mu_m, sig_m = market_truth_map[plot_var]
     market_parameters_truth[f"mu_m_{plot_var}"] = mu_m
     market_parameters_truth[f"sig_m_{plot_var}"] = sig_m
-
-### Make corner plots of global parameters
 
 # OWNER model
 axes = az.plot_pair(
@@ -326,7 +326,8 @@ for i in range(len(all_y_labels)):
                 ax.plot(market_parameters_truth[col_label], market_parameters_truth[row_label], 
                         marker='s', color='black', markersize=6, zorder=15)
 
-plt.suptitle("Hierarchical Owner Model: Global Market Recovery", fontsize=24, y=1.03)
+plt.title("Hierarchical Owner Model: Global Market Recovery", fontsize=24, y=1.03)
+plt.tight_layout()
 plt.savefig(PLOT_DIR / "Corner Plot (Owner Model).png")
 plt.close()
 
@@ -390,10 +391,12 @@ for i in range(len(all_y_labels)):
                 ax.plot(market_parameters_truth[col_label], market_parameters_truth[row_label], 
                         marker='s', color='black', markersize=6, zorder=15)
 
-plt.suptitle("Hierarchical Agent Model: Global Market Recovery", fontsize=24, y=1.03)
+plt.title("Hierarchical Agent Model: Global Market Recovery", fontsize=24, y=1.03)
+plt.tight_layout()
 plt.savefig(PLOT_DIR / "Corner Plot (Agent Model).png")
 plt.close()
 
+### Summary Statistics
 print("\nOWNER MODEL SUMMARY (Unknown Market Parameters Only)", flush=True)
 print("-" * 40, flush=True)
 stats_owner = az.summary(
@@ -412,6 +415,7 @@ stats_agent = az.summary(
 )
 print(stats_agent, flush=True)
 
+### Parameter Recovery Statistics (Market Level)
 def compute_two_tailed_p_val(samples, truth):
     """
     Calculates the two-tailed Bayesian p-value.
@@ -419,7 +423,6 @@ def compute_two_tailed_p_val(samples, truth):
     """
     prob_greater = np.mean(samples > truth)
     prob_less = np.mean(samples < truth)
-    # Handle edge cases where p-value could exceed 1.0 due to symmetry
     return 2 * min(prob_greater, prob_less)
 
 # OWNER model
@@ -462,7 +465,6 @@ hier_results_agent = []
 
 # Compute Z-Scores
 for all_plot_var in all_plot_vars:    
-    # Scalar parameter
     post_samples = fin_tr_agent.posterior[all_plot_var].values.flatten()
     post_median = np.median(post_samples)
     post_sd = np.std(post_samples)
@@ -493,15 +495,17 @@ formatted_df["Two-Tailed p-value"] = formatted_df["Two-Tailed p-value"].map("{:.
 print("\nHierarchical Recovery Analysis - AGENT: Market Stats", flush=True)
 print(formatted_df.to_string(index=False), flush=True)
 
-print("\nZ-Score Interpretation Guide:", flush=True)
+print("\nInterpretation Guide:", flush=True)
 print(f"{'-'*30}", flush=True)
+print("Z-Score:", flush=True)
 print("- |Z| < 1.0: Strong Recovery.", flush=True) 
 print("- 1.0 < |Z| < 2.0: Normal Tension.", flush=True)
 print("- |Z| > 2.0: Significant Shrinkage or Outlier.", flush=True)
-print("\nHierarchical Deep-Dive:", flush=True)
+print("P-value:", flush=True)
 print("- p-value > 0.05: Truth is statistically plausible.", flush=True)
 print("- p-value < 0.05: Truth is an outlier relative to the posterior (likely due to heavy Shrinkage).", flush=True)
 
+### Compare range of injected agent_premium values to the range of the corresponding posterior median values
 test_batch_agent = pd.read_csv(RESULTS_DIR / "test_batch_agent.csv")
 test_batch_owner = pd.read_csv(RESULTS_DIR / "test_batch_owner.csv")
 
@@ -520,10 +524,10 @@ for i in range(len(prem_all_prop_truth_agent)):
 # Add the Market Mean
 plt.axhline(market_parameters_truth['mu_m_prem'], color='black', linestyle='--', linewidth=2, label=f"Market Mean ({market_parameters_truth['mu_m_prem']:.3f})")
 
-# Formatting the "Fan"
+# Formatting the "Shrinkage"
 plt.xticks([0, 1], ["Injected Truth\n(The Reality)", "Posterior Median\n(The Model's Belief)"])
 plt.ylabel("agent premium")
-plt.title("Population-Wide Hierarchical Shrinkage (The 'Fan' Effect)")
+plt.title("Population-wide agent-premium range shrinkage")
 plt.grid(axis='y', alpha=0.2)
 plt.legend(loc='upper right', bbox_to_anchor=(1, 1))
 plt.xlim(-0.15, 1.15)
@@ -531,6 +535,8 @@ plt.tight_layout()
 plt.savefig(PLOT_DIR / "Injection-Posterior Shrinkage (Agent Premium)")
 plt.close()
 
+### Posterior rank calibration diagnostic
+# Should be roughly flat for appropriate priors and good recovery
 analysed_params_owner = config['known_market_price_args'] + config['unknown_price_args']
 analysed_params_agent = config['known_market_price_args'] + config['unknown_price_args'] + ['premium']
 
@@ -591,7 +597,7 @@ for idx, var_name in enumerate(prop_analysed_params_owner):
             else:
                 truths[k] = 0.0
     else:
-        # Standard lookup for all other non-shared parameters
+        # Standard lookup for all other parameters
         truths = test_batch_owner[csv_column_name].values
     # -------------------------------------------------------------
     
@@ -600,7 +606,7 @@ for idx, var_name in enumerate(prop_analysed_params_owner):
     for k in range(num_properties):
         truth_val = truths[k]
         
-        # Calculate what fraction of MCMC samples are strictly less than the injected truth
+        # Calculate what fraction of MC samples are strictly less than the injected truth
         rank = np.mean(flattened_samples[:, k] < truth_val)
         property_ranks.append((truth_val, rank))
     
@@ -643,7 +649,7 @@ for idx, var_name in enumerate(prop_analysed_params_owner):
 for empty_idx in range(num_plots, len(axes)):
     fig.delaxes(axes[empty_idx])
 
-plt.suptitle("Individual Property Parameter Recovery: Cook's Rank Diagnostic (Owner model)", fontsize=18, y=0.96)
+plt.suptitle("Individual Property Parameter Recovery: Posterior Rank Calibration Diagnostic (Owner model)", fontsize=18, y=0.96)
 plt.tight_layout(rect=[0, 0, 1, 0.93])
 plt.savefig(PLOT_DIR / "Posterior Rank Calibration Diagnostic (Owner model).png")
 plt.close()
@@ -659,13 +665,6 @@ if num_plots == 1:
     axes = np.array([axes])
 else:
     axes = axes.flatten()
-
-# Mapping parameter names to their specific descriptive string in the 'outdoor_space' column
-outdoor_space_type_map = {
-    "p_garden_fee": "garden",
-    "p_terrace_fee": "terrace",
-    "p_balcony_fee": "balcony"
-}
 
 for idx, var_name in enumerate(prop_analysed_params_agent):
     ax = axes[idx]
@@ -693,7 +692,7 @@ for idx, var_name in enumerate(prop_analysed_params_agent):
             else:
                 truths[k] = 0.0
     else:
-        # Standard lookup for all other non-shared parameters
+        # Standard lookup for all other parameters
         truths = test_batch_agent[csv_column_name].values
     # -------------------------------------------------------------
 
@@ -702,7 +701,7 @@ for idx, var_name in enumerate(prop_analysed_params_agent):
     for k in range(num_properties):
         truth_val = truths[k]
         
-        # Calculate what fraction of MCMC samples are strictly less than the injected truth
+        # Calculate what fraction of MC samples are strictly less than the injected truth
         rank = np.mean(flattened_samples[:, k] < truth_val)
         property_ranks.append((truth_val, rank))
     
@@ -745,7 +744,7 @@ for idx, var_name in enumerate(prop_analysed_params_agent):
 for empty_idx in range(num_plots, len(axes)):
     fig.delaxes(axes[empty_idx])
 
-plt.suptitle("Individual Property Parameter Recovery: Cook's Rank Diagnostic (Small Sample Optimized)", fontsize=18, y=0.96)
+plt.suptitle("Individual Property Parameter Recovery: Posterior Rank Calibration Diagnostic (Agent model)", fontsize=18, y=0.96)
 plt.tight_layout(rect=[0, 0, 1, 0.93])
 plt.savefig(PLOT_DIR / "Posterior Rank Calibration Diagnostic (Agent model).png")
 plt.close()
