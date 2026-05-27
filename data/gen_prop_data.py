@@ -122,7 +122,7 @@ def generate_price_fix_params(df, config, model_case='A', seed=None):
     # Handle Agent Premium Case
     agent_premium = config['agent_premium'] if model_case == 'B' else 0.0
     
-    # Calculate Vectorized Log-Price
+    # Calculate Vectorized Log-Price (Natural Logarithm)
     beta_prop = df['property_type'].map(type_map).values
     beta_outdoor = df['outdoor_space'].map(outdoor_map).values
     beta_under = (df['near_underground'] * config['underground_fee']).values

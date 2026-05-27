@@ -1,7 +1,9 @@
-This directory contains the core implementation of a BaPPI, split into:
+# 🧮 Bayesian Inference Engine (Implementation)
 
-1. `src/run_bayesian_analysis.py` → inference  
-2. `src/run_post_analysis.py` → model comparison + diagnostics + evaluation  
+This directory contains the core implementation of BaPPI, split into:
+
+1. `src/run_bayesian_analysis.py` → hierarchical Bayesian inference (posterior + PPC)
+2. `src/run_post_analysis.py` → model comparison + diagnostics + evaluation
 
 ---
 
@@ -12,9 +14,13 @@ This script performs full Bayesian inference over two competing hypotheses:
 - **Owner model** (no agent markup)
 - **Agent model** (includes latent agent premium)
 
-The goal is to compute posterior model probabilities and compare model evidence:
+The goal is to learn posterior parameter distributions and evaluate model fit.
 
-$$P(M \mid X, y), \quad Z_M = P(y \mid M)$$
+Importantly:
+
+> ❗ This script does **not compute the Bayes Factor**.  
+> It only produces posterior traces and posterior predictive samples (PPC).  
+> Model comparison is done later in `src/run_post_analysis.py`.
 
 ---
 
@@ -22,14 +28,18 @@ $$P(M \mid X, y), \quad Z_M = P(y \mid M)$$
 
 Each observed log-rent is generated as:
 
-$$y_i \sim \text{StudentT}(\nu=5, \mu_i, \sigma)$$
+$$
+y_i \sim \text{StudentT}(\nu=5, \mu_i, \sigma)
+$$
 
-where the linear predictor is:
+where:
 
-$$\mu_i = \sum_k p_{k,i} x_{k,i}$$
+$$
+\mu_i = \sum_k p_{k,i} x_{k,i}
+$$
 
 - $x_{k,i}$: property features (rooms, distance, amenities)
-- $p_{k,i}$: latent price coefficients (property-specific)
+- $p_{k,i}$: latent property-level price coefficients
 
 This defines a noisy structural relationship between features and log price.
 
@@ -37,93 +47,98 @@ This defines a noisy structural relationship between features and log price.
 
 ## 🔷 Hierarchical structure
 
-The model is fully hierarchical:
+The model is structured around three different levels of prior knowledge about parameters.
 
-### 1. Market-level priors
-Each coefficient has a market distribution:
+### 1. Fixed parameters (fully known)
 
-$$\mu_k \sim \mathcal{N}(\mu_k^{market}, k \cdot \sigma_k^{market})$$
-$$\sigma_k \sim \text{TruncatedNormal}(\sigma_k^{market}, \cdots)$$
+Some parameters are treated as completely known in advance.
 
-This encodes uncertainty about the true global market structure.
+These values come directly from the simulated data-generating process and are assumed to be correct.
 
----
-
-### 2. Property-level parameters
-
-Each property has its own coefficient:
-
-$$p_{k,i} \sim \mathcal{N}(\mu_k, \sigma_k)$$
-
-Some parameters (e.g. room effects) use Laplace distributions for heavier tails.
+They are not inferred by the model and are used as fixed inputs when constructing the likelihood.
 
 ---
 
-### 3. Fixed effects
+### 2. Market-known structure (partially known)
 
-Some coefficients are treated as known and directly injected:
+For some parameters, we assume that the overall market structure is known.
 
-$$\mu_i \;+=\; \theta^{fixed} x_i$$
+This means:
+- we assume we know the correct global distribution of the parameter at the market level
+- but we still estimate how each individual property deviates from that structure
 
-These are not inferred.
+In other words, the model does not learn the global pattern, but it does learn property-specific realizations of it.
+
+---
+
+### 3. Fully unknown parameters (completely inferred)
+
+For the remaining parameters, we assume no knowledge at either level.
+
+Both the market-level distribution and the property-level values must be inferred entirely from the data.
+
+This represents the most uncertain case, where the model must learn both global structure and individual effects simultaneously.
 
 ---
 
 ## 🔷 Agent hypothesis extension
 
-Under the **Agent model only**, an additional latent term is introduced:
+In the agent version of the model only, an additional latent component is included:
 
-$$p_{premium,i} \sim \text{Gamma}(\alpha, \beta)$$
+- a property-level agent premium is introduced
+- this term is fully learned from the data
+- it represents an additional markup applied per property
 
-and:
-
-$$\mu_i \;+=\; p_{premium,i}$$
-
-This represents a property-level **agent markup effect**.
+In the owner model, this component is not present.
 
 ---
 
-## 🔷 Bayesian inference
+## 🔷 Bayesian inference (SMC)
 
 Inference is performed using **Sequential Monte Carlo (SMC)**:
 
 - approximates posterior distributions
-- estimates marginal likelihood $Z_M$
-- supports model comparison via evidence
+- produces marginal likelihood estimates (used later)
+- generates posterior predictive samples
 
-Each run produces:
-- posterior samples
-- log marginal likelihood (log Z)
-- posterior predictive samples
+Each run outputs:
 
----
-
-## 🔷 Model comparison
-
-Model evidence is compared via:
-
-$$BF = \frac{Z_{agent}}{Z_{owner}}, \quad \log BF = \log Z_{agent} - \log Z_{owner}$$
-
-Interpretation:
-- BF > 1 → Agent model preferred
-- BF < 1 → Owner model preferred
+- posterior traces (InferenceData)
+- posterior predictive checks (PPC)
+- log marginal likelihood samples (stored in trace, used later)
 
 ---
 
-# 2. Post-analysis (`run_post_analysis.py`)
+## 🔷 Output of this script
 
-This script evaluates inference quality, calibration, and parameter recovery.
+This script produces:
+
+- `trace_owner / trace_agent`
+- posterior distributions of all parameters
+- posterior predictive samples (PPC)
+
+🚫 It does **NOT compute or compare models**
 
 ---
 
-## 🔷 Purpose
+# 2. Model comparison + diagnostics (`src/run_post_analysis.py`)
 
-It answers:
+This script performs **all model comparison and evaluation**, including the Bayes Factor.
 
-- Do both models agree internally (across chains)?
-- Are posterior predictions accurate?
-- Are parameters correctly recovered?
-- Is the model well-calibrated?
+---
+
+## 🔷 Bayes Factor computation
+
+The Bayes Factor is computed here:
+
+$$
+BF = \frac{Z_{agent}}{Z_{owner}}, \quad
+\log BF = \log Z_{agent} - \log Z_{owner}
+$$
+
+where:
+
+- $Z_M$ = marginal likelihood (log evidence)
 
 ---
 
@@ -131,9 +146,9 @@ It answers:
 
 - extracts per-chain log marginal likelihoods
 - computes:
-  - mean log Z
+  - mean log Z per model
   - Bayes Factor
-- checks convergence consistency across chains
+  - cross-chain consistency checks
 
 ---
 
@@ -141,9 +156,11 @@ It answers:
 
 Compares:
 
-$$y_{observed} \sim y_{posterior}$$
+$$
+y_{observed} \sim y_{posterior}
+$$
 
-for both models using posterior predictive simulations.
+for both models using posterior predictive samples.
 
 This evaluates whether the model reproduces observed price distributions.
 
@@ -158,73 +175,96 @@ For each market-level parameter:
   - Z-score
   - two-tailed Bayesian p-value
 
-This measures whether the hierarchical structure correctly learns the simulated market.
+This tests whether the hierarchical structure correctly recovers the simulated market.
 
 ---
 
 ## 🔷 Posterior rank calibration
 
-For each property-level coefficient:
+For each property-level parameter:
 
-$$\text{rank}_i = P(p_i < p_i^{true})$$
+$$
+\text{rank}_i = P(p_i < p_i^{true})
+$$
 
 If calibration is correct:
 
 - ranks should be approximately uniform on $[0,1]$
 
 This detects:
+- shrinkage
 - bias
-- over-shrinkage
-- mis-specification
+- misspecification
 
 ---
 
 ## 🔷 Agent premium analysis
 
-Specifically evaluates:
+Evaluates:
 
 - injected vs inferred agent premium
-- degree of hierarchical shrinkage
-- population-wide distortion effects
+- shrinkage effects
+- population-level distortion
 
 ---
 
-## 🔷 Summary of diagnostics
+## 🔷 Summary outputs
 
-The script produces:
+This script generates:
 
-- Evidence consistency plots
-- PPC comparisons
-- Corner plots of posterior structure
-- Parameter recovery tables
-- Rank calibration histograms
-- Shrinkage diagnostics for agent premium
+- Bayes Factor + evidence comparison
+- PPC plots (Owner vs Agent)
+- posterior corner plots
+- parameter recovery diagnostics
+- rank calibration histograms
+- shrinkage visualizations
 
 ---
 
 # 3. Conceptual summary
 
-### `run_bayesian_analysis.py`
+### `src/run_bayesian_analysis.py`
+
 Implements:
 
-> A hierarchical Bayesian generative model of rental prices  
-> and performs full posterior + model evidence inference via SMC.
+> A hierarchical Bayesian generative model and performs full posterior inference via SMC.
+
+It outputs:
+- posterior distributions
+- posterior predictive samples
 
 ---
 
-### `run_post_analysis.py`
-Evaluates:
+### `src/run_post_analysis.py`
 
-> whether the inferred model is statistically valid, well-calibrated, and structurally correct.
+Implements:
 
----
+> All inference validation, diagnostics, and model comparison.
 
-# 4. Overall pipeline
-
-$$\text{Data} \rightarrow \text{Hierarchical Bayesian Model} \rightarrow \text{SMC Inference} \rightarrow \text{Model Evidence}$$
-
-$$\rightarrow \text{Diagnostics + Calibration Checks}$$
+It computes:
+- Bayes Factor
+- posterior calibration quality
+- parameter recovery accuracy
 
 ---
 
-This system is designed to test whether an **agent pricing effect can be statistically identified under hierarchical uncertainty**.
+# 4. Full pipeline
+
+$$
+\text{Data}
+\rightarrow
+\text{Hierarchical Bayesian Model}
+\rightarrow
+\text{SMC Inference (Posterior + PPC)}
+$$
+
+$$
+\rightarrow
+\text{Model Evidence (Log Z)}
+\rightarrow
+\text{Bayes Factor + Diagnostics}
+$$
+
+---
+
+This system is designed to test whether an **agent pricing effect can be statistically identified under hierarchical uncertainty**, while keeping inference and evaluation separated.
