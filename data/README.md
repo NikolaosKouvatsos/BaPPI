@@ -56,21 +56,21 @@ $$
 \mu_i = \beta_0 & + \beta_{\text{room}} \cdot \text{rooms}_i \\
 & + \beta_{\text{dist}} \cdot \text{distance}_i \\
 & + \beta_{\text{under}} \cdot \text{underground}_i \\
-& + \beta_{\text{type}}(i) \\
+& + \beta_{\text{prop}}(i) \\
 & + \beta_{\text{outdoor}}(i) \\
-& + \beta_{\text{agent}}(i)
+& + \beta_{\text{premium}}(i)
 \end{aligned}
 $$
 
 where:
 
-- `base` (i.e. intercept)  → baseline rent level 
+- `base` (i.e. beta_0 or intercept)  → baseline rent level 
 - `room_coeff` (i.e. beta_room)  → effect of number of rooms  
 - `distance_coeff` (i.e. beta_dist)  → effect of distance from centre  
 - `underground_fee` (i.e. beta_under)  → proximity to underground stations  
 - `house_fee` (i.e. beta_prop)  → House vs Flat adjustment  
 - `garden_fee / terrace_fee / balcony_fee` (i.e. beta_outdoor)  → outdoor space effects  
-- `agent_premium` (i.e. premium)  → agent markup (only in Agent case)
+- `agent_premium` (i.e. beta_premium or simply premium)  → agent markup (only in Agent case)
 
 ---
 
