@@ -25,7 +25,7 @@ The output serves as the **ground-truth dataset** for the Bayesian inference pip
 
 ## 📐 Generative pricing model
 
-Prices are generated from a latent (natural) log-rent model:
+Prices are generated from a (natural) log-rent model:
 
 $$
 \log(y_i) = \mu_i + \epsilon_i
@@ -51,7 +51,7 @@ $$
 
 The log-price is computed as:
 
-$$\mu_i = \text{intercept}_i + \beta_{\text{room},i} \cdot n_{\text{rooms},i} + \beta_{\text{dist},i} \cdot \text{dist_centre_km}_i (+ \beta_{\text{under},i} + \beta_{\text{prop},i} + \beta_{\text{outdoor},i} + \text{premium}_i)$$
+$$\mu_i = \text{intercept}_i + \beta_{\text{room},i} \cdot n_{\text{rooms},i} + \beta_{\text{dist},i} \cdot \text{dist\_centre\_km}_i (+ \beta_{\text{under},i} + \beta_{\text{prop},i} + \beta_{\text{outdoor},i} + \text{premium}_i)$$
 
 where:
 
