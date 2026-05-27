@@ -1,13 +1,11 @@
-# 🧮 Bayesian Inference Engine (Implementation)
+This directory contains the core implementation of a BaPPI, split into:
 
-This directory contains the core implementation of a **hierarchical Bayesian model for rental price inference and model comparison**, split into:
-
-1. `run_bayesian_analysis.py` → inference + model comparison  
-2. `run_post_analysis.py` → diagnostics + evaluation  
+1. `src/run_bayesian_analysis.py` → inference  
+2. `src/run_post_analysis.py` → model comparison + diagnostics + evaluation  
 
 ---
 
-# 1. Core Inference (`run_bayesian_analysis.py`)
+# 1. Core Inference (`src/run_bayesian_analysis.py`)
 
 This script performs full Bayesian inference over two competing hypotheses:
 
@@ -16,9 +14,7 @@ This script performs full Bayesian inference over two competing hypotheses:
 
 The goal is to compute posterior model probabilities and compare model evidence:
 
-\[
-P(M \mid X, y), \quad Z_M = P(y \mid M)
-\]
+$$P(M \mid X, y), \quad Z_M = P(y \mid M)$$
 
 ---
 
@@ -26,18 +22,14 @@ P(M \mid X, y), \quad Z_M = P(y \mid M)
 
 Each observed log-rent is generated as:
 
-\[
-y_i \sim \text{StudentT}(\nu=5, \mu_i, \sigma)
-\]
+$$y_i \sim \text{StudentT}(\nu=5, \mu_i, \sigma)$$
 
 where the linear predictor is:
 
-\[
-\mu_i = \sum_k p_{k,i} x_{k,i}
-\]
+$$\mu_i = \sum_k p_{k,i} x_{k,i}$$
 
-- \(x_{k,i}\): property features (rooms, distance, amenities)
-- \(p_{k,i}\): latent price coefficients (property-specific)
+- $x_{k,i}$: property features (rooms, distance, amenities)
+- $p_{k,i}$: latent price coefficients (property-specific)
 
 This defines a noisy structural relationship between features and log price.
 
@@ -50,12 +42,8 @@ The model is fully hierarchical:
 ### 1. Market-level priors
 Each coefficient has a market distribution:
 
-\[
-\mu_k \sim \mathcal{N}(\mu_k^{market}, k \cdot \sigma_k^{market})
-\]
-\[
-\sigma_k \sim \text{TruncatedNormal}(\sigma_k^{market}, \cdots)
-\]
+$$\mu_k \sim \mathcal{N}(\mu_k^{market}, k \cdot \sigma_k^{market})$$
+$$\sigma_k \sim \text{TruncatedNormal}(\sigma_k^{market}, \cdots)$$
 
 This encodes uncertainty about the true global market structure.
 
@@ -65,9 +53,7 @@ This encodes uncertainty about the true global market structure.
 
 Each property has its own coefficient:
 
-\[
-p_{k,i} \sim \mathcal{N}(\mu_k, \sigma_k)
-\]
+$$p_{k,i} \sim \mathcal{N}(\mu_k, \sigma_k)$$
 
 Some parameters (e.g. room effects) use Laplace distributions for heavier tails.
 
@@ -77,9 +63,7 @@ Some parameters (e.g. room effects) use Laplace distributions for heavier tails.
 
 Some coefficients are treated as known and directly injected:
 
-\[
-\mu_i \;+=\; \theta^{fixed} x_i
-\]
+$$\mu_i \;+=\; \theta^{fixed} x_i$$
 
 These are not inferred.
 
@@ -89,15 +73,11 @@ These are not inferred.
 
 Under the **Agent model only**, an additional latent term is introduced:
 
-\[
-p_{premium,i} \sim \text{Gamma}(\alpha, \beta)
-\]
+$$p_{premium,i} \sim \text{Gamma}(\alpha, \beta)$$
 
 and:
 
-\[
-\mu_i \;+=\; p_{premium,i}
-\]
+$$\mu_i \;+=\; p_{premium,i}$$
 
 This represents a property-level **agent markup effect**.
 
@@ -108,7 +88,7 @@ This represents a property-level **agent markup effect**.
 Inference is performed using **Sequential Monte Carlo (SMC)**:
 
 - approximates posterior distributions
-- estimates marginal likelihood \(Z_M\)
+- estimates marginal likelihood $Z_M$
 - supports model comparison via evidence
 
 Each run produces:
@@ -122,9 +102,7 @@ Each run produces:
 
 Model evidence is compared via:
 
-\[
-BF = \frac{Z_{agent}}{Z_{owner}}, \quad \log BF = \log Z_{agent} - \log Z_{owner}
-\]
+$$BF = \frac{Z_{agent}}{Z_{owner}}, \quad \log BF = \log Z_{agent} - \log Z_{owner}$$
 
 Interpretation:
 - BF > 1 → Agent model preferred
@@ -163,9 +141,7 @@ It answers:
 
 Compares:
 
-\[
-y_{observed} \sim y_{posterior}
-\]
+$$y_{observed} \sim y_{posterior}$$
 
 for both models using posterior predictive simulations.
 
@@ -190,13 +166,11 @@ This measures whether the hierarchical structure correctly learns the simulated 
 
 For each property-level coefficient:
 
-\[
-\text{rank}_i = P(p_i < p_i^{true})
-\]
+$$\text{rank}_i = P(p_i < p_i^{true})$$
 
 If calibration is correct:
 
-- ranks should be approximately uniform on \([0,1]\)
+- ranks should be approximately uniform on $[0,1]$
 
 This detects:
 - bias
@@ -247,13 +221,9 @@ Evaluates:
 
 # 4. Overall pipeline
 
-\[
-\text{Data} \rightarrow \text{Hierarchical Bayesian Model} \rightarrow \text{SMC Inference} \rightarrow \text{Model Evidence}
-\]
+$$\text{Data} \rightarrow \text{Hierarchical Bayesian Model} \rightarrow \text{SMC Inference} \rightarrow \text{Model Evidence}$$
 
-\[
-\rightarrow \text{Diagnostics + Calibration Checks}
-\]
+$$\rightarrow \text{Diagnostics + Calibration Checks}$$
 
 ---
 
