@@ -1,8 +1,18 @@
 # 🏠 BaPPI — Bayesian Property Provider Identifier
 
+```text
+🏠   ____        _____  _____ ____  📈
+    |  _ \      |  __ \|  __ \   _|
+    | |_) | __ _| |__) | |__) | |  
+    |  _ < / _` |  ___/|  ___/| |  
+    | |_) | (_| | |    | |   _| |_ 
+    |____/ \__,_|_|    |_|  |_____|
+📊                                  🚀
+```
+
 ## 📋 Overview
 
-**BaPPI** is a hierarchical Bayesian inference framework designed to analyse simulated real estate markets and determine whether rental listings are more likely managed directly by property owners or by third-party agents.
+**BaPPI** is a hierarchical Bayesian inference framework designed to analyse simulated real estate markets in London and determine whether rental listings are more likely managed directly by property owners or by third-party agents.
 
 The engine models how structural property characteristics influence pricing whilst accounting for the additional pricing effects introduced by intermediaries. Using probabilistic inference and Sequential Monte Carlo sampling, BaPPI estimates posterior distributions over pricing parameters and evaluates competing generative explanations for observed property datasets.
 
@@ -242,7 +252,7 @@ python app/main.py
 
 ---
 
-# ▶️ What `main.py` Does
+# ▶️ What `main.py` does
 
 The main execution script automatically performs:
 
@@ -276,7 +286,7 @@ This approach allows the engine to:
 - Explicitly model uncertainty
 - Incorporate market-level volatility
 - Compare competing market hypotheses probabilistically
-- Measure how strongly the observed data support one market model relative to another using Bayes factors
+- Measure how strongly the observed data support one market model relative to another through the computation of the Bayes factor
 
 ---
 
