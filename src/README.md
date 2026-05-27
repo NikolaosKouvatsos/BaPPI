@@ -19,7 +19,7 @@ The goal is to learn posterior parameter distributions and evaluate model fit.
 Importantly:
 
 > ❗ This script does **not compute the Bayes Factor**.  
-> It only produces posterior traces and posterior predictive samples (PPC).  
+> It only produces (posterior) traces and posterior predictive samples (PPC).  
 > Model comparison is done later in `src/run_post_analysis.py`.
 
 ---
@@ -47,7 +47,7 @@ This defines a noisy structural relationship between features and log price.
 
 ## 🔷 Hierarchical structure
 
-The model is structured around three different levels of prior knowledge about parameters.
+The model is structured around three different levels of knowledge about parameters.
 
 ### 1. Fixed parameters (fully known)
 
@@ -101,20 +101,13 @@ Inference is performed using **Sequential Monte Carlo (SMC)**:
 - produces marginal likelihood estimates (used later)
 - generates posterior predictive samples
 
-Each run outputs:
-
-- posterior traces (InferenceData)
-- posterior predictive checks (PPC)
-- log marginal likelihood samples (stored in trace, used later)
-
 ---
 
 ## 🔷 Output of this script
 
 This script produces:
 
-- `trace_owner / trace_agent`
-- posterior distributions of all parameters
+- traces
 - posterior predictive samples (PPC)
 
 🚫 It does **NOT compute or compare models**
@@ -230,7 +223,7 @@ Implements:
 > A hierarchical Bayesian generative model and performs full posterior inference via SMC.
 
 It outputs:
-- posterior distributions
+- traces
 - posterior predictive samples
 
 ---
