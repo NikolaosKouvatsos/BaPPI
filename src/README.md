@@ -88,33 +88,15 @@ $$
 \beta_{\text{room},i} \cdot n_{\text{rooms},i}
 +
 \beta_{\text{dist},i} \cdot \text{dist-centre-km}_i
-+
+(+
 \beta_{\text{under},i}
 +
 \beta_{\text{prop},i}
 +
 \beta_{\text{outdoor},i}
 +
-\text{premium}_i
+\text{premium}_i)
 $$
-
----
-
-## 🔷 Parameter mapping
-
-The configuration arguments map to the internal Bayesian parameters as follows:
-
-| Config argument | Internal parameter |
-|---|---|
-| `base` | `intercept` |
-| `room_coeff` | `beta_room` |
-| `distance_coeff` | `beta_dist` |
-| `underground_fee` | `beta_under` |
-| `house_fee` | `beta_prop` |
-| `garden_fee` | `beta_outdoor` |
-| `terrace_fee` | `beta_outdoor` |
-| `balcony_fee` | `beta_outdoor` |
-| `agent_premium` | `premium` |
 
 ---
 
@@ -160,11 +142,7 @@ For fully unknown parameters, both:
 
 must be inferred from the data.
 
----
-
-## 🔷 Market-level hyper-priors
-
-For fully unknown parameters, the model infers market-level distributions:
+The model infers market-level distributions:
 
 $$
 \mu_{m,k}
@@ -194,10 +172,6 @@ Where:
 
 These hyper-priors encode uncertainty about the global market itself.
 
----
-
-## 🔷 Property-level parameters
-
 Each property receives its own latent coefficient.
 
 Most coefficients are sampled using Gaussian distributions:
@@ -225,7 +199,7 @@ In the **Agent hypothesis only**, an additional latent premium is introduced.
 First, market-level premium parameters are inferred:
 
 $$
-\mu_{prem}
+\mu_{m,prem}
 \sim
 \text{TruncatedNormal}
 \left(
@@ -236,7 +210,7 @@ k \cdot \sigma_{\text{premium}}^{market}
 $$
 
 $$
-\sigma_{prem}
+\sigma_{m,prem}
 \sim
 \text{TruncatedNormal}
 \left(
