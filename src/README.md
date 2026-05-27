@@ -28,14 +28,14 @@ Importantly:
 
 The analysis follows Bayes' theorem:
 
-$$P(\theta \mid y) = \frac{P(y \mid \theta) P(\theta)}{P(y)}$$
+$$P(\theta \mid y, M) = \frac{P(y \mid \theta, M) P(\theta \mid M)}{P(y \mid M)}$$
 
 where:
 
-- $P(\theta \mid y)$ → posterior distribution
-- $P(y \mid \theta)$ → likelihood
-- $P(\theta)$ → prior distribution
-- $P(y)$ → marginal likelihood (model evidence)
+- $P(\theta \mid y, M)$ → posterior distribution under model $M$
+- $P(y \mid \theta, M)$ → likelihood of the data under parameters $\theta$ and model $M$
+- $P(\theta \mid M)$ → prior distribution under model $M$
+- $P(y \mid M)$ → marginal likelihood (model evidence)
 
 The model uses:
 - prior assumptions about the housing market
@@ -43,6 +43,13 @@ The model uses:
 - hierarchical latent parameters
 
 to infer posterior distributions over pricing coefficients.
+
+In this framework, inference is performed separately under two competing models:
+
+- $M_{\text{owner}}$
+- $M_{\text{agent}}$
+
+Each model induces a different likelihood due to the presence or absence of the agent premium term.
 
 ---
 
@@ -102,25 +109,25 @@ $$
 
 ## 🔷 Joint likelihood over all properties
 
-The model assumes conditional independence between properties given the latent parameters.
+The model assumes conditional independence between properties given the latent parameters and the model structure $M$.
 
 Therefore, the total likelihood is computed as the product of all individual property likelihoods:
 
 $$
-P(y \mid \theta)=\prod_{i=1}^{N}
-P(y_i \mid \theta_i)
+P(y \mid \theta, M)=\prod_{i=1}^{N}
+P(y_i \mid \theta_i, M)
 $$
 
 Under the Student-t observation model:
 
 $$
-P(y \mid \theta)=\prod_{i=1}^{N}
+P(y \mid \theta, M)=\prod_{i=1}^{N}
 \text{StudentT}
 \left(
 y_i
 \mid
 \nu=5,
-\mu_i,
+\mu_i(M),
 \sigma
 \right)
 $$
@@ -128,14 +135,14 @@ $$
 Equivalently, the total log-likelihood becomes:
 
 $$
-\log P(y \mid \theta)=\sum_{i=1}^{N}
+\log P(y \mid \theta,M)=\sum_{i=1}^{N}
 \log
 \text{StudentT}
 \left(
 y_i
 \mid
 \nu=5,
-\mu_i,
+\mu_i(M),
 \sigma
 \right)
 $$
@@ -334,16 +341,49 @@ This script performs **all model comparison and evaluation**, including the Baye
 
 ## 🔷 Bayes Factor computation
 
-The Bayes Factor is computed here:
+Model comparison is performed by comparing the marginal likelihood (model evidence) of each model.
+
+For a model $M$, the evidence is:
 
 $$
-BF = \frac{Z_{agent}}{Z_{owner}}, \quad
-\log BF = \log Z_{agent} - \log Z_{owner}
+Z_M = P(y \mid M) = \int P(y \mid \theta, M)\, P(\theta \mid M)\, d\theta
 $$
 
-where:
+This quantity integrates out all latent parameters $\theta$, and therefore measures how well the entire model explains the observed data.
 
-- $Z_M$ = marginal likelihood (log evidence)
+In practice, $Z_M$ is not computed analytically. Instead, it is estimated using Sequential Monte Carlo (SMC), which provides an approximation to the log marginal likelihood for each chain.
+
+Once the marginal likelihoods have been estimated for both models, we obtain the Bayes Factor as:
+
+$$
+BF = \frac{Z_{\text{agent}}}{Z_{\text{owner}}}
+$$
+
+and in (natural) log-space:
+
+$$
+\log BF = \log Z_{\text{agent}} - \log Z_{\text{owner}}
+$$
+
+## Interpretation
+
+- $BF > 1$ → evidence favours the agent model  
+- $BF < 1$ → evidence favours the owner model  
+- The magnitude reflects the strength of evidence  
+
+---
+
+## Important conceptual note
+
+The Bayes Factor is not computed during inference.
+
+Instead:
+
+- each model is fit independently using SMC
+- SMC produces an estimate of the marginal likelihood $Z_M$
+- the Bayes Factor is computed after sampling from these estimates
+
+Thus, the Bayes Factor depends entirely on the estimated model evidence produced during sampling.
 
 ---
 
