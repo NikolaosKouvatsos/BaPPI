@@ -72,17 +72,17 @@ Here, $\beta_\text{under}$, $\beta_\text{prop}$ and $\text{premium}$ are only ap
 Each structural coefficient is generated from a specific distribution:
 
 - **Gaussian (Normal)**
-  - $\beta_0$
+  - $\text{intercept}$
   - $\beta_{dist}$
   - $\beta_{under}$
-  - $\beta_{type}$
+  - $\beta_{prop}$
   - $\beta_{outdoor}$
 
 - **Laplace (heavy-tailed)**
   - $\beta_{room}$
 
 - **Gamma (positive-only)**
-  - $\beta_{agent}$ (agent premium, only in Agent case)
+  - $\beta_{agent}$
 
 ---
 
