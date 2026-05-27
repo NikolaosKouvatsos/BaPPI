@@ -2,7 +2,7 @@
 
 This directory contains the core implementation of BaPPI, split into:
 
-1. `src/run_bayesian_analysis.py` → hierarchical Bayesian inference (posterior + PPC)
+1. `src/run_bayesian_analysis.py` → hierarchical Bayesian inference (posterior trace + PPC)
 2. `src/run_post_analysis.py` → model comparison + diagnostics + evaluation
 
 ---
@@ -19,7 +19,7 @@ The goal is to infer posterior parameter distributions and generate posterior pr
 Importantly:
 
 > ❗ This script does **not compute the Bayes Factor**.  
-> It only produces posterior traces and posterior predictive checks (PPC).  
+> It only produces traces and posterior predictive checks (PPC).  
 > Model comparison is performed later in `src/run_post_analysis.py`.
 
 ---
@@ -28,17 +28,9 @@ Importantly:
 
 The analysis follows Bayes' theorem:
 
-$$
-P(\theta \mid y)
-=
-\frac{
-P(y \mid \theta) P(\theta)
-}{
-P(y)
-}
-$$
+$$P(\theta \mid y) = \frac{P(y \mid \theta) P(\theta)}{P(y)}$$
 
-Where:
+where:
 
 - $P(\theta \mid y)$ → posterior distribution
 - $P(y \mid \theta)$ → likelihood
