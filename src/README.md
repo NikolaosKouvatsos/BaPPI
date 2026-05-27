@@ -71,9 +71,7 @@ The Student-t distribution is used for robustness against outliers.
 The latent log-price is computed as:
 
 $$
-\mu_i
-=
-\sum_k p_{k,i} x_{k,i}
+\mu_i=\sum_k p_{k,i} x_{k,i}
 $$
 
 Where:
@@ -89,7 +87,7 @@ $$
 +
 \beta_{\text{room},i} \cdot n_{\text{rooms},i}
 +
-\beta_{\text{dist},i} \cdot \texttt{dist\_centre\_km}_i
+\beta_{\text{dist},i} \cdot \text{dist-centre-km}_i
 +
 \beta_{\text{under},i}
 +
