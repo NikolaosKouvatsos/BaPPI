@@ -82,7 +82,7 @@ Each structural coefficient is generated from a specific distribution:
   - $\beta_{room}$
 
 - **Gamma (positive-only)**
-  - $\beta_{agent}$
+  - $\text{premium}$
 
 ---
 
