@@ -320,6 +320,14 @@ BaPPI can be extended towards:
 
 ---
 
+# 🤝 Support & Contact
+
+If you are interested in using, extending, or experimenting with BaPPI, the author is happy to help with setup, methodology, or implementation questions.
+
+Researchers, students, and developers working on Bayesian modelling, probabilistic inference, or real estate market analysis are welcome to get in touch.
+
+---
+
 # 👤 Author
 
 **Nikolaos Kouvatsos**  
