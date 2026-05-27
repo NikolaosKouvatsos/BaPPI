@@ -55,7 +55,7 @@ Each model induces a different likelihood due to the presence or absence of the 
 
 ## 🔷 Observed likelihood model
 
-Observed log-rents are modeled using a Student-t likelihood:
+Observed (natural) log-rents are modeled using a Student-t likelihood:
 
 $$
 y_i
@@ -75,7 +75,7 @@ The Student-t distribution is used for robustness against outliers.
 
 ## 🔷 Structural linear predictor
 
-The latent log-price is computed as:
+The latent (natural) log-price is computed as:
 
 $$
 \mu_i=\sum_k p_{k,i} x_{k,i}
@@ -170,7 +170,7 @@ These act as fixed coefficients inside the likelihood model.
 For some parameters:
 
 - the global market distribution is assumed known
-- but property-level realizations are still inferred
+- but property-level realisations are still inferred
 
 This means the model learns:
 
@@ -255,7 +255,6 @@ $$
 \text{TruncatedNormal}
 \left(
 \mu_{\text{premium}}^{market},
-\;
 k \cdot \sigma_{\text{premium}}^{market}
 \right)
 $$
@@ -266,7 +265,6 @@ $$
 \text{TruncatedNormal}
 \left(
 \sigma_{\text{premium}}^{market},
-\;
 \frac{k}{\sqrt{2}} \cdot \sigma_{\text{premium}}^{market}
 \right)
 $$
