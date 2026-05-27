@@ -177,7 +177,7 @@ This means the model learns:
 $$
 p_{l,i}
 \sim
-\mathcal{N}(\mu_l^{market},\sigma_l^{market})
+\mathcal{N}(\mu_l^\text{market},\sigma_l^\text{market})
 $$
 
 while treating the market-level values themselves as fixed.
