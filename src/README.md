@@ -231,17 +231,13 @@ $$
 with:
 
 $$
-\alpha
-=
-\left(
+\alpha=\left(
 \frac{\mu_{prem}}{\sigma_{prem}}
 \right)^2
 $$
 
 $$
-\beta
-=
-\frac{\mu_{prem}}{\sigma_{prem}^2}
+\beta=\frac{\mu_{prem}}{\sigma_{prem}^2}
 $$
 
 Finally:
