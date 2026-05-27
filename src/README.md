@@ -78,13 +78,13 @@ The Student-t distribution is used for robustness against outliers.
 The latent (natural) log-price is computed as:
 
 $$
-\mu_i=\sum_k p_{k,i} x_{k,i}
+\mu_i=\sum_l p_{l,i} x_{l,i}
 $$
 
-Where:
+where $l$ describes some specific parameter and:
 
-- $x_{k,i}$ → observed property features
-- $p_{k,i}$ → latent property-specific pricing coefficients
+- $x_{l,i}$ → observed property features
+- $p_{l,i}$ → latent property-specific pricing coefficients
 
 Concretely:
 
@@ -175,9 +175,9 @@ For some parameters:
 This means the model learns:
 
 $$
-p_{k,i}
+p_{l,i}
 \sim
-\mathcal{N}(\mu_k^{market},\sigma_k^{market})
+\mathcal{N}(\mu_l^{market},\sigma_l^{market})
 $$
 
 while treating the market-level values themselves as fixed.
@@ -196,29 +196,29 @@ must be inferred from the data.
 The model infers market-level distributions:
 
 $$
-\mu_{m,k}
+\mu_{m,l}
 \sim
 \mathcal{N}
 \left(
-\mu_k^{market},
-k \cdot \sigma_k^{market}
+\mu_l^{market},
+k \cdot \sigma_l^{market}
 \right)
 $$
 
 $$
-\sigma_{m,k}
+\sigma_{m,l}
 \sim
 \text{TruncatedNormal}
 \left(
-\sigma_k^{market},
-\frac{k}{\sqrt{2}} \cdot \sigma_k^{market}
+\sigma_l^{market},
+\frac{k}{\sqrt{2}} \cdot \sigma_l^{market}
 \right)
 $$
 
-Where:
+where:
 
-- $\mu_k^{market}$ → injected market mean
-- $\sigma_k^{market}$ → injected market volatility
+- $\mu_l^{market}$ → injected market mean
+- $\sigma_l^{market}$ → injected market volatility
 - $k$ → uncertainty scaling factor (`market_prior_scale`)
 
 These hyper-priors encode uncertainty about the global market itself.
@@ -228,9 +228,9 @@ Each property receives its own latent coefficient.
 Most coefficients are sampled using Gaussian distributions:
 
 $$
-p_{k,i}
+p_{l,i}
 \sim
-\mathcal{N}(\mu_{m,k},\sigma_{m,k})
+\mathcal{N}(\mu_{m,l},\sigma_{m,l})
 $$
 
 The room coefficient uses a Laplace distribution to allow heavier tails:
@@ -344,7 +344,7 @@ Model comparison is performed by comparing the marginal likelihood (model eviden
 For a model $M$, the evidence is:
 
 $$
-Z_M = P(y \mid M) = \int P(y \mid \theta, M)\, P(\theta \mid M)\ d\theta
+Z_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
 $$
 
 This quantity integrates out all latent parameters $\theta$, and therefore measures how well the entire model explains the observed data.
