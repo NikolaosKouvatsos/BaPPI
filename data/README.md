@@ -63,7 +63,7 @@ where:
 - `garden_fee / terrace_fee / balcony_fee` (i.e. beta_outdoor)  → outdoor space effects  
 - `agent_premium` (i.e. premium)  → agent markup
 
-Here, $\beta_{under}$, $\beta_{prop}$ and $\text{premium}_i$ are only applied when the property is close to an Underground station, it is a house and it is leased by an agent, respectively, while $\beta_{outdoor}$ is applied conditionally, depending on the type of its outdoor space.
+Here, $\beta_\text{under}$, $\beta_\text{prop}$ and $\text{premium}_i$ are only applied when the property is close to an Underground station, it is a house and it is leased by an agent, respectively, while $\beta_\text{outdoor}$ is applied conditionally, depending on the type of its outdoor space.
 
 ---
 
