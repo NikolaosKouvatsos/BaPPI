@@ -100,6 +100,50 @@ $$
 
 ---
 
+## 🔷 Joint likelihood over all properties
+
+The model assumes conditional independence between properties given the latent parameters.
+
+Therefore, the total likelihood is computed as the product of all individual property likelihoods:
+
+$$
+P(y \mid \theta)=\prod_{i=1}^{N}
+P(y_i \mid \theta_i)
+$$
+
+Under the Student-t observation model:
+
+$$
+P(y \mid \theta)=\prod_{i=1}^{N}
+\text{StudentT}
+\left(
+y_i
+\mid
+\nu=5,
+\mu_i,
+\sigma
+\right)
+$$
+
+Equivalently, the total log-likelihood becomes:
+
+$$
+\log P(y \mid \theta)=\sum_{i=1}^{N}
+\log
+\text{StudentT}
+\left(
+y_i
+\mid
+\nu=5,
+\mu_i,
+\sigma
+\right)
+$$
+
+This is the quantity used internally during Bayesian inference and SMC sampling.
+
+---
+
 ## 🔷 Hierarchical structure
 
 The model supports three different levels of parameter knowledge.
