@@ -51,17 +51,17 @@ $$
 
 The log-price is computed as:
 
-$$\mu_i = \text{intercept}_i + \beta_{\text{room},i} \cdot \text{rooms}_i + \beta_{\text{dist},i} \cdot \text{distance}_i + \beta_{\text{under},i} \cdot \text{underground}_i + \beta_{\text{prop},i} + \beta_{\text{outdoor},i} + \text{premium}_i$$
+$$\mu_i = \text{intercept}_i + \beta_{\text{room},i} \cdot n_{\text{rooms},i} + \beta_{\text{dist},i} \cdot \text{dist_centre_km}_i (+ \beta_{\text{under},i} + \beta_{\text{prop},i} + \beta_{\text{outdoor},i} + \text{premium}_i)$$
 
 where:
 
-- `base` (i.e. beta_0 or intercept)  → baseline rent level 
+- `base` (i.e. intercept)  → baseline rent level 
 - `room_coeff` (i.e. beta_room)  → effect of number of rooms  
 - `distance_coeff` (i.e. beta_dist)  → effect of distance from centre  
 - `underground_fee` (i.e. beta_under)  → proximity to underground stations  
 - `house_fee` (i.e. beta_prop)  → House vs Flat adjustment  
 - `garden_fee / terrace_fee / balcony_fee` (i.e. beta_outdoor)  → outdoor space effects  
-- `agent_premium` (i.e. beta_premium or simply premium)  → agent markup (only in Agent case)
+- `agent_premium` (i.e. premium)  → agent markup (only in Agent case)
 
 ---
 
