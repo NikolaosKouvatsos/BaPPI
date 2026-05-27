@@ -58,7 +58,7 @@ $$
 & + \beta_{\text{under}} \cdot \text{underground}_i \\
 & + \beta_{\text{type}}(i) \\
 & + \beta_{\text{outdoor}}(i) \\
-& + \beta_{\text{agent}}
+& + \beta_{\text{agent}}(i)
 \end{aligned}
 $$
 
