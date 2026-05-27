@@ -159,7 +159,7 @@ def generate_price_rand_params(df, config, model_case='A', seed=None):
     Draws random values for the different price arguments from Gaussian distributions.
     Exceptional distributions: room_coeff (Laplace), agent_premium (Gamma).
     Considers the same market volatility for all price arguments.
-    Adds to the price noise generated through a Student's t-distribution."
+    Adds noise generated through a Student's t-distribution to the price."
     Returns the prices and the property data.    
     '''
     if seed is not None:
@@ -221,7 +221,7 @@ def generate_hierarchical_data(df, config, model_case='A', seed=None):
     Draws random values for the different price arguments from Gaussian distributions.
     Exceptional distributions: rooms (Laplace), agent premium (Gamma).
     Considers a different market volatility for each price argument.
-    Adds to the price noise generated through a Student's t-distribution."
+    Adds noise generated through a Student's t-distribution to the price."
     Returns the prices and the property data.    
     '''
     if seed is not None:
