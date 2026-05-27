@@ -232,12 +232,12 @@ with:
 
 $$
 \alpha=\left(
-\frac{\mu_{prem}}{\sigma_{prem}}
+\frac{\mu_{m,prem}}{\sigma_{m,prem}}
 \right)^2
 $$
 
 $$
-\beta=\frac{\mu_{prem}}{\sigma_{prem}^2}
+\beta=\frac{\mu_{m,prem}}{\sigma_{m,prem}^2}
 $$
 
 Finally:
@@ -252,14 +252,7 @@ This premium exists only under the Agent hypothesis.
 
 ## 🔷 Sequential Monte Carlo (SMC)
 
-Inference is performed using Sequential Monte Carlo:
-
-$$
-P(\theta \mid y)
-\approx
-\sum_{j=1}^{N}
-w_j \delta(\theta-\theta_j)
-$$
+Inference is performed using Sequential Monte Carlo (SMC).
 
 SMC:
 - approximates posterior distributions
@@ -275,9 +268,8 @@ Each chain is independently sampled and later concatenated.
 
 The script outputs:
 
-- posterior traces
+- traces
 - posterior predictive samples (PPC)
-- chain-wise marginal likelihood estimates
 
 Saved outputs include:
 
@@ -387,6 +379,8 @@ This script generates:
 - parameter recovery diagnostics
 - rank calibration histograms
 - shrinkage visualizations
+
+These outputs can be found in `results/plots/`.
 
 ---
 
