@@ -196,29 +196,29 @@ must be inferred from the data.
 The model infers market-level distributions:
 
 $$
-\mu_{m,l}
+\mu_{\text{m},l}
 \sim
 \mathcal{N}
 \left(
-\mu_l^{market},
-k \cdot \sigma_l^{market}
+\mu_l^\text{market},
+k \cdot \sigma_l^\text{market}
 \right)
 $$
 
 $$
-\sigma_{m,l}
+\sigma_{\text{m},l}
 \sim
 \text{TruncatedNormal}
 \left(
 \sigma_l^{market},
-\frac{k}{\sqrt{2}} \cdot \sigma_l^{market}
+\frac{k}{\sqrt{2}} \cdot \sigma_l^\text{market}
 \right)
 $$
 
 where:
 
-- $\mu_l^{market}$ → injected market mean
-- $\sigma_l^{market}$ → injected market volatility
+- $\mu_l^\text{market}$ → injected market mean
+- $\sigma_l^\text{market}$ → injected market volatility
 - $k$ → uncertainty scaling factor (`market_prior_scale`)
 
 These hyper-priors encode uncertainty about the global market itself.
@@ -230,15 +230,15 @@ Most coefficients are sampled using Gaussian distributions:
 $$
 p_{l,i}
 \sim
-\mathcal{N}(\mu_{m,l},\sigma_{m,l})
+\mathcal{N}(\mu_{\text{m},l},\sigma_{\text{m},l})
 $$
 
 The room coefficient uses a Laplace distribution to allow heavier tails:
 
 $$
-p_{room,i}
+p_{\text{room},i}
 \sim
-\text{Laplace}(\mu_{m,room},\sigma_{m,room})
+\text{Laplace}(\mu_\text{m,room},\sigma_\text{m,room})
 $$
 
 ---
@@ -250,29 +250,29 @@ In the **Agent hypothesis only**, an additional latent premium is introduced.
 First, market-level premium parameters are inferred:
 
 $$
-\mu_{m,prem}
+\mu_\text{m,prem}
 \sim
 \text{TruncatedNormal}
 \left(
-\mu_{\text{premium}}^{market},
-k \cdot \sigma_{\text{premium}}^{market}
+\mu_{\text{premium}}^\text{market},
+k \cdot \sigma_{\text{premium}}^\text{market}
 \right)
 $$
 
 $$
-\sigma_{m,prem}
+\sigma_\text{m,prem}
 \sim
 \text{TruncatedNormal}
 \left(
-\sigma_{\text{premium}}^{market},
-\frac{k}{\sqrt{2}} \cdot \sigma_{\text{premium}}^{market}
+\sigma_{\text{premium}}^\text{market},
+\frac{k}{\sqrt{2}} \cdot \sigma_{\text{premium}}^\text{market}
 \right)
 $$
 
 Then property-level premiums are sampled:
 
 $$
-p_{premium,i}
+p_{\text{premium},i}
 \sim
 \text{Gamma}(\alpha,\beta)
 $$
@@ -281,18 +281,18 @@ with:
 
 $$
 \alpha=\left(
-\frac{\mu_{m,prem}}{\sigma_{m,prem}}
+\frac{\mu_\text{m,prem}}{\sigma_\text{m,prem}}
 \right)^2
 $$
 
 $$
-\beta=\frac{\mu_{m,prem}}{\sigma_{m,prem}^2}
+\beta=\frac{\mu_\text{m,prem}}{\sigma_\text{m,prem}^2}
 $$
 
 Finally:
 
 $$
-\mu_i \rightarrow \mu_i + p_{premium,i}
+\mu_i \rightarrow \mu_i + p_{\text{premium},i}
 $$
 
 This premium exists only under the Agent hypothesis.
@@ -395,7 +395,7 @@ Thus, the Bayes Factor depends entirely on the estimated model evidence produced
 Compares:
 
 $$
-y_{observed} \sim y_{posterior}
+y_\text{observed} \sim y_\text{posterior}
 $$
 
 for both models using posterior predictive samples.
@@ -422,7 +422,7 @@ This tests whether the hierarchical structure correctly recovers the simulated m
 For each property-level parameter:
 
 $$
-\text{rank}_i = P(p_i < p_i^{true})
+\text{rank}_i = P(p_i < p_i^\text{true})
 $$
 
 If calibration is correct:
