@@ -52,17 +52,17 @@ $$
 The log-price is computed as:
 
 $$
-\mu_i =
-\beta_0
-+ \beta_{room} \cdot rooms_i
-+ \beta_{dist} \cdot distance_i
-+ \beta_{under} \cdot underground_i
-+ \beta_{type}(i)
-+ \beta_{outdoor}(i)
-+ \beta_{agent}
+\begin{aligned}
+\mu_i = \beta_0 & + \beta_{\text{room}} \cdot \text{rooms}_i \\
+& + \beta_{\text{dist}} \cdot \text{distance}_i \\
+& + \beta_{\text{under}} \cdot \text{underground}_i \\
+& + \beta_{\text{type}}(i) \\
+& + \beta_{\text{outdoor}}(i) \\
+& + \beta_{\text{agent}}
+\end{aligned}
 $$
 
-Where:
+where:
 
 - `base` (i.e. intercept)  → baseline rent level 
 - `room_coeff` (i.e. beta_room)  → effect of number of rooms  
