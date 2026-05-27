@@ -51,7 +51,7 @@ $$
 
 The log-price is computed as:
 
-$$\mu_i = \text{intercept}_i + \beta_{\text{room},i} \cdot n_{\text{rooms},i} + \beta_{\text{dist},i} \cdot \text{dist-centre-km}_i (+ \beta_{\text{under},i} + \beta_{\text{prop},i} + \beta_{\text{outdoor},i} + \text{premium}_i)$$
+$$\mu_i = \text{intercept}_i + \beta_{\text{room},i} \cdot n_{\text{rooms},i} + \beta_{\text{dist},i} \cdot \mathrm{dist\_centre\_km}_i (+ \beta_{\text{under},i} + \beta_{\text{prop},i} + \beta_{\text{outdoor},i} + \text{premium}_i)$$
 
 where:
 
