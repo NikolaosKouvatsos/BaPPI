@@ -9,108 +9,324 @@ This directory contains the core implementation of BaPPI, split into:
 
 # 1. Core Inference (`src/run_bayesian_analysis.py`)
 
-This script performs full Bayesian inference over two competing hypotheses:
+This script performs hierarchical Bayesian inference over two competing hypotheses:
 
-- **Owner model** (no agent markup)
-- **Agent model** (includes latent agent premium)
+- **Owner model** → no agent markup
+- **Agent model** → includes latent agent premium
 
-The goal is to learn posterior parameter distributions and evaluate model fit.
+The goal is to infer posterior parameter distributions and generate posterior predictive simulations.
 
 Importantly:
 
 > ❗ This script does **not compute the Bayes Factor**.  
-> It only produces (posterior) traces and posterior predictive samples (PPC).  
-> Model comparison is done later in `src/run_post_analysis.py`.
+> It only produces posterior traces and posterior predictive checks (PPC).  
+> Model comparison is performed later in `src/run_post_analysis.py`.
 
 ---
 
-## 🔷 Generative model
+## 🔷 Bayesian framework
 
-Each observed log-rent is generated as:
-
-$$
-y_i \sim \text{StudentT}(\nu=5, \mu_i, \sigma)
-$$
-
-where:
+The analysis follows Bayes' theorem:
 
 $$
-\mu_i = \sum_k p_{k,i} x_{k,i}
+P(\theta \mid y)
+=
+\frac{
+P(y \mid \theta) P(\theta)
+}{
+P(y)
+}
 $$
 
-- $x_{k,i}$: property features (rooms, distance, amenities)
-- $p_{k,i}$: latent property-level price coefficients
+Where:
 
-This defines a noisy structural relationship between features and log price.
+- $P(\theta \mid y)$ → posterior distribution
+- $P(y \mid \theta)$ → likelihood
+- $P(\theta)$ → prior distribution
+- $P(y)$ → marginal likelihood (model evidence)
+
+The model uses:
+- prior assumptions about the housing market
+- observed rental prices
+- hierarchical latent parameters
+
+to infer posterior distributions over pricing coefficients.
+
+---
+
+## 🔷 Observed likelihood model
+
+Observed log-rents are modeled using a Student-t likelihood:
+
+$$
+y_i
+\sim
+\text{StudentT}(\nu=5,\mu_i,\sigma)
+$$
+
+Where:
+
+- $y_i$ → observed log-rent
+- $\mu_i$ → latent structural log-price
+- $\sigma$ → residual noise scale
+
+The Student-t distribution is used for robustness against outliers.
+
+---
+
+## 🔷 Structural linear predictor
+
+The latent log-price is computed as:
+
+$$
+\mu_i
+=
+\sum_k p_{k,i} x_{k,i}
+$$
+
+Where:
+
+- $x_{k,i}$ → observed property features
+- $p_{k,i}$ → latent property-specific pricing coefficients
+
+Concretely:
+
+$$
+\mu_i =
+\text{intercept}_i
++
+\beta_{\text{room},i} \cdot n_{\text{rooms},i}
++
+\beta_{\text{dist},i} \cdot \texttt{dist\_centre\_km}_i
++
+\beta_{\text{under},i}
++
+\beta_{\text{prop},i}
++
+\beta_{\text{outdoor},i}
++
+\text{premium}_i
+$$
+
+---
+
+## 🔷 Parameter mapping
+
+The configuration arguments map to the internal Bayesian parameters as follows:
+
+| Config argument | Internal parameter |
+|---|---|
+| `base` | `intercept` |
+| `room_coeff` | `beta_room` |
+| `distance_coeff` | `beta_dist` |
+| `underground_fee` | `beta_under` |
+| `house_fee` | `beta_prop` |
+| `garden_fee` | `beta_outdoor` |
+| `terrace_fee` | `beta_outdoor` |
+| `balcony_fee` | `beta_outdoor` |
+| `agent_premium` | `premium` |
 
 ---
 
 ## 🔷 Hierarchical structure
 
-The model is structured around three different levels of knowledge about parameters.
+The model supports three different levels of parameter knowledge.
 
-### 1. Fixed parameters (fully known)
+### 1. Fixed parameters
 
-Some parameters are treated as completely known in advance.
+Some parameters are treated as fully known.
 
-These values come directly from the simulated data-generating process and are assumed to be correct.
+Their true values are directly injected from the synthetic data-generating process and are not inferred.
 
-They are not inferred by the model and are used as fixed inputs when constructing the likelihood.
-
----
-
-### 2. Market-known structure (partially known)
-
-For some parameters, we assume that the overall market structure is known.
-
-This means:
-- we assume we know the correct global distribution of the parameter at the market level
-- but we still estimate how each individual property deviates from that structure
-
-In other words, the model does not learn the global pattern, but it does learn property-specific realizations of it.
+These act as fixed coefficients inside the likelihood model.
 
 ---
 
-### 3. Fully unknown parameters (completely inferred)
+### 2. Market-known parameters
 
-For the remaining parameters, we assume no knowledge at either level.
+For some parameters:
 
-Both the market-level distribution and the property-level values must be inferred entirely from the data.
+- the global market distribution is assumed known
+- but property-level realizations are still inferred
 
-This represents the most uncertain case, where the model must learn both global structure and individual effects simultaneously.
+This means the model learns:
 
----
+$$
+p_{k,i}
+\sim
+\mathcal{N}(\mu_k^{market},\sigma_k^{market})
+$$
 
-## 🔷 Agent hypothesis extension
-
-In the agent version of the model only, an additional latent component is included:
-
-- a property-level agent premium is introduced
-- this term is fully learned from the data
-- it represents an additional markup applied per property
-
-In the owner model, this component is not present.
+while treating the market-level values themselves as fixed.
 
 ---
 
-## 🔷 Bayesian inference (SMC)
+### 3. Fully unknown parameters
 
-Inference is performed using **Sequential Monte Carlo (SMC)**:
+For fully unknown parameters, both:
 
+- the market-level distribution
+- and the property-level coefficients
+
+must be inferred from the data.
+
+---
+
+## 🔷 Market-level hyper-priors
+
+For fully unknown parameters, the model infers market-level distributions:
+
+$$
+\mu_{m,k}
+\sim
+\mathcal{N}
+\left(
+\mu_k^{market},
+k \cdot \sigma_k^{market}
+\right)
+$$
+
+$$
+\sigma_{m,k}
+\sim
+\text{TruncatedNormal}
+\left(
+\sigma_k^{market},
+\frac{k}{\sqrt{2}} \cdot \sigma_k^{market}
+\right)
+$$
+
+Where:
+
+- $\mu_k^{market}$ → injected market mean
+- $\sigma_k^{market}$ → injected market volatility
+- $k$ → uncertainty scaling factor (`market_prior_scale`)
+
+These hyper-priors encode uncertainty about the global market itself.
+
+---
+
+## 🔷 Property-level parameters
+
+Each property receives its own latent coefficient.
+
+Most coefficients are sampled using Gaussian distributions:
+
+$$
+p_{k,i}
+\sim
+\mathcal{N}(\mu_{m,k},\sigma_{m,k})
+$$
+
+The room coefficient uses a Laplace distribution to allow heavier tails:
+
+$$
+p_{room,i}
+\sim
+\text{Laplace}(\mu_{m,room},\sigma_{m,room})
+$$
+
+---
+
+## 🔷 Agent premium model
+
+In the **Agent hypothesis only**, an additional latent premium is introduced.
+
+First, market-level premium parameters are inferred:
+
+$$
+\mu_{prem}
+\sim
+\text{TruncatedNormal}
+\left(
+\mu_{\text{premium}}^{market},
+\;
+k \cdot \sigma_{\text{premium}}^{market}
+\right)
+$$
+
+$$
+\sigma_{prem}
+\sim
+\text{TruncatedNormal}
+\left(
+\sigma_{\text{premium}}^{market},
+\;
+\frac{k}{\sqrt{2}} \cdot \sigma_{\text{premium}}^{market}
+\right)
+$$
+
+Then property-level premiums are sampled:
+
+$$
+p_{premium,i}
+\sim
+\text{Gamma}(\alpha,\beta)
+$$
+
+with:
+
+$$
+\alpha
+=
+\left(
+\frac{\mu_{prem}}{\sigma_{prem}}
+\right)^2
+$$
+
+$$
+\beta
+=
+\frac{\mu_{prem}}{\sigma_{prem}^2}
+$$
+
+Finally:
+
+$$
+\mu_i \rightarrow \mu_i + p_{premium,i}
+$$
+
+This premium exists only under the Agent hypothesis.
+
+---
+
+## 🔷 Sequential Monte Carlo (SMC)
+
+Inference is performed using Sequential Monte Carlo:
+
+$$
+P(\theta \mid y)
+\approx
+\sum_{j=1}^{N}
+w_j \delta(\theta-\theta_j)
+$$
+
+SMC:
 - approximates posterior distributions
-- produces marginal likelihood estimates (used later)
-- generates posterior predictive samples
+- propagates weighted particles
+- estimates marginal likelihoods
+- supports Bayesian model comparison
+
+Each chain is independently sampled and later concatenated.
 
 ---
 
 ## 🔷 Output of this script
 
-This script produces:
+The script outputs:
 
-- traces
+- posterior traces
 - posterior predictive samples (PPC)
+- chain-wise marginal likelihood estimates
 
-🚫 It does **NOT compute or compare models**
+Saved outputs include:
+
+- `results/trace/final_trace_owner.pkl`
+- `results/trace/final_trace_agent.pkl`
+- `results/ppc/ppc_owner.pkl`
+- `results/ppc/ppc_agent.pkl`
+
+🚫 No Bayes Factor is computed here.
 
 ---
 
