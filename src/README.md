@@ -346,7 +346,7 @@ Model comparison is performed by comparing the marginal likelihood (model eviden
 For a model $M$, the evidence is:
 
 $$
-Z_M = P(y \mid M) = \int P(y \mid \theta, M)\, P(\theta \mid M)\, d\theta
+Z_M = P(y \mid M) = \int P(y \mid \theta, M)\, P(\theta \mid M)\ d\theta
 $$
 
 This quantity integrates out all latent parameters $\theta$, and therefore measures how well the entire model explains the observed data.
@@ -365,19 +365,14 @@ $$
 \log BF = \log Z_{\text{agent}} - \log Z_{\text{owner}}
 $$
 
-## Interpretation
-
+Interpretation:
 - $BF > 1$ → evidence favours the agent model  
 - $BF < 1$ → evidence favours the owner model  
 - The magnitude reflects the strength of evidence  
 
----
+Note:
 
-## Important conceptual note
-
-The Bayes Factor is not computed during inference.
-
-Instead:
+The Bayes Factor is not computed during inference. Instead:
 
 - each model is fit independently using SMC
 - SMC produces an estimate of the marginal likelihood $Z_M$
