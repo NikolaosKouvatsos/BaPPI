@@ -218,7 +218,7 @@ plt.subplots_adjust(hspace=0)
 plt.savefig(PLOT_DIR / "PPC.png")
 plt.close()
 
-### Make corner plots of global parameters
+### Make corner plots showing the price argument estimation at the market level
 # Market-Level Means ---
 mt_mu_inter        = config['base']
 mt_mu_beta_room    = config['room_coeff']
@@ -326,9 +326,8 @@ for i in range(len(all_y_labels)):
                 ax.plot(market_parameters_truth[col_label], market_parameters_truth[row_label], 
                         marker='s', color='black', markersize=6, zorder=15)
 
-plt.title("Hierarchical Owner Model: Global Market Recovery", fontsize=24, y=1.03)
 plt.tight_layout()
-plt.savefig(PLOT_DIR / "Corner Plot (Owner Model).png")
+plt.savefig(PLOT_DIR / "Global Market Recovery Corner Plot (Owner Model).png")
 plt.close()
 
 # AGENT model
@@ -391,9 +390,8 @@ for i in range(len(all_y_labels)):
                 ax.plot(market_parameters_truth[col_label], market_parameters_truth[row_label], 
                         marker='s', color='black', markersize=6, zorder=15)
 
-plt.title("Hierarchical Agent Model: Global Market Recovery", fontsize=24, y=1.03)
 plt.tight_layout()
-plt.savefig(PLOT_DIR / "Corner Plot (Agent Model).png")
+plt.savefig(PLOT_DIR / "Global Market Recovery Corner Plot (Agent Model).png")
 plt.close()
 
 ### Summary Statistics
