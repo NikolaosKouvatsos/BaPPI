@@ -354,7 +354,7 @@ Model comparison is performed by comparing the marginal likelihood (model eviden
 For a model $M$, the evidence is:
 
 $$
-\mathcal{Z}_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
+Z_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
 $$
 
 This quantity integrates out all latent parameters $\theta$, and therefore measures how well the entire model explains the observed data.
@@ -376,11 +376,27 @@ $$
 Interpretation:
 - $BF > 1$ → evidence favours the agent model  
 - $BF < 1$ → evidence favours the owner model  
-- The magnitude reflects the strength of evidence  
+- The magnitude reflects the strength of evidence
 
-Note:
+> ❗ Strictly speaking, Bayesian model comparison is based on the posterior odds ratio:
+>
+> $$
+> \frac{P(M_{\mathrm{agent}} \mid y)}{P(M_{\mathrm{owner}} \mid y)}
+> $$
+>
+> which measures which model is more probable given the observed data (y). Using Bayes' theorem, the posterior odds can be written as:
+>
+> $$
+> \frac{P(M_{\mathrm{agent}} \mid y)}{P(M_{\mathrm{owner}} \mid y)}
+> =================================================================
+>
+> BF \times
+> \frac{P(M_{\mathrm{agent}})}{P(M_{\mathrm{owner}})}
+> $$
+>
+> where (BF) is the Bayes Factor and the second term represents the prior odds between the two models. In this analysis we assume equal prior probabilities for the Agent and Owner models, so the prior odds ratio is 1. Under this assumption, the Bayes Factor alone is sufficient to determine which model is better supported by the observed data.
 
-The Bayes Factor is not computed during inference. Instead:
+Note that the Bayes Factor is not computed during inference. Instead:
 
 - each model is fit independently using SMC
 - SMC produces an estimate of the marginal likelihood $Z_M$
