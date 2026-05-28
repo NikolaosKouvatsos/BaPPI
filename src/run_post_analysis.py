@@ -501,7 +501,7 @@ print("- 1.0 < |Z| < 2.0: Normal Tension.", flush=True)
 print("- |Z| > 2.0: Significant Shrinkage or Outlier.", flush=True)
 print("P-value:", flush=True)
 print("- p-value > 0.05: Truth is statistically plausible (Success).", flush=True)
-print("- p-value < 0.05: Truth is an outlier relative to the posterior (likely due to heavy Shrinkage).", flush=True)
+print("- p-value < 0.05: Truth is an outlier relative to the posterior, likely due to heavy Shrinkage (Shrinkage Warning).", flush=True)
 
 ### Compare range of injected agent_premium values to the range of the corresponding posterior median values
 test_batch_agent = pd.read_csv(RESULTS_DIR / "test_batch_agent.csv")
