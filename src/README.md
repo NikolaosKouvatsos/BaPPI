@@ -228,8 +228,8 @@ where:
 - $\sigma_l^\text{market}$ → injected market volatility
 - $k$ → uncertainty scaling factor (`market_prior_scale`)
 
-> ❗ The factor of $1/\sqrt(2)$ is motivated by how the Standard Error of the Standard Deviation typically scales in relation to the Standard Error of the Mean.
-> Ultimately, the adoption of both $k$ and $k/\sqrt(2)$ is a modelling choice.
+> 💡 The factor of $1/\sqrt{2}$ is motivated by how the Standard Error of the Standard Deviation typically scales in relation to the Standard Error of the Mean.
+> Ultimately, this ratio preserves a structured statistical balance while leaving absolute calibration entirely in the user's hands via $k$.
 
 These hyper-priors encode uncertainty about the global market itself.
 
