@@ -547,7 +547,7 @@ This script generates:
 - posterior rank calibration histograms
 - shrinkage visualizations
 
-All generated outputs are saved to:
+All generated figures are saved to:
 
 `results/plots/`
 
