@@ -559,11 +559,14 @@ All generated outputs are saved to:
 
 Implements:
 
-> A hierarchical Bayesian generative model and performs full posterior inference via SMC.
+> A hierarchical Bayesian generative model and performs posterior inference using Sequential Monte Carlo (SMC).
 
-It outputs:
-- traces
-- posterior predictive samples
+It produces:
+
+- posterior traces (containing marginal likelihood $\log Z$ estimates)
+- posterior predictive samples (PPC)
+
+while keeping model comparison separate from inference itself.
 
 ---
 
@@ -571,32 +574,36 @@ It outputs:
 
 Implements:
 
-> All inference validation, diagnostics, and model comparison.
+> Post-inference evaluation, diagnostics, and Bayesian model comparison.
 
-It computes:
-- Bayes Factor
-- posterior calibration quality
-- parameter recovery accuracy
+It performs:
+
+- Bayes Factor computation
+- evidence consistency analysis
+- posterior predictive validation
+- parameter recovery diagnostics
+- posterior calibration analysis
+- shrinkage evaluation
 
 ---
 
 # 4. Full pipeline
 
 $$
-\text{Data}
+\text{Observed Data}
 \rightarrow
 \text{Hierarchical Bayesian Model}
 \rightarrow
-\text{SMC Inference (Posterior + PPC)}
+\text{SMC Posterior Inference}
 $$
 
 $$
 \rightarrow
-\text{Model Evidence (Log Z)}
+\text{Posterior + PPC + Log Evidence}
 \rightarrow
-\text{Bayes Factor + Diagnostics}
+\text{Bayes Factor + Diagnostics + Recovery Analysis}
 $$
 
 ---
 
-This system is designed to test whether an **agent pricing effect can be statistically identified under hierarchical uncertainty**, while keeping inference and evaluation separated.
+This framework is designed to test whether an agent-specific pricing effect can be statistically identified under hierarchical uncertainty, while maintaining a strict separation between inference, model comparison, and diagnostic evaluation.
