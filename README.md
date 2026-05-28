@@ -60,15 +60,13 @@ Rather than analysing properties independently, BaPPI jointly analyses a collect
 - **Owner Model** — prices are generated without agent intervention
 - **Agent Model** — prices include an additional agent premium contribution
 
-The framework evaluates which hypothesis better explains the observed collection of property prices whilst accounting for structural variables such as:
+BaPPI runs its analysis while accounting for structural variables such as:
 
 - Number of rooms
 - Property type
 - Distance from the city centre
 - Outdoor amenities
 - Underground station proximity
-
-By conditioning the pricing model on structural property characteristics, the framework reduces the risk of incorrectly attributing naturally expensive properties to agent-driven markups.
 
 ---
 
@@ -85,9 +83,9 @@ The analysis is performed collectively across multiple properties rather than in
 
 ---
 
-## 4. Post-Analysis
+## 4. Diagnostics & Evaluation
 
-The post-analysis stage generates:
+Thecore of the post-analysis stage generates:
 
 - Diagnostic outputs
 - Posterior summaries
