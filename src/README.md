@@ -354,12 +354,12 @@ Model comparison is performed by comparing the marginal likelihood (model eviden
 For a model $M$, the evidence is:
 
 $$
-Z_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
+\mathcal(Z)_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
 $$
 
 This quantity integrates out all latent parameters $\theta$, and therefore measures how well the entire model explains the observed data.
 
-In practice, $Z_M$ is not computed analytically. Instead, it is estimated using Sequential Monte Carlo (SMC), which provides an approximation to the log marginal likelihood for each chain.
+In practice, $Z_M$ is not computed analytically. Instead, it is estimated using Sequential Monte Carlo (SMC), which provides an estimate of the marginal likelihood for each independent chain, allowing convergence and consistency checks across chains.
 
 Once the marginal likelihoods have been estimated for both models, we obtain the Bayes Factor as:
 
