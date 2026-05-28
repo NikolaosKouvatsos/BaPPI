@@ -85,7 +85,7 @@ The analysis is performed collectively across multiple properties rather than in
 
 ## 4. Diagnostics & Evaluation
 
-Thecore of the post-analysis stage generates:
+The bulk of the post-analysis stage includes:
 
 - Diagnostic outputs
 - Posterior summaries
