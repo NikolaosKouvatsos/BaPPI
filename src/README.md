@@ -343,128 +343,194 @@ Saved outputs include:
 
 # 2. Model comparison + diagnostics (`src/run_post_analysis.py`)
 
-This script performs **all model comparison and evaluation**, including the Bayes Factor.
+This script performs all post-inference model evaluation and comparison tasks, including computation of the Bayes Factor, posterior predictive checks, hierarchical recovery diagnostics, and posterior calibration analysis.
 
 ---
 
 ## 🔷 Bayes Factor computation
 
-Model comparison is performed by comparing the marginal likelihood (model evidence) of each model.
+Model comparison is performed using the marginal likelihood (model evidence) of each model.
 
 For a model $M$, the evidence is:
 
 $$
-Z_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
+Z_M = P(y \mid M) = \int P(y \mid \theta, M), P(\theta \mid M), d\theta
 $$
 
-This quantity integrates out all latent parameters $\theta$, and therefore measures how well the entire model explains the observed data.
+where:
 
-In practice, $Z_M$ is not computed analytically. Instead, it is estimated using Sequential Monte Carlo (SMC), which provides an estimate of the marginal likelihood for each independent chain, allowing convergence and consistency checks across chains.
+- $y$ denotes the observed data
+- $\theta$ denotes the latent model parameters
+- $P(y \mid \theta, M)$ is the likelihood
+- $P(\theta \mid M)$ is the prior distribution
 
-Once the marginal likelihoods have been estimated for both models, we obtain the Bayes Factor as:
+The marginal likelihood integrates over the entire parameter space and therefore measures how well the model explains the observed data while accounting for model complexity.
+
+In practice, $Z_M$ is not computed analytically. Instead, it is estimated using Sequential Monte Carlo (SMC), which provides an estimate of the log marginal likelihood for each independent sampling chain.
+
+The script extracts the per-chain values of:
 
 $$
-BF = \frac{Z_{\text{agent}}}{Z_{\text{owner}}}
+\log Z_M
 $$
 
-and in (natural) log-space:
+and computes the mean evidence estimate across chains for each model.
+
+Once both model evidences have been estimated, the Bayes Factor is computed as:
 
 $$
-\log BF = \log Z_{\text{agent}} - \log Z_{\text{owner}}
+BF = \frac{Z_{\mathrm{agent}}}{Z_{\mathrm{owner}}}
+$$
+
+and equivalently in natural log-space:
+
+$$
+\log BF = \log Z_{\mathrm{agent}} - \log Z_{\mathrm{owner}}
 $$
 
 Interpretation:
-- $BF > 1$ → evidence favours the agent model  
-- $BF < 1$ → evidence favours the owner model  
-- The magnitude reflects the strength of evidence
+
+- $BF > 1$ → evidence favours the Agent model
+- $BF < 1$ → evidence favours the Owner model
+- larger magnitudes indicate stronger evidence
+
+The script also visualizes the estimated log evidence across chains to assess consistency of the SMC evidence estimates.
+
+Note that the Bayes Factor is not computed during posterior sampling itself. Instead:
+
+- each model is fit independently using SMC
+- SMC estimates the marginal likelihood $Z_M$
+- the Bayes Factor is computed afterward from these evidence estimates
+
+Thus, the Bayes Factor depends entirely on the estimated model evidence produced during sampling.
 
 > ❗ Strictly speaking, Bayesian model comparison is based on the posterior odds ratio:
 >
 > $$
-> \frac{P(M_{\mathrm{agent}} \mid y)}{P(M_{\mathrm{owner}} \mid y)}
+> \frac{P(M_{\mathrm{agent}} \mid y)}
+> {P(M_{\mathrm{owner}} \mid y)}
 > $$
 >
-> which measures which model is more probable given the observed data (y). Using Bayes' theorem, the posterior odds can be written as:
+> which measures which model is more probable given the observed data $y$.
+>
+> Using Bayes' theorem:
 >
 > $$
-> \frac{P(M_{\mathrm{agent}} \mid y)}{P(M_{\mathrm{owner}} \mid y)} = BF \times \frac{P(M_{\mathrm{agent}})}{P(M_{\mathrm{owner}})}
+> \frac{P(M_{\mathrm{agent}} \mid y)} {P(M_{\mathrm{owner}} \mid y)} = BF \times \frac{P(M_{\mathrm{agent}})} {P(M_{\mathrm{owner}})}
 > $$
 >
-> where (BF) is the Bayes Factor and the second term represents the prior odds between the two models. In this analysis we assume equal prior probabilities for the Agent and Owner models, so the prior odds ratio is 1. Under this assumption, the Bayes Factor alone is sufficient to determine which model is better supported by the observed data.
-
-Note that the Bayes Factor is not computed during inference. Instead:
-
-- each model is fit independently using SMC
-- SMC produces an estimate of the marginal likelihood $Z_M$
-- the Bayes Factor is computed after sampling from these estimates
-
-Thus, the Bayes Factor depends entirely on the estimated model evidence produced during sampling.
+> where:
+>
+> - $BF$ is the Bayes Factor
+> - the second term represents the prior odds between the two models
+>
+> In this analysis, the Agent and Owner models are assigned equal prior probability:
+>
+> $$
+> P(M_{\mathrm{agent}}) = P(M_{\mathrm{owner}})
+> $$
+>
+> so the prior odds ratio is 1. Under this assumption, the posterior odds ratio is determined entirely by the Bayes Factor.
 
 ---
 
-## 🔷 Evidence analysis
+## 🔷 Evidence consistency analysis
 
-- extracts per-chain log marginal likelihoods
+The script:
+
+- extracts per-chain log marginal likelihood estimates
 - computes:
-  - mean log Z per model
+
+  - mean $\log Z$ per model
   - Bayes Factor
-  - cross-chain consistency checks
+  - cross-chain evidence consistency diagnostics
+- visualizes evidence agreement across chains
+
+This helps assess whether independent SMC chains reached similar evidence estimates.
+
+---
+
+## 🔷 Acceptance-rate diagnostics
+
+The script visualizes SMC acceptance rates across inverse-temperature values ($\beta$):
+
+$$
+\beta : 0 \rightarrow 1
+$$
+
+where:
+
+- $\beta = 0$ corresponds to the prior distribution
+- $\beta = 1$ corresponds to the full posterior distribution
+
+This diagnostic helps assess the stability and efficiency of the SMC tempering procedure during evidence integration.
 
 ---
 
 ## 🔷 Posterior predictive checks (PPC)
 
-Compares:
+The script compares:
 
 $$
-y_\text{observed} \sim y_\text{posterior}
+y_{\mathrm{observed}} \sim y_{\mathrm{posterior}}
 $$
 
 for both models using posterior predictive samples.
 
-This evaluates whether the model reproduces observed price distributions.
+This evaluates whether the inferred models reproduce the observed log-price distributions.
 
 ---
 
 ## 🔷 Hierarchical parameter recovery
 
-For each market-level parameter:
+For each market-level parameter, the script compares posterior estimates against the injected ground-truth simulation values.
 
-- compares posterior vs true injected values
-- computes:
-  - Z-score
-  - two-tailed Bayesian p-value
+Computed diagnostics include:
 
-This tests whether the hierarchical structure correctly recovers the simulated market.
+- posterior median
+- posterior standard deviation
+- recovery Z-score
+- two-tailed posterior tail probability diagnostic
+
+This analysis evaluates whether the hierarchical model successfully recovers the underlying simulated market structure.
 
 ---
 
 ## 🔷 Posterior rank calibration
 
-For each property-level parameter:
+For each property-level parameter, the script computes the empirical posterior rank of the injected truth value:
 
 $$
-\text{rank}_i = P(p_i < p_i^\text{true})
+\mathrm{rank}_i = P(p_i < p_i^{\mathrm{true}})
 $$
 
-If calibration is correct:
+If calibration is correct and the posterior is well specified, the resulting rank histogram should be approximately uniform on $[0,1]$.
 
-- ranks should be approximately uniform on $[0,1]$
+Deviations from uniformity may indicate:
 
-This detects:
-- shrinkage
-- bias
-- misspecification
+- posterior bias
+- excessive shrinkage
+- under/over-dispersion
+- model misspecification
+
+For sparse binary-style features (e.g. balcony, terrace, garden, premium), calibration is evaluated only on active properties with non-zero injected effects.
 
 ---
 
-## 🔷 Agent premium analysis
+## 🔷 Agent-premium shrinkage analysis
 
-Evaluates:
+The script compares:
 
-- injected vs inferred agent premium
-- shrinkage effects
-- population-level distortion
+- injected property-level agent premiums
+- posterior median estimates
+
+across all properties.
+
+This visualization highlights:
+
+- hierarchical shrinkage effects
+- population-level regularization
+- distortion toward the inferred market mean
 
 ---
 
@@ -473,13 +539,17 @@ Evaluates:
 This script generates:
 
 - Bayes Factor + evidence comparison
+- evidence consistency plots
+- SMC acceptance-rate diagnostics
 - PPC plots (Owner vs Agent)
 - posterior corner plots
 - parameter recovery diagnostics
-- rank calibration histograms
+- posterior rank calibration histograms
 - shrinkage visualizations
 
-These outputs can be found in `results/plots/`.
+All generated outputs are saved to:
+
+`results/plots/`
 
 ---
 
