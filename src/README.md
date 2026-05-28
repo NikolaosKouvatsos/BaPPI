@@ -387,11 +387,7 @@ Interpretation:
 > which measures which model is more probable given the observed data (y). Using Bayes' theorem, the posterior odds can be written as:
 >
 > $$
-> \frac{P(M_{\mathrm{agent}} \mid y)}{P(M_{\mathrm{owner}} \mid y)}
-> =================================================================
->
-> BF \times
-> \frac{P(M_{\mathrm{agent}})}{P(M_{\mathrm{owner}})}
+> \frac{P(M_{\mathrm{agent}} \mid y)}{P(M_{\mathrm{owner}} \mid y)} = BF \times \frac{P(M_{\mathrm{agent}})}{P(M_{\mathrm{owner}})}
 > $$
 >
 > where (BF) is the Bayes Factor and the second term represents the prior odds between the two models. In this analysis we assume equal prior probabilities for the Agent and Owner models, so the prior odds ratio is 1. Under this assumption, the Bayes Factor alone is sufficient to determine which model is better supported by the observed data.
