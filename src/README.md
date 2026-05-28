@@ -341,7 +341,7 @@ Saved outputs include:
 
 ---
 
-# 2. Model comparison + diagnostics (`src/run_post_analysis.py`)
+# 2. Model comparison + diagnostics + evaluation (`src/run_post_analysis.py`)
 
 This script performs all post-inference model evaluation and comparison tasks, including computation of the Bayes Factor, posterior predictive checks, hierarchical recovery diagnostics, and posterior calibration analysis.
 
@@ -354,7 +354,7 @@ Model comparison is performed using the marginal likelihood (model evidence) of 
 For a model $M$, the evidence is:
 
 $$
-Z_M = P(y \mid M) = \int P(y \mid \theta, M), P(\theta \mid M), d\theta
+Z_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
 $$
 
 where:
@@ -382,7 +382,7 @@ $$
 BF = \frac{Z_{\mathrm{agent}}}{Z_{\mathrm{owner}}}
 $$
 
-and equivalently in natural log-space:
+and equivalently in (natural) log-space:
 
 $$
 \log BF = \log Z_{\mathrm{agent}} - \log Z_{\mathrm{owner}}
