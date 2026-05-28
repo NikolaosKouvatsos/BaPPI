@@ -354,7 +354,7 @@ Model comparison is performed by comparing the marginal likelihood (model eviden
 For a model $M$, the evidence is:
 
 $$
-\mathcal(Z)_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
+\mathcal{Z}_M = P(y \mid M) = \int P(y \mid \theta, M) P(\theta \mid M) d\theta
 $$
 
 This quantity integrates out all latent parameters $\theta$, and therefore measures how well the entire model explains the observed data.
