@@ -32,9 +32,9 @@ $$P(\theta \mid y, M) = \frac{P(y \mid \theta, M) P(\theta \mid M)}{P(y \mid M)}
 
 where:
 
-- $P(\theta \mid y, M)$ → posterior distribution under model $M$
+- $P(\theta \mid y, M)$ → posterior distribution of parameters $\theta$ under model $M$
 - $P(y \mid \theta, M)$ → likelihood of the data under parameters $\theta$ and model $M$
-- $P(\theta \mid M)$ → prior distribution under model $M$
+- $P(\theta \mid M)$ → prior distribution of parameters $\theta$ under model $M$
 - $P(y \mid M)$ → marginal likelihood (model $M$ evidence)
 
 The model uses:
@@ -279,7 +279,7 @@ $$
 \right)
 $$
 
-Then property-level premiums are sampled:
+Then, property-level premiums are sampled:
 
 $$
 p_{\text{premium},i}
