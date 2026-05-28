@@ -35,7 +35,7 @@ where:
 - $P(\theta \mid y, M)$ → posterior distribution under model $M$
 - $P(y \mid \theta, M)$ → likelihood of the data under parameters $\theta$ and model $M$
 - $P(\theta \mid M)$ → prior distribution under model $M$
-- $P(y \mid M)$ → marginal likelihood (model evidence)
+- $P(y \mid M)$ → marginal likelihood (model $M$ evidence)
 
 The model uses:
 - prior assumptions about the housing market
@@ -63,13 +63,11 @@ y_i
 \text{StudentT}(\nu=5,\mu_i,\sigma)
 $$
 
-Where:
+where:
 
 - $y_i$ → observed log-rent
 - $\mu_i$ → latent structural log-price
 - $\sigma$ → residual noise scale
-
-The Student-t distribution is used for robustness against outliers.
 
 ---
 
@@ -81,8 +79,9 @@ $$
 \mu_i=\sum_l p_{l,i} x_{l,i}
 $$
 
-where $l$ describes some specific parameter and:
+where:
 
+- $l$ → some specific parameter
 - $x_{l,i}$ → observed property features
 - $p_{l,i}$ → latent property-specific pricing coefficients
 
@@ -153,7 +152,7 @@ This is the quantity used internally during Bayesian inference and SMC sampling.
 
 ## 🔷 Hierarchical structure
 
-The model supports three different levels of parameter knowledge.
+The model supports three different levels of initial parameter knowledge.
 
 ### 1. Fixed parameters
 
@@ -181,6 +180,14 @@ p_{l,i}
 $$
 
 while treating the market-level values themselves as fixed.
+
+The room coefficient is an exception, as it uses a Laplace distribution to allow heavier tails:
+
+$$
+p_{\text{room},i}
+\sim
+\mathcal{N}(\mu_text{room}^\text{market},\sigma_text{room}^\text{market})
+$$
 
 ---
 
@@ -233,7 +240,7 @@ p_{l,i}
 \mathcal{N}(\mu_{\text{m},l},\sigma_{\text{m},l})
 $$
 
-The room coefficient uses a Laplace distribution to allow heavier tails:
+Again, the room coefficient uses a Laplace distribution:
 
 $$
 p_{\text{room},i}
