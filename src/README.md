@@ -186,7 +186,7 @@ The room coefficient is an exception, as it uses a Laplace distribution to allow
 $$
 p_{\text{room},i}
 \sim
-\mathcal{N}(\mu_text{room}^\text{market},\sigma_text{room}^\text{market})
+\mathcal{N}(\mu_\text{room}^\text{market},\sigma_\text{room}^\text{market})
 $$
 
 ---
